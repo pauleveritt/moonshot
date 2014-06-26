@@ -1,0 +1,31 @@
+{
+  "name": "Moonshot",
+  "dependencies": {
+    "lodash": "*",
+    "angular": "*",
+    "angular-route": "*",
+    "angular-cookies": "*",
+    "angular-resource": "*",
+    "angular-animate": "*",
+    "bootstrap": "*",
+    "angular-bootstrap": "*",
+    "angular-mocks": "*",
+    "font-awesome": "*"
+  },
+  "devDependencies": {},
+  "version": "0.1.0",
+  "homepage": "",
+  "authors": [
+    "Paul Everitt"
+  ],
+  "description": "Admin UI for REST projects",
+  "license": "Commercial",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

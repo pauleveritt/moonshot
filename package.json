@@ -1,0 +1,42 @@
+{
+  "name": "Moonshot",
+  "description": "Admin frontend for REST projects",
+  "version": "0.1.0",
+  "author": "Paul Everitt",
+  "engines": [
+    "node"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "dependencies": {
+    "bower": "*",
+    "grunt": "*",
+    "grunt-cli": "*",
+    "load-grunt-tasks": "*",
+    "grunt-newer": "*",
+    "time-grunt": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-angular-templates": "*",
+    "grunt-contrib-connect": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-cssmin": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-less": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-template": "*",
+    "protractor": "*",
+    "karma": ">=0.11.14",
+    "karma-jasmine": "*",
+    "lodash": "*",
+    "grunt-karma": "~0.7.2",
+    "karma-chrome-launcher": "~0.1.2",
+    "phantomjs": "*",
+    "karma-phantomjs-launcher": "*",
+    "karma-coverage": "*",
+    "karma-junit-reporter": "*",
+    "chromedriver": "*"
+  }
+}
