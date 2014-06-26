@@ -6,11 +6,13 @@
   <% _.forEach(css, function(path) { %>
   <link href="<%- prefix %><%- path %>" rel="stylesheet">
   <% }); %>
+  <% if (mode=="dev") { %>
   <script type="text/javascript">
     window.onerror = function (msg) {
       document.getElementsByTagName('body')[0].setAttribute('data-jserror', msg);
     };
   </script>
+  <% } %>
 </head>
 <body>
 <h1>hello</h1>
@@ -22,7 +24,9 @@
 <% _.forEach(devjs, function(path) { %>
 <script src="<%- prefix %><%- path %>"></script>
 <% }); %>
-
+<% if (mode=="dev") { %>
+<script src="app/app.js"></script>
+<% } %>
 
 </body>
 </html>

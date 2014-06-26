@@ -23,8 +23,7 @@ module.exports = function (grunt) {
           "bower_components/lodash/dist/lodash.js"
         ],
         devjs: [
-          "bower_components/angular-mocks/angular-mocks.js",
-          "app/app.js"
+          "bower_components/angular-mocks/angular-mocks.js"
         ],
         css: [
           "bower_components/bootstrap/dist/css/bootstrap.css",
@@ -103,11 +102,19 @@ module.exports = function (grunt) {
             }
           ]
         },
-        js: {
+        libjs: {
           files: [
             {
               src: "<%= sources.js %>",
               dest: "dist/js/lib-all.js"
+            }
+          ]
+        },
+        appjs: {
+          files: [
+            {
+              src: "src/*/*.js",
+              dest: "dist/js/app-all.js"
             }
           ]
         }
@@ -117,7 +124,7 @@ module.exports = function (grunt) {
         options: {
           banner: "<%= meta.banner %>"
         },
-        build: {
+        lib: {
           src: "dist/js/lib-all.js",
           dest: "dist/js/lib-all.min.js"
         }
