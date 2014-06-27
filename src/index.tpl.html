@@ -6,6 +6,7 @@
   <% _.forEach(css, function(path) { %>
   <link href="<%- prefix %><%- path %>" rel="stylesheet">
   <% }); %>
+  <link href="css/app-styles.css" rel="stylesheet">
   <% if (mode=="dev") { %>
   <script type="text/javascript">
     window.onerror = function (msg) {
@@ -21,8 +22,10 @@
 
   <div>
     <ul class="nav nav-pills">
-      <li><a id="home" ui-sref="home">Home</a></li>
-      <li><a id="sl" ui-sref="list">Shopping List</a></li>
+      <li><a id="home" ui-sref="home" ui-sref-active="active">Home</a>
+      </li>
+      <li><a id="sl" ui-sref="list" ui-sref-active="active">Shopping
+        List</a></li>
     </ul>
   </div>
   <div ui-view></div>

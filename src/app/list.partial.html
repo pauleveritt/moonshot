@@ -1,10 +1,9 @@
 <div class="row">
   <div class="list-group col-xs-3">
     <a class="list-group-item"
+       ui-sref-active="active"
        ng-repeat="item in ListCtrl.context"
-       ng-class="{active: item.selected}"
-       ui-sref="list.item({itemId: item.id})"
-       ng-click="ListCtrl.selectItem(item.id)">{{item.title}}</a>
+       ui-sref="list.item({itemId: item.id})">{{item.title}}</a>
   </div>
   <div ui-view class="col-xs-9"></div>
 </div>

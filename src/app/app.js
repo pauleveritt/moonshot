@@ -34,15 +34,6 @@ app.config(function ($stateProvider) {
 app.controller("ListCtrl", function (context) {
   var ctrl = this;
   ctrl.context = context;
-
-  this.selectItem = function (selectedItem) {
-    _.forEach(ctrl.context, function (item) {
-      item.selected = false;
-      if (selectedItem === item) {
-        selectedItem.selected = true;
-      }
-    });
-  };
 });
 
 app.controller("ListItemCtrl", function (context) {
