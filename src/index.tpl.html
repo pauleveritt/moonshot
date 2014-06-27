@@ -15,7 +15,21 @@
   <% } %>
 </head>
 <body>
-<h1>hello</h1>
+
+<div class="container">
+  <h4>
+    A brief introduction to <strong class="text-danger">ui-router</strong>
+    <span class="text-muted">(v0.2.0)</span>
+  </h4>
+
+  <div>
+    <ul class="nav nav-pills">
+      <li><a href="#/home">Home</a></li>
+      <li><a href="#/list">Shopping List</a></li>
+    </ul>
+  </div>
+  <div ui-view></div>
+</div>
 
 <% _.forEach(js, function(path) { %>
 <script src="<%- prefix %><%- path %>"></script>
