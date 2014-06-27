@@ -17,15 +17,16 @@
 <body>
 <h1>hello</h1>
 
-<!--   Boilerplate -->
 <% _.forEach(js, function(path) { %>
 <script src="<%- prefix %><%- path %>"></script>
 <% }); %>
-<% _.forEach(devjs, function(path) { %>
+<% if (mode=="dev") { %>
+<% _.forEach(libjs, function(path) { %>
 <script src="<%- prefix %><%- path %>"></script>
 <% }); %>
-<% if (mode=="dev") { %>
-<script src="app/app.js"></script>
+<% _.forEach(appjs, function(path) { %>
+<script src="<%- path %>"></script>
+<% }); %>
 <% } %>
 
 </body>

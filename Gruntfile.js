@@ -25,6 +25,7 @@ module.exports = function (grunt) {
         devjs: [
           "bower_components/angular-mocks/angular-mocks.js"
         ],
+        appjs: ["src/*/*.js"],
         css: [
           "bower_components/bootstrap/dist/css/bootstrap.css",
           "bower_components/font-awesome/css/font-awesome.css"
@@ -54,8 +55,8 @@ module.exports = function (grunt) {
               prefix: "../",
               css: "<%= sources.css %>",
               js: "<%= sources.js %>",
-              devjs: "<%= sources.devjs %>"
-
+              libjs: "<%= sources.devjs %>",
+              appjs: ["app/app.js"]
             }
           },
           files: {
@@ -68,8 +69,7 @@ module.exports = function (grunt) {
               mode: "dist",
               prefix: "",
               css: ["css/lib-all.min.css", "css/app-styles.css"],
-              js: ["js/lib-all.min.js", "js/app-all.js"],
-              devjs: []
+              js: ["js/lib-all.min.js", "js/app-all.js"]
             }
           },
           files: {
@@ -113,7 +113,7 @@ module.exports = function (grunt) {
         appjs: {
           files: [
             {
-              src: "src/*/*.js",
+              src: "<%= sources.appjs %>",
               dest: "dist/js/app-all.js"
             }
           ]
@@ -146,12 +146,6 @@ module.exports = function (grunt) {
           src: "src/css/app-styles.css",
           flatten: true,
           dest: "dist/css"
-        },
-        js: {
-          expand: true,
-          src: ["src/*/*.js"],
-          flatten: true,
-          dest: "dist/js"
         },
         fonts: {
           expand: true,
@@ -220,6 +214,8 @@ module.exports = function (grunt) {
       "newer:ngtemplates", "newer:concat", "newer:uglify",
       "newer:cssmin", "newer:copy",
       // Start the server
-      "connect:dev", "watch"]);
+      "connect:dev",
+      "watch"
+    ]);
 
 };

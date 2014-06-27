@@ -10,7 +10,9 @@
     "bootstrap": "*",
     "angular-bootstrap": "*",
     "angular-mocks": "*",
-    "font-awesome": "*"
+    "font-awesome": "*",
+    "angular-ui-router": "*",
+    "restangular": "*"
   },
   "devDependencies": {},
   "version": "0.1.0",
