@@ -3,15 +3,23 @@ var app = angular.module("moonshot", ["ui.router"]);
 
 app.config(function ($stateProvider) {
   $stateProvider
+    .state("root", {
+             abstract: true,
+             url: "",
+             templateUrl: "app/root.partial.html",
+             controller: "RootCtrl",
+             controllerAs: "RootCtrl"
+           })
     .state("home", {
              url: "/home",
+             parent: "root",
              templateUrl: "app/home.partial.html"
            })
     .state("list", {
              url: "/list",
+             parent: "root",
              templateUrl: "app/list.partial.html",
-             controller: "ListCtrl",
-             controllerAs: "ListCtrl",
+             controller: "ListCtrl as ListCtrl",
              resolve: {
                context: function (ShoppingList) {
                  return ShoppingList;
@@ -21,14 +29,17 @@ app.config(function ($stateProvider) {
     .state("list.item", {
              url: "/:itemId",
              templateUrl: "app/list.item.partial.html",
-             controller: "ListItemCtrl",
-             controllerAs: "ListItemCtrl",
+             controller: "ListItemCtrl as ListItemCtrl",
              resolve: {
                context: function (ShoppingList, $stateParams) {
                  return ShoppingList[$stateParams.itemId];
                }
              }
            })
+});
+
+app.controller("RootCtrl", function ($scope) {
+  $scope.site = {title: "Moonbeam"};
 });
 
 app.controller("ListCtrl", function (context) {
