@@ -1,4 +1,4 @@
-var app = angular.module("moonshot", ["ui.router"]);
+var app = angular.module("moonshot", ["ui.router", "restangular"]);
 
 
 app.config(function ($stateProvider) {
@@ -21,8 +21,15 @@ app.config(function ($stateProvider) {
              templateUrl: "app/list.partial.html",
              controller: "ListCtrl as ListCtrl",
              resolve: {
-               context: function (ShoppingList) {
-                 return ShoppingList;
+               shoppinglist: function (Restangular) {
+                 var baseShoppingList = Restangular.all('src/shoppinglist.json');
+                 return baseShoppingList.getList().then(function (response) {
+                   var data = {};
+                   _.forEach(response, function (d) {
+                     data[d.id] = d;
+                   });
+                   return data;
+                 });
                }
              }
            })
@@ -31,8 +38,8 @@ app.config(function ($stateProvider) {
              templateUrl: "app/list.item.partial.html",
              controller: "ListItemCtrl as ListItemCtrl",
              resolve: {
-               context: function (ShoppingList, $stateParams) {
-                 return ShoppingList[$stateParams.itemId];
+               context: function (shoppinglist, $stateParams) {
+                 return shoppinglist[$stateParams.itemId];
                }
              }
            })
@@ -42,20 +49,11 @@ app.controller("RootCtrl", function ($scope) {
   $scope.site = {title: "Moonbeam"};
 });
 
-app.controller("ListCtrl", function (context) {
+app.controller("ListCtrl", function (shoppinglist) {
   var ctrl = this;
-  ctrl.context = context;
+  ctrl.context = shoppinglist;
 });
 
 app.controller("ListItemCtrl", function (context) {
   this.context = context;
 });
-
-app.value("ShoppingList", {
-            i1: {id: "i1", title: "Milk"},
-            i2: {id: "i2", title: "Eggs"},
-            i3: {id: "i3", title: "Bread"},
-            i4: {id: "i4", title: "Cheese"},
-            i5: {id: "i5", title: "Ham"}
-          }
-);
