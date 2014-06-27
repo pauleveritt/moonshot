@@ -1,7 +1,5 @@
 function ClobjectPage() {
 
-  this.node = element(by.tagName('h1'));
-
   this.get = function () {
     browser.get("/src/index.html");
   };

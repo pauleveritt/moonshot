@@ -10,28 +10,23 @@ app.config(function ($stateProvider) {
     .state("list", {
              url: "/list",
              templateUrl: "app/list.partial.html",
-             controller: "ListCtrl"
+             controller: "ListCtrl",
+             controllerAs: "ListCtrl"
            })
     .state("list.item", {
              url: "/:item",
-             templateUrl: "app/list.partial.item.html",
-             controller: function ($scope, $stateParams) {
-               $scope.item = $stateParams.item;
-             }
+             templateUrl: "app/list.item.partial.html",
+             controller: "ListItemCtrl",
+             controllerAs: "ListItemCtrl"
            })
 });
 
-app.controller("ListCtrl", function ($scope) {
-  $scope.shoppingList = [
-    {name: "Milk"},
-    {name: "Eggs"},
-    {name: "Bread"},
-    {name: "Cheese"},
-    {name: "Ham"}
-  ];
+app.controller("ListCtrl", function (ShoppingList) {
+  var ctrl = this;
+  this.shoppingList = ShoppingList;
 
-  $scope.selectItem = function (selectedItem) {
-    _($scope.shoppingList).each(function (item) {
+  this.selectItem = function (selectedItem) {
+    _.forEach(ctrl.shoppingList, function (item) {
       item.selected = false;
       if (selectedItem === item) {
         selectedItem.selected = true;
@@ -39,3 +34,15 @@ app.controller("ListCtrl", function ($scope) {
     });
   };
 });
+
+app.controller("ListItemCtrl", function ($log, $stateParams) {
+  this.item = $stateParams.item;
+});
+
+app.value("ShoppingList", [
+  {name: "Milk"},
+  {name: "Eggs"},
+  {name: "Bread"},
+  {name: "Cheese"},
+  {name: "Ham"}
+]);

@@ -17,15 +17,12 @@
 <body>
 
 <div class="container">
-  <h4>
-    A brief introduction to <strong class="text-danger">ui-router</strong>
-    <span class="text-muted">(v0.2.0)</span>
-  </h4>
+  <h1>Moonshot</h1>
 
   <div>
     <ul class="nav nav-pills">
-      <li><a href="#/home">Home</a></li>
-      <li><a href="#/list">Shopping List</a></li>
+      <li><a id="home" ui-sref="home">Home</a></li>
+      <li><a id="sl" ui-sref="list">Shopping List</a></li>
     </ul>
   </div>
   <div ui-view></div>
