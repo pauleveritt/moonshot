@@ -1,10 +1,10 @@
-<div class="row padded">
+<div class="row">
   <div class="list-group col-xs-3">
     <a class="list-group-item"
-       ng-repeat="item in ListCtrl.shoppingList"
+       ng-repeat="item in ListCtrl.context"
        ng-class="{active: item.selected}"
-       ng-href="#/list/{{item.name}}"
-       ng-click="ListCtrl.selectItem(item)">{{item.name}}</a>
+       ui-sref="list.item({itemId: item.id})"
+       ng-click="ListCtrl.selectItem(item.id)">{{item.title}}</a>
   </div>
   <div ui-view class="col-xs-9"></div>
 </div>
