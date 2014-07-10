@@ -5,7 +5,6 @@ TODO
 Next
 ====
 
-
 After
 =====
 
@@ -17,4 +16,12 @@ Later
 
 One Day
 =======
+
+
+Done
+====
+
+- Animation
+
+- Get dist/index.html working (need ngtemplates setup)
 
