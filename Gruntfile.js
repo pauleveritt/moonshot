@@ -80,10 +80,9 @@ module.exports = function (grunt) {
             },
 
             ngtemplates: {
-                apptemplates: {
+                moonshot: {
                     options: {
-                        prefix: "/",
-                        standalone: true
+                        prefix: "/"
                     },
                     src: "src/**/*.partial.html",
                     dest: "dist/js/ngtemplates.js"
@@ -122,7 +121,8 @@ module.exports = function (grunt) {
 
             uglify: {
                 options: {
-                    banner: "<%= meta.banner %>"
+                    banner: "<%= meta.banner %>",
+                    sourceMap: true
                 },
                 lib: {
                     src: "dist/js/lib-all.js",

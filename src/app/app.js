@@ -1,6 +1,5 @@
 var app = angular.module("moonshot", [
-    "ngAnimate", "ui.router", "restangular",
-    "apptemplates"]);
+    "ngAnimate", "ui.router", "restangular"]);
 
 
 app.config(function ($urlRouterProvider, $stateProvider) {
