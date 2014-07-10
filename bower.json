@@ -1,18 +1,15 @@
 {
   "name": "Moonshot",
   "dependencies": {
-    "lodash": "*",
-    "angular": "*",
-    "angular-route": "*",
-    "angular-cookies": "*",
-    "angular-resource": "*",
-    "angular-animate": "*",
-    "bootstrap": "*",
-    "angular-bootstrap": "*",
-    "angular-mocks": "*",
-    "font-awesome": "*",
-    "angular-ui-router": "*",
-    "restangular": "*"
+    "lodash": "2.4.*",
+    "angular": "1.2.19",
+    "angular-animate": "1.2.*",
+    "bootstrap": "3.2.*",
+    "angular-bootstrap": "0.11.0",
+    "angular-mocks": "1.2.*",
+    "font-awesome": "4.1.*",
+    "angular-ui-router": "0.2.*",
+    "restangular": "1.4.*"
   },
   "devDependencies": {},
   "version": "0.1.0",
