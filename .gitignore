@@ -1,4 +1,19 @@
+
+# standard
+*.log
+/bower_components
+/node_modules
 .idea
-node_modules
-bower_components
-dist
+*-karma-test-results.xml
+coverage
+*egg-info*
+*.pyc
+/env34
+
+# Mac
+.DS_Store
+
+# Project
+/dist
+phantomjsdriver.log
+karma-tests-results.xml

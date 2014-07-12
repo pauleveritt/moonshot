@@ -73,7 +73,7 @@ module.exports = function (config) {
       },
 
       junitReporter: {
-        outputFile: 'plt-karma-test-results.xml'
+        outputFile: 'karma-test-results.xml'
       },
 
       coverageReporter: {
