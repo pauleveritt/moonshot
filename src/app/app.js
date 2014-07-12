@@ -7,19 +7,19 @@ app.config(function ($urlRouterProvider, $stateProvider) {
         .state("root", {
             abstract: true,
             url: "",
-            templateUrl: "/src/app/root.partial.html",
+            templateUrl: "app/root.partial.html",
             controller: "RootCtrl",
             controllerAs: "RootCtrl"
         })
         .state("home", {
             url: "/home",
             parent: "root",
-            templateUrl: "/src/app/home.partial.html"
+            templateUrl: "app/home.partial.html"
         })
         .state("list", {
             url: "/list",
             parent: "root",
-            templateUrl: "/src/app/list.partial.html",
+            templateUrl: "app/list.partial.html",
             controller: "ListCtrl as ListCtrl",
             resolve: {
                 shoppinglist: function (Restangular) {
@@ -36,7 +36,7 @@ app.config(function ($urlRouterProvider, $stateProvider) {
         })
         .state("list.item", {
             url: "/:itemId",
-            templateUrl: "/src/app/list.item.partial.html",
+            templateUrl: "app/list.item.partial.html",
             controller: "ListItemCtrl as ListItemCtrl",
             resolve: {
                 context: function (shoppinglist, $stateParams) {
