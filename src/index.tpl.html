@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html ng-app="moonshot" data-mode="<%- mode %>">
 <head>
-  <meta charset="utf-8">
-  <title>Moonshot</title>
-  <% _.forEach(css, function(path) { %>
-  <link href="<%- prefix %><%- path %>" rel="stylesheet">
-  <% }); %>
-  <link href="css/app-styles.css" rel="stylesheet">
-  <% if (mode=="dev") { %>
-  <script type="text/javascript">
-    window.onerror = function (msg) {
-      document.getElementsByTagName('body')[0].setAttribute('data-jserror', msg);
-    };
-  </script>
-  <% } %>
+    <meta charset="utf-8">
+    <title>Moonshot</title>
+    <% _.forEach(css, function(path) { %>
+    <link href="<%- prefix %><%- path %>" rel="stylesheet">
+    <% }); %>
+    <link href="css/app-styles.css" rel="stylesheet">
+    <% if (mode=="dev") { %>
+    <script type="text/javascript">
+        window.onerror = function (msg) {
+            document.getElementsByTagName('body')[0].setAttribute('data-jserror', msg);
+        };
+    </script>
+    <% } %>
 </head>
 <body>
 
-<div ui-view></div>
+<div class="ui-view-container">
+    <div class="container" ui-view></div>
+</div>
+
 
 <% _.forEach(js, function(path) { %>
 <script src="<%- prefix %><%- path %>"></script>
