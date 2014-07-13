@@ -19,7 +19,7 @@ app.config(function ($urlRouterProvider, $stateProvider) {
              }
            })
     .state("home", {
-             url: "/home",
+             url: "/",
              parent: "root",
              templateUrl: "app/home.partial.html"
            })
@@ -53,11 +53,11 @@ app.config(function ($urlRouterProvider, $stateProvider) {
              }
            });
 
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/');
 });
 
 app.controller("RootCtrl", function ($scope) {
-  $scope.site = {title: "Moonbeam"};
+  $scope.site = {title: "Moonshot"};
 });
 
 app.controller("ListCtrl", function (shoppinglist) {
