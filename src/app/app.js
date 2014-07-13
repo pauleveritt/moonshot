@@ -9,7 +9,7 @@ app.config(function ($urlRouterProvider, $stateProvider) {
              url: "",
              views: {
                "header": {
-                 templateUrl: "header"
+                 templateUrl: "header.html"
                },
                "content": {
                  templateUrl: "app/root.partial.html",
