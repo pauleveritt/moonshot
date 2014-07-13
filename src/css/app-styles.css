@@ -84,6 +84,9 @@ to prevent collapsing during animation*/
   -moz-transform: translate3d(100px, 0, 0);
   transform: translate3d(100px, 0, 0);
 }
-.active {
+#content {
+  margin-top: 60px;
+}
+#content .active {
   font-weight: bold;
 }

@@ -82,7 +82,7 @@ module.exports = function (grunt) {
       ngtemplates: {
         moonshot: {
           cwd: "src/",
-          src: "*/*.partial.html",
+          src: "**/*.partial.html",
           dest: "dist/js/ngtemplates.js"
         }
       },
@@ -172,7 +172,7 @@ module.exports = function (grunt) {
       watch: {
         options: {
           livereload: true,
-          interval: 300
+          interval: 100
         },
         css: {
           files: ["src/**/*.less"],
@@ -197,8 +197,13 @@ module.exports = function (grunt) {
           tasks: ["ngtemplates"],
           spawn: false,
           interrupt: true
+        },
+        tmp: {
+          files: ["tmp/*/*"],
+          tasks: [],
+          spawn: false,
+          interrupt: true
         }
-
       }
 
     }
@@ -207,13 +212,16 @@ module.exports = function (grunt) {
   grunt.registerTask(
     "default", [
       // Stuff related to development
-      "less", "template",
+      "newer:less", "newer:template:dev",
       // Stuff related to production
-      "newer:ngtemplates", "newer:concat", "newer:uglify",
-      "newer:cssmin", "newer:copy",
+      "ngtemplates", "newer:concat",
       // Start the server
       "connect:dev",
       "watch"
     ]);
+  grunt.registerTask(
+    "dist",
+    ["template:dist", "uglify", "cssmin", "copy"]
+  )
 
 };
