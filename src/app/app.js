@@ -1,8 +1,20 @@
-var app = angular.module("moonshot", [
+angular.module("moonshot", [
   "ngAnimate", "ui.router", "restangular"]);
 
+function RootCtrl($scope) {
+  $scope.site = {title: "Moonshot"};
+}
 
-app.config(function ($urlRouterProvider, $stateProvider) {
+function ListCtrl(shoppinglist) {
+  var ctrl = this;
+  ctrl.context = shoppinglist;
+}
+
+function ListItemCtrl(context) {
+  this.context = context;
+}
+
+function AppConfig($urlRouterProvider, $stateProvider) {
   $stateProvider
     .state("root", {
              abstract: true,
@@ -54,17 +66,13 @@ app.config(function ($urlRouterProvider, $stateProvider) {
            });
 
   $urlRouterProvider.otherwise('/');
-});
+}
 
-app.controller("RootCtrl", function ($scope) {
-  $scope.site = {title: "Moonshot"};
-});
+angular.module("moonshot")
+  .config(AppConfig)
 
-app.controller("ListCtrl", function (shoppinglist) {
-  var ctrl = this;
-  ctrl.context = shoppinglist;
-});
+  .controller("RootCtrl", RootCtrl)
 
-app.controller("ListItemCtrl", function (context) {
-  this.context = context;
-});
+  .controller("ListCtrl", ListCtrl)
+
+  .controller("ListItemCtrl", ListItemCtrl);

@@ -5,6 +5,9 @@ TODO
 Next
 ====
 
+- Get NotFound and index.html redirect working
+
+
 After
 =====
 
