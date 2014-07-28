@@ -1,5 +1,3 @@
-angular.module("moonshot", [
-  "ngAnimate", "ui.router", "restangular"]);
 
 function RootCtrl($scope) {
   $scope.site = {title: "Moonshot"};

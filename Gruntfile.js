@@ -25,7 +25,7 @@ module.exports = function (grunt) {
         devjs: [
           "bower_components/angular-mocks/angular-mocks.js"
         ],
-        appjs: ["src/*/*.js"],
+        appjs: ["src/module.js", "src/*/*.js"],
         css: [
           "bower_components/bootstrap/dist/css/bootstrap.css",
           "bower_components/font-awesome/css/font-awesome.css"
@@ -56,7 +56,7 @@ module.exports = function (grunt) {
               css: "<%= sources.css %>",
               js: "<%= sources.js %>",
               libjs: "<%= sources.devjs %>",
-              appjs: ["app/app.js"]
+              appjs: ["module.js", "app/app.js"]
             }
           },
           files: {
