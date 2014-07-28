@@ -45,13 +45,15 @@ module.exports = function (grunt) {
       template: {
         dev: {
           options: {
-            data: {
-              mode: "dev",
-              prefix: "../",
-              css: "<%= sources.css %>",
-              js: "<%= sources.js %>",
-              libjs: "<%= sources.devjs %>",
-              appjs: ["module.js", "app/app.js", "todo/controllers.js", "todo/states.js"]
+            data: function () {
+              return {
+                mode: "dev",
+                prefix: "../",
+                css: grunt.config.get("sources.css"),
+                js: grunt.config.get("sources.js"),
+                libjs: grunt.config.get("sources.devjs"),
+                appjs: grunt.file.expand(grunt.config.get("sources.appjs"))
+              }
             }
           },
           files: {
