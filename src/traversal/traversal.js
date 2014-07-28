@@ -1,10 +1,14 @@
 (function () {
 
-  function NotFoundCtrl($log, $stateParams) {
+  function Traverser() {
+    this.x = 1;
+  }
+
+  function NotFoundCtrl($stateParams) {
     this.unfoundStateTo = $stateParams.unfoundStateTo;
   }
 
-  function ErrorCtrl($log, $stateParams) {
+  function ErrorCtrl($stateParams) {
     this.toState = $stateParams.toState;
     this.error = $stateParams.error;
   }
@@ -47,6 +51,7 @@
 
   angular.module("traversal", ["ui.router"])
 
+    .service("Traverser", Traverser)
     .config(ServiceConfig)
     .run(function ($log, $rootScope, $state) {
            // Let's handle NotFound, Error, and Forbidden

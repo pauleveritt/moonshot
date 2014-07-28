@@ -5,13 +5,6 @@ TODO
 Next
 ====
 
-- Have a src/traverser/traverser.js as the WIP library
-
-- Handle the index.html w/out #/ case via FAQ's
-  how-to-set-up-a-defaultindex-child-state
-
-- Ditto for trailing slash
-
 - Get mockRest going
 
 - Fix Protractor
@@ -48,4 +41,11 @@ Done
 - Make a module.js for just the module definition
 
 - Move the state definitions out into src/todo/states.js
+
+- Have a src/traverser/traverser.js as the WIP library
+
+- Handle the index.html w/out #/ case via FAQ's
+  how-to-set-up-a-defaultindex-child-state
+
+- Ditto for trailing slash
 
