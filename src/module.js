@@ -5,7 +5,8 @@ Declare the application module with dependencies, and nothing more.
  */
 
 var moonshotModules = [
-  "ngAnimate", "ui.router", "restangular"
+  "ngAnimate", "ui.router", "restangular",
+  "traversal"
 ];
 
 //if (document.URL.indexOf(":9000") != -1) {

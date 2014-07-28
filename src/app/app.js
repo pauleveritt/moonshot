@@ -26,7 +26,6 @@
                templateUrl: "app/home.partial.html"
              });
 
-    $urlRouterProvider.otherwise('/');
   }
 
   angular.module("moonshot")
