@@ -18,7 +18,8 @@ module.exports = function (grunt) {
           "bower_components/lodash/dist/lodash.js"
         ],
         devjs: [
-          "bower_components/angular-mocks/angular-mocks.js"
+          "bower_components/angular-mocks/angular-mocks.js",
+          "src/mockRest.js"
         ],
         appjs: ["src/module.js", "src/*/*.js"],
         css: [

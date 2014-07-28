@@ -5,9 +5,9 @@ TODO
 Next
 ====
 
-- Get mockRest going
-
 - Fix Protractor
+
+- Get login, forbidden, Restangular setErrorInterceptor going
 
 After
 =====
@@ -48,4 +48,6 @@ Done
   how-to-set-up-a-defaultindex-child-state
 
 - Ditto for trailing slash
+
+- Get mockRest going
 

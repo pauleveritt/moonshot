@@ -4,7 +4,8 @@
     $scope.site = {title: "Moonshot"};
   }
 
-  function AppConfig($urlRouterProvider, $stateProvider) {
+  function AppConfig(RestangularProvider, $stateProvider) {
+    RestangularProvider.setBaseUrl('http://localhost:9000/api');
     $stateProvider
       .state("root", {
                abstract: true,

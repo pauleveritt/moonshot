@@ -9,7 +9,8 @@ var moonshotModules = [
   "traversal"
 ];
 
-//if (document.URL.indexOf(":9000") != -1) {
-//  moonshotModules.push('ngMockE2E');
-//}
+if (document.URL.indexOf(":9000") != -1) {
+  moonshotModules.push('ngMockE2E');
+  moonshotModules.push('moonshotDev');
+}
 angular.module("moonshot", moonshotModules);

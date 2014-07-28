@@ -1,6 +1,7 @@
 (function () {
 
   function AppConfig($stateProvider) {
+
     $stateProvider
       .state("list", {
                url: "/list",
@@ -9,7 +10,8 @@
                controller: "ListCtrl as ListCtrl",
                resolve: {
                  shoppinglist: function (Restangular) {
-                   var baseShoppingList = Restangular.all('src/shoppinglist.json');
+                   var baseShoppingList = Restangular.all('todos');
+//                   var baseShoppingList = Restangular.all('src/shoppinglist.json');
                    return baseShoppingList.getList().then(function (response) {
                      var data = {};
                      _.forEach(response, function (d) {
