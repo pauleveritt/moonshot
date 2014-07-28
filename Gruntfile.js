@@ -1,12 +1,7 @@
 module.exports = function (grunt) {
 
-
-//  // measures the time each task takes
-//  require('time-grunt')(grunt);
-
   // autoload the plugins
   require('load-grunt-tasks')(grunt);
-  var _ = require('lodash');
 
   grunt.initConfig(
     {
@@ -56,7 +51,7 @@ module.exports = function (grunt) {
               css: "<%= sources.css %>",
               js: "<%= sources.js %>",
               libjs: "<%= sources.devjs %>",
-              appjs: ["module.js", "app/app.js"]
+              appjs: ["module.js", "app/app.js", "todo/controllers.js", "todo/states.js"]
             }
           },
           files: {
