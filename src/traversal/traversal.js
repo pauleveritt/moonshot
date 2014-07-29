@@ -15,6 +15,8 @@
 
   function ServiceConfig($urlRouterProvider, $stateProvider) {
 
+    // Handle cases where the URL doesn't end in a slash, redirect
+    // to slash
     $urlRouterProvider.rule(function ($injector, $location) {
       var path = $location.url();
 
@@ -32,14 +34,14 @@
 
     // NotFound, Error, and Forbidden views
     $stateProvider.state("notfound", {
-      parent: "root",
+      parent: "siteroot",
       templateUrl: "traversal/notfound.partial.html",
       controller: NotFoundCtrl,
       controllerAs: "NotFoundCtrl",
       params: ["unfoundStateTo"]
     });
     $stateProvider.state("error", {
-      parent: "root",
+      parent: "siteroot",
       templateUrl: "traversal/error.partial.html",
       controller: ErrorCtrl,
       controllerAs: "ErrorCtrl",

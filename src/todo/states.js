@@ -5,7 +5,7 @@
     $stateProvider
       .state("list", {
                url: "/list",
-               parent: "root",
+               parent: "siteroot",
                templateUrl: "todo/list.partial.html",
                controller: "ListCtrl as ListCtrl",
                resolve: {

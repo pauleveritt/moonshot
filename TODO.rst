@@ -5,25 +5,30 @@ TODO
 Next
 ====
 
-- Fix Protractor
+- Refactor to have all states declared in states.py (for coverage
+  purposes)
+
+- Get test coverage way up
 
 - Get login, forbidden, Restangular setErrorInterceptor going
+
+- Move header -> MoonMenu component with submenus
+
+- Write People app
+
+- Remove Todo app
+
+- Traversal: context-view, ancestors
 
 After
 =====
 
-- Multiple app.config
+- Breadcrumbs
 
 - Get Protractor tests that fail on jserror via a shared requirejs function
 
 Later
 =====
-
-- Get NotFound state working
-
-- Get Error state working
-
-- Why won't Gruntfile template use appjs sequence wildcards?
 
 - Better animation
 
@@ -50,4 +55,16 @@ Done
 - Ditto for trailing slash
 
 - Get mockRest going
+
+- Fix Protractor
+
+- Get NotFound state working
+
+- Get Error state working
+
+- Why won't Gruntfile template use appjs sequence wildcards?
+
+- Multiple app.config
+
+
 
