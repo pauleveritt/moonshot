@@ -1,18 +1,11 @@
-function ClobjectPage() {
 
-  this.ptor = protractor.getInstance();
+var BasePage = require("../../../common/testingUtils.js");
 
-  this.getHome = function () {
-    browser.get("/src/");
-  };
+function AppPage() {
+  BasePage.call(this);
 
   this.getShoppingList = function () {
-    browser.get("/src/");
     element(by.id("menu-list")).click();
-  };
-
-  this.currentUrl = function () {
-    return this.ptor.getLocationAbsUrl();
   };
 
   this.isPresent = function (node) {
@@ -42,4 +35,7 @@ function ClobjectPage() {
 
 }
 
-module.exports = ClobjectPage;
+AppPage.prototype = Object.create(BasePage.prototype);
+AppPage.prototype.constructor = AppPage;
+
+module.exports = AppPage;

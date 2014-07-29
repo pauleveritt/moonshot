@@ -20,6 +20,8 @@ Next
 
 - Traversal: context-view, ancestors
 
+- Get <title> to show context and view, then add to tests
+
 After
 =====
 
