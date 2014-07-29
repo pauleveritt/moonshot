@@ -12,7 +12,7 @@
     $stateProvider
       // Provides the o-wrap and logic/state shared on everything in
       // this site
-      .state("root", {
+      .state("siteroot", {
                abstract: true,
                url: "",
                views: {
@@ -32,10 +32,22 @@
       // view above
       .state("home", {
                url: "/",
-               parent: "root",
+               parent: "siteroot",
                templateUrl: "app/home.partial.html"
-             });
+             })
 
+      // "Busted" state to demonstrate error handling when the
+      // state-logic throws an exception.
+      .state("busted", {
+               url: "/busted",
+               parent: "siteroot",
+               templateUrl: "app/home.partial.html",
+               resolve: {
+                 busted: function () {
+                   return x + y + x;
+                 }
+               }
+             });
   }
 
   angular.module("moonshot")
