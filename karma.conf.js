@@ -29,7 +29,7 @@ module.exports = function (config) {
       reporters: ["progress", "junit", "coverage"],
 
       preprocessors: {
-        "src/*/*.js": ["coverage"]
+        "src/app/app.js": ["coverage"]
       },
 
       junitReporter: {

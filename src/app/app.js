@@ -7,6 +7,7 @@
   function ContentCtrl() {
   }
 
+  /* istanbul ignore next */
   function AppConfig(RestangularProvider, $stateProvider) {
     RestangularProvider.setBaseUrl('http://localhost:9000/api');
     $stateProvider
@@ -52,5 +53,7 @@
 
   angular.module("moonshot")
     .config(AppConfig)
+    .controller("HeaderCtrl", HeaderCtrl)
+    .controller("ContentCtrl", ContentCtrl);
 
 })();
