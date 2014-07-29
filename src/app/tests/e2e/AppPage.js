@@ -1,8 +1,14 @@
 function ClobjectPage() {
 
-  this.get = function () {
-    browser.get("/src/index.html#/home");
-    this.ptor = protractor.getInstance();
+  this.ptor = protractor.getInstance();
+
+  this.getHome = function () {
+    browser.get("/src/");
+  };
+
+  this.getShoppingList = function () {
+    browser.get("/src/");
+    element(by.id("menu-list")).click();
   };
 
   this.currentUrl = function () {
@@ -22,8 +28,16 @@ function ClobjectPage() {
     return browser.getTitle();
   };
 
+  this.getBrand = function () {
+    return element(by.css(".navbar-brand"));
+  };
+
+  this.activeMenu = function () {
+    return element(by.css(".navbar-nav .active a"));
+  };
+
   this.getHeading = function () {
-    return element(by.id("mshot-heading"));
+    return element(by.id("heading"));
   };
 
 }

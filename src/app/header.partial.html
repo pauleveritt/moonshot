@@ -1,0 +1,16 @@
+<div id="header" class="navbar navbar-inverse navbar-fixed-top"
+     role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" ui-sref="root">Moonshot</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li ng-class="{ active: HeaderCtrl.$state.includes('home')}">
+        <a id="menu-home" ui-sref="home">Home</a>
+      </li>
+      <li ng-class="{ active: HeaderCtrl.$state.includes('list')}">
+        <a id="menu-list" ui-sref="list">Shopping List</a>
+      </li>
+    </ul>
+  </div>
+</div>

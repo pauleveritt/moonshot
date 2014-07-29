@@ -1,7 +1,7 @@
 function ClobjectPage() {
 
   this.get = function () {
-    browser.get("/src/index.html#/home");
+    browser.get("/src/index.html#/");
     this.ptor = protractor.getInstance();
   };
 
@@ -23,7 +23,7 @@ function ClobjectPage() {
   };
 
   this.getHeading = function () {
-    return element(by.id("mshot-heading"));
+    return element(by.id("heading"));
   };
 
 }

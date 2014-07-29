@@ -1,7 +1,10 @@
 (function () {
 
-  function RootCtrl($scope) {
-    $scope.site = {title: "Moonshot"};
+  function RootCtrl($scope, $log, $state) {
+  }
+
+  function HeaderCtrl($state) {
+    this.$state = $state;
   }
 
   function AppConfig(RestangularProvider, $stateProvider) {
@@ -12,11 +15,13 @@
                url: "",
                views: {
                  "header": {
-                   templateUrl: "header.html"
+                   templateUrl: "app/header.partial.html",
+                   controller: HeaderCtrl,
+                   controllerAs: "HeaderCtrl"
                  },
                  "content": {
                    templateUrl: "app/root.partial.html",
-                   controller: "RootCtrl",
+                   controller: RootCtrl,
                    controllerAs: "RootCtrl"
                  }
                }
