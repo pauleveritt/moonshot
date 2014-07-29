@@ -1,15 +1,17 @@
 (function () {
 
-  function RootCtrl($scope, $log, $state) {
-  }
-
   function HeaderCtrl($state) {
     this.$state = $state;
+  }
+
+  function ContentCtrl() {
   }
 
   function AppConfig(RestangularProvider, $stateProvider) {
     RestangularProvider.setBaseUrl('http://localhost:9000/api');
     $stateProvider
+      // Provides the o-wrap and logic/state shared on everything in
+      // this site
       .state("root", {
                abstract: true,
                url: "",
@@ -20,12 +22,14 @@
                    controllerAs: "HeaderCtrl"
                  },
                  "content": {
-                   templateUrl: "app/root.partial.html",
-                   controller: RootCtrl,
-                   controllerAs: "RootCtrl"
+                   templateUrl: "app/content.partial.html",
+                   controller: ContentCtrl,
+                   controllerAs: "ContentCtrl"
                  }
                }
              })
+      // The first top-level "page" that gets jammed into the content
+      // view above
       .state("home", {
                url: "/",
                parent: "root",
@@ -36,7 +40,5 @@
 
   angular.module("moonshot")
     .config(AppConfig)
-
-    .controller("RootCtrl", RootCtrl);
 
 })();
