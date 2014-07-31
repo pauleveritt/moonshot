@@ -1,5 +1,5 @@
 
-var BasePage = require("../../../common/testingUtils.js");
+var BasePage = require("../../../testingUtils.js");
 
 function AppPage() {
   BasePage.call(this);

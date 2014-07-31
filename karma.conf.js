@@ -9,6 +9,7 @@ module.exports = function (config) {
       files: [
         "dist/js/lib-all.min.js",
         "bower_components/angular-mocks/angular-mocks.js",
+        "src/testingUtils.js",
 
         "src/module.js",
         "src/*/*.js",
@@ -29,7 +30,9 @@ module.exports = function (config) {
       reporters: ["progress", "junit", "coverage"],
 
       preprocessors: {
-        "src/app/app.js": ["coverage"]
+        "src/app/app.js": ["coverage"],
+        "src/todo/controllers.js": ["coverage"],
+        "src/testingUtils.js": ["coverage"]
       },
 
       junitReporter: {

@@ -5,22 +5,17 @@ TODO
 Next
 ====
 
-- Refactor to have all states declared in states.py (for coverage
-  purposes)
-
-- Get test coverage way up
-
-- Get login, forbidden, Restangular setErrorInterceptor going
-
-- Move header -> MoonMenu component with submenus
-
-- Write People app
+- Write People and Help app
 
 - Remove Todo app
 
 - Traversal: context-view, ancestors
 
 - Get <title> to show context and view, then add to tests
+
+- Get login, forbidden, Restangular setErrorInterceptor going
+
+- Move header -> MoonMenu component with submenus
 
 After
 =====
@@ -29,8 +24,12 @@ After
 
 - Get Protractor tests that fail on jserror via a shared requirejs function
 
+- Directive that marks a menu as active based on having a state ancestor
+
 Later
 =====
+
+- i18n
 
 - Better animation
 
@@ -68,5 +67,5 @@ Done
 
 - Multiple app.config
 
-
+- Get test coverage way up
 

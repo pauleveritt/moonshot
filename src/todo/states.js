@@ -9,7 +9,7 @@
                templateUrl: "todo/list.partial.html",
                controller: "ListCtrl as ListCtrl",
                resolve: {
-                 shoppinglist: function (Restangular) {
+                 shoppingList: function (Restangular) {
                    var baseShoppingList = Restangular.all('todos');
                    return baseShoppingList.getList().then(function (response) {
                      var data = {};
@@ -26,9 +26,9 @@
                templateUrl: "todo/list.item.partial.html",
                controller: "ListItemCtrl as ListItemCtrl",
                resolve: {
-                 context: function (shoppinglist, $stateParams) {
+                 context: function (shoppingList, $stateParams) {
                    /** @namespace $stateParams.itemId */
-                   return shoppinglist[$stateParams.itemId];
+                   return shoppingList[$stateParams.itemId];
                  }
                }
              });

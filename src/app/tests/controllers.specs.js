@@ -1,4 +1,4 @@
-describe("Moonshot App", function () {
+describe("Moonshot Controllers", function () {
 
   var headerCtrl, contentCtrl;
   beforeEach(module('moonshot'));

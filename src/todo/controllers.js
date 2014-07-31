@@ -1,8 +1,7 @@
 (function () {
 
-  function ListCtrl(shoppinglist) {
-    var ctrl = this;
-    ctrl.context = shoppinglist;
+  function ListCtrl(shoppingList) {
+    this.context = shoppingList;
   }
 
   function ListItemCtrl(context) {
