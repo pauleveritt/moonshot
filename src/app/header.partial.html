@@ -5,14 +5,9 @@
       <a class="navbar-brand" ui-sref="home">Moonshot</a>
     </div>
     <ul class="nav navbar-nav">
-      <li ng-class="{ active: HeaderCtrl.$state.includes('home')}">
-        <a id="menu-home" ui-sref="home">Home</a>
-      </li>
-      <li ng-class="{ active: HeaderCtrl.$state.includes('list')}">
-        <a id="menu-list" ui-sref="list">Shopping List</a>
-      </li>
-      <li ng-class="{ active: HeaderCtrl.$state.includes('directory')}">
-        <a ui-sref="directory">Directory</a>
+      <li ng-repeat="section in HeaderCtrl.sections"
+          ng-class="{ active: HeaderCtrl.$state.includes(section.state)}">
+        <a ui-sref="{{ section.state}}">{{ section.title}}</a>
       </li>
     </ul>
   </div>

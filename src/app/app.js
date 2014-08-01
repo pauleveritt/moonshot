@@ -15,16 +15,20 @@
                    controller: "HeaderCtrl as HeaderCtrl"
                  },
                  "content": {
-                   templateUrl: "app/content.partial.html",
-                   controller: "ContentCtrl as ContentCtrl"
+                   templateUrl: "app/content.partial.html"
                  }
                }
              })
+
       // The first top-level "page" that gets jammed into the content
       // view above
       .state("home", {
                url: "/",
                parent: "siteroot",
+               section: {
+                 title: "Home",
+                 priority: 1
+               },
                templateUrl: "app/home.partial.html"
              })
 

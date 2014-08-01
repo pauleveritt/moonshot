@@ -1,11 +1,10 @@
 describe("Moonshot Controllers", function () {
 
-  var headerCtrl, contentCtrl;
+  var headerCtrl;
   beforeEach(module('moonshot'));
 
   beforeEach(inject(function ($controller) {
     headerCtrl = $controller("HeaderCtrl");
-    contentCtrl = $controller("ContentCtrl");
   }));
 
   describe("The Basics", function () {

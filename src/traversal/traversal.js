@@ -4,7 +4,7 @@
     this.x = 1;
   }
 
-  function ServiceConfig($urlRouterProvider, $stateProvider) {
+  function ServiceConfig($urlRouterProvider) {
 
     $urlRouterProvider.rule(function ($injector, $location) {
       var path = $location.url();

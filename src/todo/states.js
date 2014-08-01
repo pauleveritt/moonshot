@@ -8,6 +8,9 @@
                parent: "siteroot",
                templateUrl: "todo/list.partial.html",
                controller: "ListCtrl as ListCtrl",
+               section: {
+                 title: "To Do"
+               },
                resolve: {
                  shoppingList: function (Restangular) {
                    var baseShoppingList = Restangular.all('todos');
