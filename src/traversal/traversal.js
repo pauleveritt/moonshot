@@ -17,20 +17,20 @@
 
     // Handle cases where the URL doesn't end in a slash, redirect
     // to slash
-    $urlRouterProvider.rule(function ($injector, $location) {
-      var path = $location.url();
-
-      // check to see if the path already has a slash where it should be
-      if (path[path.length - 1] === '/' || path.indexOf('/?') > -1) {
-        return;
-      }
-
-      if (path.indexOf('?') > -1) {
-        return path.replace('?', '/?');
-      }
-
-      return path + '/';
-    });
+//    $urlRouterProvider.rule(function ($injector, $location) {
+//      var path = $location.url();
+//
+//      // check to see if the path already has a slash where it should be
+//      if (path[path.length - 1] === '/' || path.indexOf('/?') > -1) {
+//        return;
+//      }
+//
+//      if (path.indexOf('?') > -1) {
+//        return path.replace('?', '/?');
+//      }
+//
+//      return path + '/';
+//    });
 
     // NotFound, Error, and Forbidden views
     $stateProvider.state("notfound", {
