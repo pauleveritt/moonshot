@@ -1,12 +1,5 @@
 (function () {
 
-  function HeaderCtrl($state) {
-    this.$state = $state;
-  }
-
-  function ContentCtrl() {
-  }
-
   /* istanbul ignore next */
   function AppConfig(RestangularProvider, $stateProvider) {
     RestangularProvider.setBaseUrl('http://localhost:9000/api');
@@ -19,13 +12,11 @@
                views: {
                  "header": {
                    templateUrl: "app/header.partial.html",
-                   controller: HeaderCtrl,
-                   controllerAs: "HeaderCtrl"
+                   controller: "HeaderCtrl as HeaderCtrl"
                  },
                  "content": {
                    templateUrl: "app/content.partial.html",
-                   controller: ContentCtrl,
-                   controllerAs: "ContentCtrl"
+                   controller: "ContentCtrl as ContentCtrl"
                  }
                }
              })
@@ -52,8 +43,6 @@
   }
 
   angular.module("moonshot")
-    .config(AppConfig)
-    .controller("HeaderCtrl", HeaderCtrl)
-    .controller("ContentCtrl", ContentCtrl);
+    .config(AppConfig);
 
 })();

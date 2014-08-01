@@ -25,7 +25,7 @@ describe("Shopping List", function () {
 
   it("should display the correct url", function () {
     page.currentUrl().then(function (url) {
-      expect(url).toBe("http://localhost:9000/src/#/list/");
+      expect(url).toBe("http://localhost:9000/src/#/list");
     });
   });
 
