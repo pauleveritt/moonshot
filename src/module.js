@@ -1,6 +1,6 @@
 /*
 
-Declare the moonshot module with dependencies, and nothing more.
+ Declare the moonshot module with dependencies, and nothing more.
 
  */
 
@@ -13,4 +13,5 @@ if (document.URL.indexOf(":9000") != -1) {
   moonshotModules.push('ngMockE2E');
   moonshotModules.push('moonshotDev');
 }
-angular.module("moonshot", moonshotModules);
+angular.module("moonshot", moonshotModules)
+  .value("mockRest", {});

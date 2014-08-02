@@ -8,36 +8,20 @@
 (function (ng, mod, _, undefined) {
   'use strict';
 
-  mod.run(function ($httpBackend) {
+  mod.run(function ($httpBackend, moonMockRest) {
 
-    // returns an object that contains faked data
-    var todos = [
-      {
-        "id": "i1",
-        "title": "Milk"
-      },
-      {
-        "id": "i2",
-        "title": "Eggs"
-      },
-      {
-        "id": "i3",
-        "title": "Bread"
-      },
-      {
-        "id": "i4",
-        "title": "Cheese"
-      },
-      {
-        "id": "i5",
-        "title": "Ham"
-      }
-    ];
+    var mocks = moonMockRest.getMocks();
 
-    $httpBackend.whenGET(/api\/todos$/)
-      .respond(function () {
-                 return [200, todos];
-               });
+    // Iterate over all the registered mocks and register them
+    _.map(mocks, function (moduleMocks) {
+      // All the mocks registered for this module
+      _(moduleMocks).forEach(function (mock) {
+        var match = mock[0],
+          responder = mock[1];
+        $httpBackend.whenGET(match)
+          .respond(responder);
+      });
+    });
 
     // pass through everything else
     $httpBackend.whenGET(/\/*/).passThrough();

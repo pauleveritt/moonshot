@@ -1,6 +1,7 @@
 (function () {
 
-  function MoonshotInit($stateProvider) {
+  function MoonshotConfig($stateProvider, moonMockRestProvider) {
+
 
     $stateProvider
       .state("list", {
@@ -36,10 +37,40 @@
                }
              });
 
+    var todoData = [
+      {
+        "id": "i1",
+        "title": "Milk"
+      },
+      {
+        "id": "i2",
+        "title": "Eggs"
+      },
+      {
+        "id": "i3",
+        "title": "Bread"
+      },
+      {
+        "id": "i4",
+        "title": "Cheese"
+      },
+      {
+        "id": "i5",
+        "title": "Ham"
+      }
+    ];
+    moonMockRestProvider.addMock(
+      "todo",
+      [
+        [/api\/todos$/, function () {
+          return [200, todoData];
+        }]
+      ]);
+
   }
 
   angular.module("moonshot")
-    .config(MoonshotInit);
+    .config(MoonshotConfig);
 
 })();
 
