@@ -87,6 +87,6 @@ to prevent collapsing during animation*/
 #header .active {
   font-weight: bold;
 }
-#content {
-  margin-top: 80px;
+#subsections {
+  margin-top: 50px;
 }
