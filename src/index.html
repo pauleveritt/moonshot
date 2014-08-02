@@ -21,7 +21,10 @@
 
 <div class="ui-view-container">
   <div ui-view="header"></div>
-  <div id="content" class="container" ui-view="content"></div>
+  <div id="content" class="container">
+    <div class="pull-left">menu</div>
+    <div ui-view="content"></div>
+  </div>
 </div>
 
 
