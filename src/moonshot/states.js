@@ -19,18 +19,6 @@
                }
              })
 
-      // The first top-level "page" that gets jammed into the content
-      // view above
-      .state("home", {
-               url: "/",
-               parent: "siteroot",
-               section: {
-                 title: "Home",
-                 priority: 1
-               },
-               templateUrl: "moonshot/home.partial.html"
-             })
-
       // "Busted" state to demonstrate error handling when the
       // state-logic throws an exception.
       .state("busted", {
