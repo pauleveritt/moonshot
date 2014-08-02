@@ -1,8 +1,7 @@
 (function () {
 
-  /* istanbul ignore next */
-  function AppConfig(RestangularProvider, $stateProvider) {
-    RestangularProvider.setBaseUrl('http://localhost:9000/api');
+  function MoonshotInit($stateProvider) {
+
     $stateProvider
       // Provides the o-wrap and logic/state shared on everything in
       // this site
@@ -11,11 +10,11 @@
                url: "",
                views: {
                  "header": {
-                   templateUrl: "app/header.partial.html",
+                   templateUrl: "moonshot/header.partial.html",
                    controller: "HeaderCtrl as HeaderCtrl"
                  },
                  "content": {
-                   templateUrl: "app/content.partial.html"
+                   templateUrl: "moonshot/content.partial.html"
                  }
                }
              })
@@ -29,7 +28,7 @@
                  title: "Home",
                  priority: 1
                },
-               templateUrl: "app/home.partial.html"
+               templateUrl: "moonshot/home.partial.html"
              })
 
       // "Busted" state to demonstrate error handling when the
@@ -37,16 +36,18 @@
       .state("busted", {
                url: "/busted",
                parent: "siteroot",
-               templateUrl: "app/home.partial.html",
+               templateUrl: "moonshot/home.partial.html",
                resolve: {
                  busted: function () {
                    return x + y + x;
                  }
                }
              });
+
   }
 
   angular.module("moonshot")
-    .config(AppConfig);
+    .config(MoonshotInit);
 
 })();
+

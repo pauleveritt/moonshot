@@ -21,7 +21,7 @@ module.exports = function (grunt) {
           "bower_components/angular-mocks/angular-mocks.js",
           "src/mockRest.js"
         ],
-        appjs: ["src/module.js", "src/*/*.js"],
+        moonshotjs: ["src/module.js", "src/*/*.js"],
         css: [
           "bower_components/bootstrap/dist/css/bootstrap.css",
           "bower_components/font-awesome/css/font-awesome.css"
@@ -38,7 +38,7 @@ module.exports = function (grunt) {
       less: {
         default: {
           files: {
-            "src/css/app-styles.css": "src/app-styles.less"
+            "src/css/moonshot-styles.css": "src/moonshot-styles.less"
           }
         }
       },
@@ -53,7 +53,7 @@ module.exports = function (grunt) {
                 css: grunt.config.get("sources.css"),
                 js: grunt.config.get("sources.js"),
                 libjs: grunt.config.get("sources.devjs"),
-                appjs: grunt.file.expand(grunt.config.get("sources.appjs"))
+                moonshotjs: grunt.file.expand(grunt.config.get("sources.moonshotjs"))
               }
             }
           },
@@ -66,8 +66,8 @@ module.exports = function (grunt) {
             data: {
               mode: "dist",
               prefix: "",
-              css: ["css/lib-all.min.css", "css/app-styles.css"],
-              js: ["js/lib-all.min.js", "js/app-all.js", "js/ngtemplates.js"]
+              css: ["css/lib-all.min.css", "css/moonshot-styles.css"],
+              js: ["js/lib-all.min.js", "js/moonshot-all.js", "js/ngtemplates.js"]
             }
           },
           files: {
@@ -105,11 +105,11 @@ module.exports = function (grunt) {
             }
           ]
         },
-        appjs: {
+        moonshotjs: {
           files: [
             {
-              src: "<%= sources.appjs %>",
-              dest: "dist/js/app-all.js"
+              src: "<%= sources.moonshotjs %>",
+              dest: "dist/js/moonshot-all.js"
             }
           ]
         }
@@ -139,7 +139,7 @@ module.exports = function (grunt) {
       copy: {
         css: {
           expand: true,
-          src: "src/css/app-styles.css",
+          src: "src/css/moonshot-styles.css",
           flatten: true,
           dest: "dist/css"
         },

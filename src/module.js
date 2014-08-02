@@ -1,6 +1,6 @@
 /*
 
-Declare the application module with dependencies, and nothing more.
+Declare the moonshot module with dependencies, and nothing more.
 
  */
 

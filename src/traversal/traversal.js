@@ -4,13 +4,20 @@
     this.x = 1;
   }
 
-  function ServiceConfig($urlRouterProvider) {
+  function ServiceConfig($urlRouterProvider, $stateProvider) {
+
+    // The traverser state is the base-most state
+    $stateProvider
+      .state("traverser", {
+      abstract: true,
+      template: '<ui-view id="traverser"></ui-view>',
+      controller: "TraverserCtrl as TraverserCtrl"
+    });
 
     $urlRouterProvider.rule(function ($injector, $location) {
-      var path = $location.url();
 
       // Handle the case of going to index.html without #/
-      if (path == "") {
+      if ($location.url() == "") {
         return "/";
       }
 

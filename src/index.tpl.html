@@ -6,7 +6,7 @@
   <% _.forEach(css, function(path) { %>
   <link href="<%- prefix %><%- path %>" rel="stylesheet">
   <% }); %>
-  <link href="css/app-styles.css" rel="stylesheet">
+  <link href="css/moonshot-styles.css" rel="stylesheet">
   <% if (mode=="dev") { %>
   <script type="text/javascript">
     window.onerror = function (msg) {
@@ -32,7 +32,7 @@
 <% _.forEach(libjs, function(path) { %>
 <script src="<%- prefix %><%- path %>"></script>
 <% }); %>
-<% _.forEach(appjs, function(path) { %>
+<% _.forEach(moonshotjs, function(path) { %>
 <script src="../<%- path %>"></script>
 <% }); %>
 <% } %>

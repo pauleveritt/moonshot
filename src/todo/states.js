@@ -1,6 +1,6 @@
 (function () {
 
-  function AppConfig($stateProvider) {
+  function MoonshotInit($stateProvider) {
 
     $stateProvider
       .state("list", {
@@ -39,7 +39,7 @@
   }
 
   angular.module("moonshot")
-    .config(AppConfig);
+    .config(MoonshotInit);
 
 })();
 

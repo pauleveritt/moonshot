@@ -1,6 +1,6 @@
 (function () {
 
-  function AppConfig($stateProvider) {
+  function MoonshotInit($stateProvider) {
 
     $stateProvider
       .state("directory", {
@@ -15,7 +15,7 @@
   }
 
   angular.module("moonshot")
-    .config(AppConfig);
+    .config(MoonshotInit);
 
 })();
 

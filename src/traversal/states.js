@@ -1,6 +1,6 @@
 (function () {
 
-  function AppConfig($stateProvider) {
+  function MoonshotInit($stateProvider) {
 
     // NotFound, Error, and Forbidden views
     $stateProvider
@@ -20,7 +20,7 @@
   }
 
   angular.module("moonshot")
-    .config(AppConfig);
+    .config(MoonshotInit);
 
 })();
 
