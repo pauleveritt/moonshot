@@ -5,20 +5,20 @@ TODO
 Next
 ====
 
+- Change state/superstate to be like tmp
+
 - Write People and Help app
 
 - Remove Todo app
 
-- Traversal: context-view, ancestors
-
-- Get <title> to show context and view, then add to tests
+After
+=====
 
 - Get login, forbidden, Restangular setErrorInterceptor going
 
 - Move header -> MoonMenu component with submenus
 
-After
-=====
+- Forms
 
 - Breadcrumbs
 
@@ -28,6 +28,10 @@ After
 
 Later
 =====
+
+- Traversal: context-view, ancestors
+
+- Get <title> to show context and view, then add to tests
 
 - i18n
 

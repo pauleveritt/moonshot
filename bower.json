@@ -2,11 +2,12 @@
   "name": "Moonshot",
   "dependencies": {
     "lodash": "2.4.*",
-    "angular": "1.2.19",
-    "angular-animate": "1.2.*",
+    "angular": "1.3.0-build.3015+sha.dd2a803",
+    "angular-animate": "*",
     "bootstrap": "3.2.*",
     "angular-bootstrap": "0.11.0",
-    "angular-mocks": "1.2.*",
+    "angular-messages": "*",
+    "angular-mocks": "*",
     "font-awesome": "4.1.*",
     "angular-ui-router": "0.2.*",
     "restangular": "1.4.*"

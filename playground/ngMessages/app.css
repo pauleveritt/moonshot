@@ -1,0 +1,77 @@
+html, body {
+    position: relative;
+    background: url(focus.png);
+}
+
+.main-form {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: white;
+    width: 500px;
+    z-index: 100;
+    padding: 20px;
+    border-left: 2px solid black;
+    min-height: 100%;
+}
+
+.control-group {
+    margin-bottom: 20px;
+}
+
+.error-messages.ng-active {
+    background: maroon;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 15px;
+    position: relative;
+}
+
+.error-messages.ng-active:after {
+    position: absolute;
+    top: -10px;
+    content: "";
+    left: 20px;
+    border-style: solid;
+    border-color: transparent transparent maroon;
+    border-width: 5px;
+}
+
+.my-messages {
+    transition: 0.2s linear all;
+}
+
+.my-messages.ng-active {
+/ / messages are visible
+}
+
+.my-messages.ng-inactive {
+/ / messages are hidden
+}
+
+.some-message {
+    transition: 0.2s linear all;
+}
+
+.some-message.ng-enter {
+}
+
+.some-message.ng-enter.ng-enter-active {
+}
+
+.some-message.ng-leave {
+}
+
+.some-message.ng-leave.ng-leave-active {
+}
+
+.main-stage {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 60%;
+    background: url(./angular-logo.png) no-repeat center center;
+    background-size: 80%;
+}

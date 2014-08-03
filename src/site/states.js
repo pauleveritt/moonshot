@@ -1,5 +1,9 @@
 (function () {
 
+  function SiteRootCtrl($log) {
+    $log.debug("SiteRootCtrl494");
+  }
+
   function MoonshotInit($stateProvider) {
 
     $stateProvider
@@ -12,12 +16,14 @@
                  title: "Home",
                  priority: 1
                },
-               templateUrl: "site/home.partial.html"
+               templateUrl: "site/home.partial.html",
+               controller: "SiteRootCtrl as SiteRootCtrl"
              });
   }
 
   angular.module("moonshot")
-    .config(MoonshotInit);
+    .config(MoonshotInit)
+    .controller("SiteRootCtrl", SiteRootCtrl);
 
 })();
 

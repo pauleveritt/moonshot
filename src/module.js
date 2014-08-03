@@ -5,7 +5,7 @@
  */
 
 var moonshotModules = [
-  "ngAnimate", "ui.router", "restangular",
+  "ngAnimate", "ngMessages", "ui.router", "restangular",
   "traversal"
 ];
 

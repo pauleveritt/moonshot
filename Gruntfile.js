@@ -13,6 +13,7 @@ module.exports = function (grunt) {
         js: [
           "bower_components/angular/angular.js",
           "bower_components/angular-animate/angular-animate.js",
+          "bower_components/angular-messages/angular-messages.js",
           "bower_components/angular-ui-router/release/angular-ui-router.js",
           "bower_components/restangular/dist/restangular.js",
           "bower_components/lodash/dist/lodash.js"
@@ -196,8 +197,8 @@ module.exports = function (grunt) {
           spawn: false,
           interrupt: true
         },
-        tmp: {
-          files: ["tmp/*/*"],
+        playground: {
+          files: ["playground/*/*"],
           tasks: [],
           spawn: false,
           interrupt: true

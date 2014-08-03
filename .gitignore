@@ -16,6 +16,5 @@ coverage
 # Project
 /coverage
 /dist
-/tmp
 phantomjsdriver.log
 karma-test-results.xml
