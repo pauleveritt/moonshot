@@ -165,6 +165,13 @@ module.exports = function (grunt) {
             livereload: true,
             base: "."
           }
+        },
+        dist: {
+          options: {
+            port: 9001,
+            livereload: true,
+            base: "dist"
+          }
         }
       },
 
@@ -215,7 +222,7 @@ module.exports = function (grunt) {
       // Stuff related to production
       "ngtemplates", "newer:concat",
       // Start the server
-      "connect:dev",
+      "connect",
       "watch"
     ]);
   grunt.registerTask(
