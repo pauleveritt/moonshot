@@ -12,6 +12,9 @@
                section: {
                  title: "To Do"
                },
+               data: {
+                 sidebar: "List (no-item) Sidebar"
+               },
                resolve: {
                  shoppingList: function (Restangular) {
                    var baseShoppingList = Restangular.all('todos');
