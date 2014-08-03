@@ -19,6 +19,21 @@
                }
              })
 
+    // NotFound, Error, and Forbidden views
+    $stateProvider
+      .state("notfound", {
+               parent: "siteroot",
+               templateUrl: "moonshot/notfound.partial.html",
+               controller: "NotFoundCtrl as NotFoundCtrl",
+               params: ["unfoundStateTo"]
+             })
+      .state("error", {
+               parent: "siteroot",
+               templateUrl: "moonshot/error.partial.html",
+               controller: "ErrorCtrl as ErrorCtrl",
+               params: ["toState", "error"]
+             })
+
       // "Busted" state to demonstrate error handling when the
       // state-logic throws an exception.
       .state("busted", {

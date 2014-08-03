@@ -18,8 +18,18 @@
       .value();
   }
 
-  angular.module("moonshot")
+  function NotFoundCtrl($stateParams) {
+    this.unfoundStateTo = $stateParams.unfoundStateTo;
+  }
 
-    .controller("HeaderCtrl", HeaderCtrl);
+  function ErrorCtrl($stateParams) {
+    this.toState = $stateParams.toState;
+    this.error = $stateParams.error;
+  }
+
+  angular.module("moonshot")
+    .controller("HeaderCtrl", HeaderCtrl)
+    .controller("NotFoundCtrl", NotFoundCtrl)
+    .controller("ErrorCtrl", ErrorCtrl);
 
 })();
