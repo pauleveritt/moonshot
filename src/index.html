@@ -22,7 +22,7 @@
 <div class="ui-view-container">
   <div ui-view="header"></div>
   <div id="content" class="container">
-    <div class="pull-left">menu</div>
+    <div class="pull-left">{{ $state.data.sidebar }}x</div>
     <div ui-view="content"></div>
   </div>
 </div>
@@ -31,6 +31,8 @@
 <script src="../bower_components/angular/angular.js"></script>
 
 <script src="../bower_components/angular-animate/angular-animate.js"></script>
+
+<script src="../bower_components/angular-messages/angular-messages.js"></script>
 
 <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 
