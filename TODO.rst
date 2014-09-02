@@ -5,8 +5,6 @@ TODO
 Next
 ====
 
-- Change state/superstate to be like tmp
-
 - Write People and Help app
 
 - Remove Todo app
@@ -28,6 +26,8 @@ After
 
 Later
 =====
+
+- Change state/superstate to be like tmp
 
 - Traversal: context-view, ancestors
 
