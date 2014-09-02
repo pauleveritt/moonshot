@@ -21,3 +21,4 @@ phantomjsdriver.log
 karma-test-results.xml
 dist
 *.sqlite
+*.sqlite-journal

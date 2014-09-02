@@ -1,13 +1,17 @@
 (function () {
 
-  function UsersHomeCtrl(users) {
-    this.users = users;
+  function UsersHomeCtrl() {
+//    this.users = users;
   }
 
-  function UserLoginCtrl($auth) {
+  function UserLoginCtrl($auth, $window) {
     var _this = this;
 
-    this.authenticate = function(provider) {
+    var token = 'satellizer_token';
+
+    this.current_user = $window.localStorage[token]
+
+    this.authenticate = function (provider) {
       $auth.authenticate(provider);
     };
   }

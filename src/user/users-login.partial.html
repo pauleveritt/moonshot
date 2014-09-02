@@ -2,6 +2,8 @@
   <div class="col-md-2">
     <h2 class="text-center">Log in</h2>
 
+    <p><em>Current user: {{UserLoginCtrl.current_user }}</em></p>
+
     <button class="btn btn-block btn-twitter"
             ng-click="UserLoginCtrl.authenticate('twitter')">
       <i class="fa fa-twitter fa-2x"></i> Sign in with Twitter
