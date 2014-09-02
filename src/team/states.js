@@ -3,27 +3,27 @@
   function MoonshotInit($stateProvider) {
 
     var subsections = [
-      {label: 'Home', state: 'team-home'}
+      {label: 'Home', state: 'teams'}
     ];
 
     $stateProvider
-      .state("team-home", {
-               url: "/team",
-               parent: "siteroot",
+      .state('teams', {
+               url: '/teams/',
+               parent: 'siteroot',
                section: {
-                 title: "Teams",
+                 title: 'Teams',
                  priority: 1
                },
                subsections: subsections,
                views: {
-                 "content": {
-                   templateUrl: "/team/team-home.partial.html"
+                 'content': {
+                   templateUrl: '/team/team-home.partial.html'
                  }
                }
              });
   }
 
-  angular.module("moonshot")
+  angular.module('moonshot')
     .config(MoonshotInit);
 
 })();

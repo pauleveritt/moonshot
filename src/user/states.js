@@ -3,13 +3,13 @@
   function MoonshotInit($stateProvider) {
 
     var subsections = [
-      {label: 'Home', state: 'users-home'},
-      {label: 'Login', state: 'user-login'}
+      {label: 'Home', state: 'users'},
+      {label: 'Login', state: 'users.login'}
     ];
 
     $stateProvider
-      .state('users-home', {
-               url: '/users',
+      .state('users', {
+               url: '/users/',
                parent: 'siteroot',
                section: {
                  title: 'Users',
@@ -17,7 +17,7 @@
                },
                subsections: subsections,
                views: {
-                 "content@siteroot": {
+                 "content": {
                    templateUrl: '/user/users-home.partial.html',
                    controller: 'UsersHomeCtrl as UsersHomeCtrl'
                  }
@@ -28,12 +28,11 @@
                  }
                }
              })
-      .state('user-login', {
-               url: '/login',
-               parent: 'siteroot',
+      .state('users.login', {
+               url: 'login',
                subsections: subsections,
                views: {
-                 content: {
+                 "content@siteroot": {
                    templateUrl: '/user/user-login.partial.html',
                    controller: 'UserLoginCtrl as UserLoginCtrl'
                  }
