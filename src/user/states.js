@@ -23,9 +23,9 @@
                  }
                },
                resolve: {
-                 users: function (Restangular) {
-                   return Restangular.all('users').getList();
-                 }
+//                 users: function (Restangular) {
+//                   return Restangular.all('users').getList();
+//                 }
                }
              })
       .state('users.login', {

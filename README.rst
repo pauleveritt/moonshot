@@ -16,7 +16,7 @@ Developer setup presumes a modern, NodeJS environment containing
 
 #. gulp
 
-You can now visit ``http://localhost:9000/`` to see a local, 
+You can now visit ``http://127.0.0.1:9000/`` to see a local, 
 reload-on-change web server with the REST API mocked out.
 
 Python
@@ -34,7 +34,7 @@ To get the real REST API in place, get started on Python:
 
 #. pserve moonshot/development.ini --reload
 
-If you now visit ``http://localhost:9001/`` you will get a version 
+If you now visit ``http://127.0.0.1:9001/`` you will get a version 
 that does not mock out the REST API, but instead sends requests to the 
 local Pyramid app running on port ``3000``. You will still get the 
 reload-on-change for the frontend that is still being served by Gulp.
@@ -43,4 +43,4 @@ reload-on-change for the frontend that is still being served by Gulp.
 same time. **
 
 You can also have Pyramid serve up the frontend via static assets at 
-``http://localhost:3000/``.
+``http://127.0.0.1:3000/``.

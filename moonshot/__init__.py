@@ -3,17 +3,21 @@ from pyramid.events import NewRequest
 
 import logging
 
+log = logging.getLogger(__name__)
+
+
 def add_cors_callback(event):
-    headers = "Origin, Content-Type, Accept, Authorization"
+    headers = 'Origin, Content-Type, Accept, Authorization'
 
     def cors_headers(request, response):
         response.headers.update({
             # In production you would be careful with this
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers": headers
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': headers
         })
 
     event.request.add_response_callback(cors_headers)
+
 
 def main(global_config, **settings):
     config = Configurator(settings=settings)
