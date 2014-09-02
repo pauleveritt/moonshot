@@ -8,20 +8,17 @@
 (function (ng, mod, _, undefined) {
   'use strict';
 
-  mod.run(function ($httpBackend, moonshotMockRest) {
+  mod.run(function ($httpBackend, moonMockRest) {
 
-    var mocks = moonshotMockRest.getMocks();
+    var mocks = moonMockRest.getMocks();
 
     // Iterate over all the registered mocks and register them
     _.map(mocks, function (moduleMocks) {
       // All the mocks registered for this module
       _(moduleMocks).forEach(function (mock) {
-        var method = mock[0];
-        var match = mock[1],
-          responder = mock[2];
-        $httpBackend.when(
-          method,
-          match)
+        var match = mock[0],
+          responder = mock[1];
+        $httpBackend.whenGET(match)
           .respond(responder);
       });
     });
@@ -31,6 +28,5 @@
     $httpBackend.whenPOST(/\/*/).passThrough();
     $httpBackend.whenPUT(/\/*/).passThrough();
 
-  });
-
-}(angular, angular.module('moonshotMock', ['moonshot', 'ngMockE2E']), _));
+  })
+}(angular, angular.module('moonshotDev', ['moonshot', 'ngMockE2E']), _));

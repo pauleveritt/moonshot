@@ -1,0 +1,22 @@
+<div id="header" class="container">
+  <div class="navbar navbar-inverse navbar-fixed-top"
+       role="navigation">
+    <div class="navbar-header">
+      <a class="navbar-brand" ui-sref="home">Moonshot</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li ng-repeat="section in HeaderCtrl.sections"
+          ui-sref-active="active">
+        <a ui-sref="{{ section.state}}">{{ section.title }}</a>
+      </li>
+    </ul>
+  </div>
+  <div id="subsections" class="navbar" role="navigation">
+    <ul class="nav navbar-nav">
+      <li ng-repeat="subsection in HeaderCtrl.subsections">
+        <a ui-sref="{{ subsection.state }}"
+           ui-sref-active="active">{{ subsection.label }}</a>
+      </li>
+    </ul>
+  </div>
+</div>

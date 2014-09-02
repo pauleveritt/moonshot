@@ -1,29 +1,42 @@
 (function () {
 
-  function SiteRootCtrl($log) {
-    $log.debug("SiteRootCtrl494");
-  }
-
   function MoonshotInit($stateProvider) {
 
+    var subsections = [
+      {label: 'Home', state: 'site-home'},
+      {label: 'Form', state: 'site-form'}
+    ];
+
     $stateProvider
-      // The first top-level "page" that gets jammed into the content
-      // view above
-      .state("home", {
+      .state("site-home", {
                url: "/",
                parent: "siteroot",
                section: {
                  title: "Home",
                  priority: 1
                },
-               templateUrl: "site/home.partial.html",
-               controller: "SiteRootCtrl as SiteRootCtrl"
+               subsections: subsections,
+               views: {
+                 "content": {
+                   templateUrl: "site/home.partial.html"
+                 }
+               }
+             })
+      .state("site-form", {
+               url: "/form",
+               parent: "siteroot",
+               subsections: subsections,
+               views: {
+                 "content": {
+                   templateUrl: "site/form.partial.html",
+                   controller: "SiteFormCtrl as SiteFormCtrl"
+                 }
+               }
              });
   }
 
   angular.module("moonshot")
-    .config(MoonshotInit)
-    .controller("SiteRootCtrl", SiteRootCtrl);
+    .config(MoonshotInit);
 
 })();
 
