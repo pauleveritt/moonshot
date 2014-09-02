@@ -17,8 +17,8 @@
                },
                subsections: subsections,
                views: {
-                 content: {
-                   templateUrl: 'user/users-home.partial.html',
+                 "content@siteroot": {
+                   templateUrl: '/user/users-home.partial.html',
                    controller: 'UsersHomeCtrl as UsersHomeCtrl'
                  }
                },
@@ -34,7 +34,7 @@
                subsections: subsections,
                views: {
                  content: {
-                   templateUrl: 'user/user-login.partial.html',
+                   templateUrl: '/user/user-login.partial.html',
                    controller: 'UserLoginCtrl as UserLoginCtrl'
                  }
                }

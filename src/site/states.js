@@ -18,7 +18,7 @@
                subsections: subsections,
                views: {
                  "content": {
-                   templateUrl: "site/home.partial.html"
+                   templateUrl: "/site/home.partial.html"
                  }
                }
              })
@@ -28,7 +28,7 @@
                subsections: subsections,
                views: {
                  "content": {
-                   templateUrl: "site/form.partial.html",
+                   templateUrl: "/site/form.partial.html",
                    controller: "SiteFormCtrl as SiteFormCtrl"
                  }
                }

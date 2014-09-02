@@ -10,7 +10,7 @@
                url: "",
                views: {
                  "header": {
-                   templateUrl: 'app/header.partial.html',
+                   templateUrl: '/app/header.partial.html',
                    controller: "HeaderCtrl as HeaderCtrl"
                  },
                  "content": {

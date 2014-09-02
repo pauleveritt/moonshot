@@ -81,7 +81,7 @@ gulp.task('app-partials', function () {
   var templateCache = require('gulp-angular-templatecache');
   gulp.src('src/**/*.partial.html')
     .pipe(templateCache('moonshot-templates.js',
-                        {module: 'moonshot'}))
+                        {module: 'moonshot', root:'/'}))
     .pipe(gulp.dest('dist'));
 });
 

@@ -17,7 +17,7 @@
                subsections: subsections,
                views: {
                  "content": {
-                   templateUrl: "team/team-home.partial.html"
+                   templateUrl: "/team/team-home.partial.html"
                  }
                }
              });
