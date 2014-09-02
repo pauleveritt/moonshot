@@ -109,27 +109,37 @@ gulp.task('app-js-watch', function () {
   });
 });
 
-gulp.task('app-html-watch', ['webserver'], function () {
+gulp.task('app-html-watch', ['devwebserver', 'restwebserver'], function () {
   var watcher = gulp.watch('./src/index.tpl.html', ['app-html']);
   watcher.on('change', function (event) {
     console.log('#### Changed: ' + event.path);
   });
 });
 
-gulp.task('app-partials-watch', ['webserver'], function () {
+gulp.task('app-partials-watch', ['devwebserver', 'restwebserver'], function () {
   var watcher = gulp.watch('./src/**/*.partial.html', ['app-partials']);
   watcher.on('change', function (event) {
     console.log('#### Changed: ' + event.path);
   });
 });
 
-gulp.task('webserver', function () {
+gulp.task('devwebserver', function () {
+  gulp.src('dist')
+    .pipe(
+    plugins.webserver(
+      {
+        livereload: false,
+        port: 9000
+      }));
+});
+
+gulp.task('restwebserver', function () {
   gulp.src('dist')
     .pipe(
     plugins.webserver(
       {
         livereload: true,
-        port: 9000
+        port: 9001
       }));
 });
 

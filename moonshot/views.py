@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 # from urllib.parse import (
-#     parse_qsl,
+# parse_qsl,
 #     urlencode
 # )
 
@@ -56,7 +56,8 @@ class MyViews:
             # Enforce the authentication and collect some information
 
             if not request.headers.get('Authorization'):
-                raise HTTPUnauthorized(detail='Missing authorization header')
+                raise HTTPUnauthorized(
+                    detail='Missing authorization header')
 
             auth = request.headers.get('Authorization')
             token = auth.split()[1]
@@ -105,3 +106,16 @@ class MyViews:
     def api_me(self):
         print ("self.user", self.user)
         return self.user
+
+    @view_config(route_name='users', renderer='json')
+    def users(self):
+        users = [
+            dict(id='i1', title='Milk'),
+            dict(id='i2', title='Another'),
+            dict(id='i3', title='Go to work'),
+            dict(id='i4', title='Call home'),
+            dict(id='i5', title='Mow grass'),
+            dict(id='i6', title='Be lazy'),
+            dict(id='i7', title='Ditt'),
+        ]
+        return users

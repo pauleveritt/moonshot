@@ -2,7 +2,7 @@
 
   function MoonshotInit($stateProvider, $urlRouterProvider, RestangularProvider) {
 
-    RestangularProvider.setBaseUrl('/api');
+    RestangularProvider.setBaseUrl('http://localhost:3000/api');
 
     $stateProvider
       .state('siteroot', {

@@ -39,5 +39,8 @@ that does not mock out the REST API, but instead sends requests to the
 local Pyramid app running on port ``3000``. You will still get the 
 reload-on-change for the frontend that is still being served by Gulp.
 
+** Note: Can't currently have 9000 and 9001 doing livereload at the 
+same time. **
+
 You can also have Pyramid serve up the frontend via static assets at 
 ``http://localhost:3000/``.
