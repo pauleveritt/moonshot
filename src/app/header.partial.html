@@ -10,6 +10,21 @@
         <a ui-sref="{{ section.state}}">{{ section.title }}</a>
       </li>
     </ul>
+    <ul ng-if="!HeaderCtrl.isAuthenticated()"
+        class="nav navbar-nav pull-right">
+      <li>
+        <a ui-sref="users.login">Login</a>
+      </li>
+      <li>
+        <a href="/#/signup">Sign up</a>
+      </li>
+    </ul>
+    <ul ng-if="HeaderCtrl.isAuthenticated()"
+        class="nav navbar-nav pull-right">
+      <li>
+        <a ui-sref="users.logout">Logout</a>
+      </li>
+    </ul>
   </div>
   <div id="subsections" class="navbar" role="navigation">
     <ul class="nav navbar-nav">

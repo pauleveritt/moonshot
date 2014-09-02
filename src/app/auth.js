@@ -2,12 +2,10 @@
 
   function MoonshotInit($authProvider) {
 
-    $authProvider.google(
-      {
-        url: '/auth/google',
-        clientId: '10769429454-33t5ven7qm8jsmh2p0mp6848mlupe5t3.apps.googleusercontent.com'
-      }
-    );
+    $authProvider.twitter({
+                            url: 'http://localhost:3000/auth/twitter',
+                            type: '1.0'
+                          });
   }
 
   angular.module("moonshot")

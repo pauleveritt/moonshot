@@ -1,6 +1,6 @@
 (function () {
 
-  var HeaderCtrl = function ($rootScope, $state) {
+  var HeaderCtrl = function ($rootScope, $state, $auth) {
     var ctrl = this;
     this.$rootScope = $rootScope;
     this.$state = $state;
@@ -28,6 +28,11 @@
         ctrl.subsections = toState.subsections;
       });
     });
+
+    this.isAuthenticated = function () {
+      return $auth.isAuthenticated();
+    };
+
   };
 
   angular.module("moonshot")
