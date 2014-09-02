@@ -33,7 +33,7 @@
                subsections: subsections,
                views: {
                  "content@siteroot": {
-                   templateUrl: '/user/user-login.partial.html',
+                   templateUrl: '/user/users-login.partial.html',
                    controller: 'UserLoginCtrl as UserLoginCtrl'
                  }
                }
