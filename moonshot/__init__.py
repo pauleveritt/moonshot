@@ -26,7 +26,7 @@ def main(global_config, **settings):
     config.add_route('auth_twitter', '/auth/twitter')
     config.add_route('api_me', '/api/me')
     config.add_route('users', '/api/users')
-    config.add_static_view(name='/', path='../dist')
+    config.add_static_view(name='/', path='../_build')
     config.add_subscriber(add_cors_callback, NewRequest)
     config.scan('.')
 

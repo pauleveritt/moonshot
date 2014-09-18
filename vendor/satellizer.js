@@ -12,6 +12,7 @@
       logoutRedirect: '/',
       loginRedirect: '/',
       signupRedirect: '/login',
+      loginOnSignup: true,
       loginUrl: '/auth/login',
       signupUrl: '/auth/signup',
       loginRoute: '/login',
@@ -68,6 +69,11 @@
         twitter: {
           url: '/auth/twitter',
           type: '1.0'
+        },
+        yahoo: {
+          url: '/auth/yahoo',
+          type: '1.0',
+          popupOptions: { width: 559, height: 519 }
         }
       }
     })
@@ -84,6 +90,10 @@
         signupRedirect: {
           get: function() { return config.signupRedirect; },
           set: function(value) { config.signupRedirect = value; }
+        },
+        loginOnSignup: {
+          get: function() { return config.loginOnSignup; },
+          set: function(value) { config.loginOnSignup = value; }
         },
         loginUrl: {
           get: function() { return config.loginUrl; },
@@ -165,7 +175,7 @@
           };
 
           $auth.link = function(name) {
-            return $auth.authenticate(name);
+            return oauth.authenticate(name, true);
           };
 
           $auth.unlink = function(provider) {
@@ -184,12 +194,12 @@
       function($q, $window, $location, config) {
         var shared = {};
 
-        shared.parseUser = function(response, deferred) {
+        shared.saveToken = function(response, deferred, isLinking) {
           var token = response.data[config.tokenName];
           var namespace = [config.tokenPrefix, config.tokenName].join('_');
           $window.localStorage[namespace] = token;
 
-          if (config.loginRedirect) {
+          if (config.loginRedirect && !isLinking) {
             $location.path(config.loginRedirect);
           }
 
@@ -197,8 +207,17 @@
         };
 
         shared.isAuthenticated = function() {
-          var token = [config.tokenPrefix, config.tokenName].join('_');
-          return Boolean($window.localStorage[token]);
+          var tokenName = [config.tokenPrefix, config.tokenName].join('_');
+          var token = $window.localStorage[tokenName];
+
+          if (token) {
+            var base64Url = token.split('.')[1];
+            var base64 = base64Url.replace('-', '+').replace('_', '/');
+            var exp = JSON.parse($window.atob(base64)).exp;
+            return Date.now() <= exp;
+          }
+
+          return false;
         };
 
         shared.logout = function() {
@@ -227,16 +246,18 @@
       function($q, $http, config, shared, Oauth1, Oauth2) {
         var oauth = {};
 
-        oauth.authenticate = function(name) {
+        oauth.authenticate = function(name, isLinking) {
           var deferred = $q.defer();
           var provider = config.providers[name].type === '1.0' ? new Oauth1() : new Oauth2();
+
           provider.open(config.providers[name])
             .then(function(response) {
-              shared.parseUser(response, deferred);
+              shared.saveToken(response, deferred, isLinking);
             })
             .catch(function(response) {
               deferred.reject(response);
             });
+
           return deferred.promise;
         };
 
@@ -261,7 +282,7 @@
 
           $http.post(config.loginUrl, user)
             .then(function(response) {
-              shared.parseUser(response, deferred);
+              shared.saveToken(response, deferred);
             })
             .catch(function(response) {
               deferred.reject(response);
@@ -274,9 +295,13 @@
           var deferred = $q.defer();
 
           $http.post(config.signupUrl, user)
-            .then(function() {
-              $location.path(config.signupRedirect);
-              deferred.resolve();
+            .then(function(response) {
+              if (config.loginOnSignup) {
+                shared.saveToken(response, deferred);
+              } else {
+                $location.path(config.signupRedirect);
+                deferred.resolve(response);
+              }
             })
             .catch(function(response) {
               deferred.reject(response);
@@ -294,6 +319,7 @@
       'satellizer.utils',
       function($q, $http, popup, utils) {
         return function() {
+
           var defaults = {
             url: null,
             name: null,
@@ -378,6 +404,7 @@
       }])
     .factory('satellizer.Oauth1', ['$q', '$http', 'satellizer.popup', function($q, $http, popup) {
       return function() {
+
         var defaults = {
           url: null,
           name: null,
@@ -391,7 +418,7 @@
 
           var deferred = $q.defer();
 
-          popup.open(defaults.url)
+          popup.open(defaults.url, defaults.popupOptions)
             .then(function(response) {
               oauth1.exchangeForToken(response)
                 .then(function(response) {
@@ -531,15 +558,18 @@
     .run(['$window', '$location', 'satellizer.utils', function($window, $location, utils) {
       var params = $window.location.search.substring(1);
       var qs = Object.keys($location.search()).length ? $location.search() : utils.parseQueryString(params);
-
-      if ($window.opener && $window.opener.location.origin === $window.location.origin) {
-        if (qs.oauth_token && qs.oauth_verifier) {
-          $window.opener.postMessage({ oauth_token: qs.oauth_token, oauth_verifier: qs.oauth_verifier }, $window.location.origin);
-        } else if (qs.code) {
-          $window.opener.postMessage({ code: qs.code }, $window.location.origin);
-        } else if (qs.error) {
-          $window.opener.postMessage({ error: qs.error }, $window.location.origin);
+      try {
+        if ($window.opener && $window.opener.location.origin === $window.location.origin) {
+          if (qs.oauth_token && qs.oauth_verifier) {
+            $window.opener.postMessage({ oauth_token: qs.oauth_token, oauth_verifier: qs.oauth_verifier }, $window.location.origin);
+          } else if (qs.code) {
+            $window.opener.postMessage({ code: qs.code }, $window.location.origin);
+          } else if (qs.error) {
+            $window.opener.postMessage({ error: qs.error }, $window.location.origin);
+          }
         }
+      } catch(error) {
+
       }
     }]);
 
