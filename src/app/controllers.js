@@ -1,9 +1,34 @@
 (function () {
 
-  var HeaderCtrl = function ($rootScope, $state, $auth) {
+  function LoginCtrl($auth) {
+    this.authenticate = function (provider) {
+      $auth.authenticate(provider);
+    };
+  }
+
+  function ProfileCtrl($http, $log) {
+    var _this = this;
+    this.user = {};
+    $http.get('/api/me')
+      .success(function (response) {
+                 $log.debug('api me', response);
+                 _this.user = response.user;
+               });
+  }
+
+  function HeaderCtrl($rootScope, $state, $auth) {
     var ctrl = this;
     this.$rootScope = $rootScope;
     this.$state = $state;
+    this.$auth = $auth;
+
+    this.logout = function () {
+      $auth.logout()
+        .then(function () {
+                $state.go('siteroot.login');
+              });
+    };
+
     this.sections = _($state.get())
       .filter(function (state) {
                 return _.has(state, "section");
@@ -28,14 +53,11 @@
         ctrl.subsections = toState.subsections;
       });
     });
-
-    this.isAuthenticated = function () {
-      return $auth.isAuthenticated();
-    };
-
-  };
+  }
 
   angular.module("moonshot")
-    .controller("HeaderCtrl", HeaderCtrl);
+    .controller("HeaderCtrl", HeaderCtrl)
+    .controller("LoginCtrl", LoginCtrl)
+    .controller('ProfileCtrl', ProfileCtrl);
 
 })();

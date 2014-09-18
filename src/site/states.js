@@ -3,14 +3,13 @@
   function MoonshotInit($stateProvider) {
 
     var subsections = [
-      {label: 'Home', state: 'site'},
-      {label: 'Form', state: 'site.form'}
+      {label: 'Home', state: 'siteroot.site'},
+      {label: 'Form', state: 'siteroot.site.form'}
     ];
 
     $stateProvider
-      .state("site", {
+      .state("siteroot.site", {
                url: "/",
-               parent: "siteroot",
                section: {
                  title: "Home",
                  priority: 1
@@ -22,11 +21,10 @@
                  }
                }
              })
-      .state("site.form", {
-               url: "/form",
-               subsections: subsections,
+      .state("siteroot.site.form", {
+               url: "form",
                views: {
-                 "content": {
+                 "content@siteroot": {
                    templateUrl: "/site/form.partial.html",
                    controller: "SiteFormCtrl as SiteFormCtrl"
                  }

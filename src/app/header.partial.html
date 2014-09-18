@@ -2,7 +2,7 @@
   <div class="navbar navbar-inverse navbar-fixed-top"
        role="navigation">
     <div class="navbar-header">
-      <a class="navbar-brand" ui-sref="home">Moonshot</a>
+      <a class="navbar-brand" ui-sref="home">STORM Tracker</a>
     </div>
     <ul class="nav navbar-nav">
       <li ng-repeat="section in HeaderCtrl.sections"
@@ -10,27 +10,26 @@
         <a ui-sref="{{ section.state}}">{{ section.title }}</a>
       </li>
     </ul>
-    <ul ng-if="!HeaderCtrl.isAuthenticated()"
+
+    <ul ng-if="!HeaderCtrl.$auth.isAuthenticated()"
         class="nav navbar-nav pull-right">
-      <li>
-        <a ui-sref="users.login">Login</a>
-      </li>
-      <li>
-        <a href="/#/signup">Sign up</a>
-      </li>
+      <li><a ui-sref="siteroot.login">Login</a></li>
+      <li><a href="/#/signup">Sign up</a></li>
     </ul>
-    <ul ng-if="HeaderCtrl.isAuthenticated()"
+    <ul ng-if="HeaderCtrl.$auth.isAuthenticated()"
         class="nav navbar-nav pull-right">
-      <li>
-        <a ui-sref="users.logout">Logout</a>
+      <li ui-sref-active="active">
+        <a ui-sref="siteroot.profile">Profile</a>
       </li>
+      <li><a ng-click="HeaderCtrl.logout()" href="#">Logout</a></li>
     </ul>
+
   </div>
   <div id="subsections" class="navbar" role="navigation">
     <ul class="nav navbar-nav">
-      <li ng-repeat="subsection in HeaderCtrl.subsections">
-        <a ui-sref="{{ subsection.state }}"
-           ui-sref-active="active">{{ subsection.label }}</a>
+      <li ng-repeat="subsection in HeaderCtrl.subsections"
+          ui-sref-active="active">
+        <a ui-sref="{{ subsection.state }}">{{ subsection.label }}</a>
       </li>
     </ul>
   </div>

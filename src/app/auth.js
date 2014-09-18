@@ -1,14 +1,30 @@
 (function () {
 
-  function MoonshotInit($authProvider) {
+  function AuthzRedirect($q, $injector) {
 
+    return {
+      responseError: function (rejection) {
+        var $state = $injector.get('$state');
+        if (rejection.status == 403 || rejection.status == 401) {
+          // Redirect to the login form
+          $state.go('siteroot.login');
+        }
+        return $q.reject(rejection);
+      }
+    };
+
+  }
+
+  function ModuleInit($httpProvider, $authProvider, $injector) {
+
+    $httpProvider.interceptors.push('authzRedirect');
     $authProvider.twitter({
-                            url: 'http://localhost:3000/auth/twitter',
-                            type: '1.0'
+                            url: '/auth/twitter'
                           });
   }
 
   angular.module("moonshot")
-    .config(MoonshotInit);
+    .factory('authzRedirect', AuthzRedirect)
+    .config(ModuleInit);
 
 })();

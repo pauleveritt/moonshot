@@ -3,8 +3,7 @@
   function MoonshotInit($stateProvider) {
 
     var subsections = [
-      {label: 'Home', state: 'users'},
-      {label: 'Login', state: 'users.login'}
+      {label: 'Home', state: 'users'}
     ];
 
     $stateProvider
@@ -17,24 +16,14 @@
                },
                subsections: subsections,
                views: {
-                 "content": {
+                 content: {
                    templateUrl: '/user/users-home.partial.html',
                    controller: 'UsersHomeCtrl as UsersHomeCtrl'
                  }
                },
                resolve: {
-//                 users: function (Restangular) {
-//                   return Restangular.all('users').getList();
-//                 }
-               }
-             })
-      .state('users.login', {
-               url: 'login',
-               subsections: subsections,
-               views: {
-                 "content@siteroot": {
-                   templateUrl: '/user/users-login.partial.html',
-                   controller: 'UserLoginCtrl as UserLoginCtrl'
+                 users: function (Restangular) {
+                   return Restangular.all('users').getList();
                  }
                }
              });
