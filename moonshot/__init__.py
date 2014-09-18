@@ -21,18 +21,18 @@ def add_cors_callback(event):
 
 
 def main(global_config, **settings):
-    config = Configurator(settings=settings)
+    config = Configurator(settings=settings,
+                          root_factory='.resources.Root')
     config.include('pyramid_sqlalchemy')
-    config.add_route('auth_twitter', '/auth/twitter')
-    config.add_route('api_me', '/api/me')
-    config.add_route('users', '/api/users')
-    config.add_static_view(name='/', path='../_build')
+    config.include('.security')
+    config.include('.views')
+    config.include('.resources')
+
     config.add_subscriber(add_cors_callback, NewRequest)
-    config.scan('.')
+    config.add_static_view(name='/', path='moonshot:../_build')
 
     logging.config.fileConfig(settings['logging.config'],
                               disable_existing_loggers=False)
 
     return config.make_wsgi_app()
-
 

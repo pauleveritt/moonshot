@@ -19,7 +19,7 @@
 
     $httpProvider.interceptors.push('authzRedirect');
     $authProvider.twitter({
-                            url: '/auth/twitter'
+                            url: 'http://127.0.0.1:3000/auth/twitter'
                           });
   }
 
