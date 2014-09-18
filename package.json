@@ -3,6 +3,7 @@
   "description": "Admin frontend for REST projects",
   "version": "0.1.0",
   "author": "Paul Everitt",
+  "license": "MIT",
   "engines": [
     "node"
   ],
@@ -37,6 +38,5 @@
     "karma-coverage": "*",
     "karma-junit-reporter": "*",
     "chromedriver": "*"
-
   }
 }

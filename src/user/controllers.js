@@ -9,7 +9,7 @@
 
     var token = 'satellizer_token';
 
-    this.current_user = $window.localStorage[token]
+    this.current_user = $window.localStorage[token];
 
     this.authenticate = function (provider) {
       $auth.authenticate(provider);

@@ -83,8 +83,10 @@ class MyViews:
                           verifier=request.params.get('oauth_verifier'))
             r = requests.post(access_token_url, auth=auth)
             profile = dict(parse_qsl(r.text))
+            profile_id = profile['user_id']
 
             user = self.User.filter_by(twitter=profile['user_id']).first()
+            print ("User", profile_id, user)
             if user:
                 token = create_jwt_token(user)
                 return dict(token=token)

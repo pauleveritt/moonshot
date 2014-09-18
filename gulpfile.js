@@ -7,7 +7,7 @@ var libjs = [
   'angular-ui-router/release/angular-ui-router.js',
   'restangular/dist/restangular.js',
   'angular-mocks/angular-mocks.js',
-  'satellizer/satellizer.js'
+  '../vendor/satellizer.js'
 ];
 
 var libcss = [
@@ -39,23 +39,25 @@ var
 
 gulp.task('lib-js', function () {
   return gulp.src(libjs, {cwd: './bower_components/'})
-//    .pipe(plugins.uglify())
+    .pipe(plugins.uglify())
     .pipe(concat('moonshot-lib.min.js'))
-    .pipe(cachebustJs.resources())
-    .pipe(gulp.dest('dist/lib'));
+    // Commented out the next, as sourcemaps then break
+//    .pipe(cachebustJs.resources())
+    .pipe(gulp.dest('dist/static/lib'));
 });
 
 gulp.task('lib-css', function () {
   return gulp.src(libcss, {cwd: './bower_components/'})
     .pipe(plugins.cssmin())
     .pipe(concat('moonshot-lib.min.css'))
-    .pipe(cachebustCss.resources())
-    .pipe(gulp.dest('dist/lib'));
+    // Commented out the next, as sourcemaps then break
+//    .pipe(cachebustCss.resources())
+    .pipe(gulp.dest('dist/static/lib'));
 });
 
 gulp.task('lib-fonts', function () {
   return gulp.src(libfonts, {cwd: './bower_components/'})
-    .pipe(gulp.dest('dist/lib/fonts'));
+    .pipe(gulp.dest('dist/static/lib/fonts'));
 });
 
 /*  Project source files */
@@ -65,8 +67,8 @@ gulp.task('app-js', function () {
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter('default'))
 //    .pipe(plugins.uglify())
-    .pipe(concat('moonshot.js'))
-    .pipe(gulp.dest('dist'));
+    .pipe(concat('moonshot.min.js'))
+    .pipe(gulp.dest('dist/static'));
 });
 
 gulp.task('app-css', function () {
@@ -74,7 +76,7 @@ gulp.task('app-css', function () {
     .pipe(plugins.less())
 //    .pipe(plugins.cssmin())
     .pipe(concat('moonshot.css'))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist/static'));
 });
 
 gulp.task('app-partials', function () {
@@ -82,7 +84,7 @@ gulp.task('app-partials', function () {
   gulp.src('src/**/*.partial.html')
     .pipe(templateCache('moonshot-templates.js',
                         {module: 'moonshot', root:'/'}))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist/static'));
 });
 
 gulp.task('app-html', ['app-js', 'app-css', 'app-partials'], function () {
@@ -109,37 +111,27 @@ gulp.task('app-js-watch', function () {
   });
 });
 
-gulp.task('app-html-watch', ['devwebserver', 'restwebserver'], function () {
+gulp.task('app-html-watch', ['webserver'], function () {
   var watcher = gulp.watch('./src/index.tpl.html', ['app-html']);
   watcher.on('change', function (event) {
     console.log('#### Changed: ' + event.path);
   });
 });
 
-gulp.task('app-partials-watch', ['devwebserver', 'restwebserver'], function () {
+gulp.task('app-partials-watch', ['webserver'], function () {
   var watcher = gulp.watch('./src/**/*.partial.html', ['app-partials']);
   watcher.on('change', function (event) {
     console.log('#### Changed: ' + event.path);
   });
 });
 
-gulp.task('devwebserver', function () {
-  gulp.src('dist')
-    .pipe(
-    plugins.webserver(
-      {
-        livereload: false,
-        port: 9000
-      }));
-});
-
-gulp.task('restwebserver', function () {
+gulp.task('webserver', function () {
   gulp.src('dist')
     .pipe(
     plugins.webserver(
       {
         livereload: true,
-        port: 9001
+        port: 9000
       }));
 });
 
