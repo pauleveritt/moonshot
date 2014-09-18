@@ -16,9 +16,8 @@ __pycache__
 
 # Project
 /coverage
-/dist
+_build
 phantomjsdriver.log
 karma-test-results.xml
-dist
 *.sqlite
 *.sqlite-journal

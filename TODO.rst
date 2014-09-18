@@ -49,6 +49,9 @@ One Day
 Done
 ====
 
+- Converted to _build and dist
+
+
 - Animation
 
 - Get dist/index.html working (need ngtemplates setup)
