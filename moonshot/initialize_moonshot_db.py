@@ -3,10 +3,15 @@ import sys
 import transaction
 
 from pyramid.paster import get_appsettings
-from .models import (
+from pyramid.config import Configurator
+from pyramid_sqlalchemy import Session
+from sqlalchemy import engine_from_config
+
+from .security import (
     BaseObject,
     User
 )
+
 
 def usage(argv):
     cmd = os.path.basename(argv[0])
@@ -15,9 +20,12 @@ def usage(argv):
     sys.exit(1)
 
 
-from pyramid.config import Configurator
-from pyramid_sqlalchemy import Session
-from sqlalchemy import engine_from_config
+sample_users = [
+    ('paulweveritt', 'Paul', 'Everitt', 'paul@x.com', 'paulweveritt',
+     'editor'),
+    ('stormfburg', 'STORM', 'Fredericksburg', 'storm@x.com',
+     'stormfburg', 'viewer')
+]
 
 
 def main(argv=sys.argv):
@@ -28,5 +36,8 @@ def main(argv=sys.argv):
     engine = engine_from_config(settings, 'sqlalchemy.')
     BaseObject.metadata.create_all(engine)
     with transaction.manager:
-        model = User(first_name='Root', last_name='User')
-        Session.add(model)
+        for user in sample_users:
+            model = User(userid=user[0], first_name=user[1],
+                         last_name=user[2], email=user[3],
+                         twitter=user[4], group=user[5])
+            Session.add(model)

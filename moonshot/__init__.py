@@ -3,6 +3,7 @@ from pyramid.events import NewRequest
 
 import logging
 
+
 log = logging.getLogger(__name__)
 
 
@@ -22,7 +23,6 @@ def add_cors_callback(event):
 def main(global_config, **settings):
     config = Configurator(settings=settings)
     config.include('pyramid_sqlalchemy')
-    config.include('pyramid_jinja2')
     config.add_route('auth_twitter', '/auth/twitter')
     config.add_route('api_me', '/api/me')
     config.add_route('users', '/api/users')
