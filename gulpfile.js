@@ -7,7 +7,7 @@ var libjs = [
   'angular-ui-router/release/angular-ui-router.js',
   'restangular/dist/restangular.js',
   'angular-mocks/angular-mocks.js',
-  '../vendor/satellizer.js'
+//  '../vendor/satellizer.js'
 ];
 
 var libcss = [
@@ -132,6 +132,16 @@ gulp.task('webserver', function () {
       {
         livereload: true,
         port: 9000
+      }));
+});
+
+gulp.task('distserver', function () {
+  gulp.src('dist')
+    .pipe(
+    plugins.webserver(
+      {
+        livereload: true,
+        port: 9001
       }));
 });
 

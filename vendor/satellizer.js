@@ -541,8 +541,7 @@
         return {
           request: function(httpConfig) {
             if (localStorage.getItem([config.tokenPrefix, config.tokenName].join('_'))) {
-              var token = localStorage.getItem([config.tokenPrefix, config.tokenName].join('_'));
-              httpConfig.headers.Authorization = 'JWT token="' + token + '"';
+              httpConfig.headers.Authorization = 'Bearer ' + localStorage.getItem([config.tokenPrefix, config.tokenName].join('_'));
             }
             return httpConfig;
           },

@@ -6,9 +6,11 @@
     };
   }
 
-  function ProfileCtrl($http, $log) {
+  function ProfileCtrl($http, $log, $auth) {
     var _this = this;
     this.user = {};
+
+    $log.debug("auth", $auth.isAuthenticated());
     $http.get('/api/me')
       .success(function (response) {
                  $log.debug('api me', response);
