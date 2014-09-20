@@ -10,10 +10,9 @@
     var _this = this;
     this.user = {};
 
-    $log.debug("auth", $auth.isAuthenticated());
     $http.get('/api/me')
       .success(function (response) {
-                 $log.debug('api me', response);
+                 $log.debug('server profile data:', response);
                  _this.user = response.user;
                });
   }

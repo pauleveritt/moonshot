@@ -59,7 +59,7 @@ class MySite:
         self.request = request
 
         # If the request is to /auth/twitter, don't require auth
-        if request.current_route_path() != '/auth/twitter':
+        if request.matched_route.name != 'auth_twitter':
 
             if not request.headers.get('Authorization'):
                 raise HTTPUnauthorized(detail='Missing authorization header')

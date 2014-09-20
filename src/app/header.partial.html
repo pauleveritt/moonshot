@@ -9,9 +9,6 @@
           ui-sref-active="active">
         <a ui-sref="{{ section.state}}">{{ section.title }}</a>
       </li>
-      <li ui-sref-active="active">
-        <a ui-sref="siteroot.profile">Profile</a>
-      </li>
     </ul>
 
     <ul ng-if="!HeaderCtrl.$auth.isAuthenticated()"
