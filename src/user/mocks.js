@@ -1,6 +1,6 @@
 (function () {
 
-  function MoonshotInit(moonshotMockRestProvider) {
+  function ModuleInit(moonshotMockRestProvider) {
 
     var usersData = [
       {
@@ -43,7 +43,7 @@
   }
 
   angular.module('moonshot')
-    .config(MoonshotInit);
+    .config(ModuleInit);
 
 })();
 

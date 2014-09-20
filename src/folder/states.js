@@ -1,6 +1,6 @@
 (function () {
 
-  function MoonshotInit($stateProvider) {
+  function ModuleInit($stateProvider) {
 
     var subsections = [
       {label: 'Home', state: 'folder-home'}
@@ -24,7 +24,7 @@
   }
 
   angular.module("moonshot")
-    .config(MoonshotInit);
+    .config(ModuleInit);
 
 })();
 
