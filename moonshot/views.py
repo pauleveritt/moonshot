@@ -1,8 +1,14 @@
 from datetime import datetime, timedelta
 import jwt
 import requests
-from urlparse import parse_qsl
-from urllib import urlencode
+
+from moonshot._compat import (
+    parse_qsl,
+    urlencode,
+)
+
+# from urlparse import parse_qsl
+# from urllib import urlencode
 from requests_oauthlib import OAuth1
 
 from pyramid.httpexceptions import (
@@ -62,12 +68,13 @@ class MySite:
         if request.matched_route.name != 'auth_twitter':
 
             if not request.headers.get('Authorization'):
-                raise HTTPUnauthorized(detail='Missing authorization header')
+                raise HTTPUnauthorized(
+                    detail='Missing authorization header')
             auth = request.headers.get('Authorization')
             token = auth.split()[1]
             payload = jwt.decode(token, config['TOKEN_SECRET'])
             # if datetime.fromtimestamp(payload['exp']) < datetime.now():
-            #     raise HTTPUnauthorized(detail='Token has expired')
+            # raise HTTPUnauthorized(detail='Token has expired')
 
             # username = payload['sub']
             # self.user = USERS.get(username)
