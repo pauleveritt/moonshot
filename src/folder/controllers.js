@@ -1,7 +1,9 @@
 (function () {
 
-    function FoldersHomeCtrl($log) {
+  function FoldersHomeCtrl() {
+
   }
+
 
   angular.module("moonshot")
     .controller("FoldersHomeCtrl", FoldersHomeCtrl);
