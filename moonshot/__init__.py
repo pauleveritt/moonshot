@@ -8,7 +8,7 @@ def main(global_config, **settings):
     config.add_route('profile', '/api/me')
     config.scan('.views')
 
-    config.add_static_view(name='/', path='moonshot:../_build')
+    config.add_static_view(name='/', path='moonshot:../dist')
 
     return config.make_wsgi_app()
 
