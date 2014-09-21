@@ -6,8 +6,8 @@ var libjs = [
   'angular-messages/angular-messages.js',
   'angular-ui-router/release/angular-ui-router.js',
   'restangular/dist/restangular.js',
-  'angular-mocks/angular-mocks.js'
-//  '../vendor/satellizer.js'
+  'angular-mocks/angular-mocks.js',
+  'satellizer/satellizer.js'
 ];
 
 var libcss = [
