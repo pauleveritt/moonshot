@@ -43,7 +43,7 @@ gulp.task('lib-js', function () {
     .pipe(concat('moonshot-lib.min.js'))
     // Commented out the next, as sourcemaps then break
 //    .pipe(cachebustJs.resources())
-    .pipe(gulp.dest('_build/static/lib'));
+    .pipe(gulp.dest('dist/static/lib'));
 });
 
 gulp.task('lib-css', function () {
@@ -52,12 +52,12 @@ gulp.task('lib-css', function () {
     .pipe(concat('moonshot-lib.min.css'))
     // Commented out the next, as sourcemaps then break
 //    .pipe(cachebustCss.resources())
-    .pipe(gulp.dest('_build/static/lib'));
+    .pipe(gulp.dest('dist/static/lib'));
 });
 
 gulp.task('lib-fonts', function () {
   return gulp.src(libfonts, {cwd: './bower_components/'})
-    .pipe(gulp.dest('_build/static/lib/fonts'));
+    .pipe(gulp.dest('dist/static/lib/fonts'));
 });
 
 /*  Project source files */
@@ -68,7 +68,7 @@ gulp.task('app-js', function () {
     .pipe(plugins.jshint.reporter('default'))
 //    .pipe(plugins.uglify())
     .pipe(concat('moonshot.min.js'))
-    .pipe(gulp.dest('_build/static'));
+    .pipe(gulp.dest('dist/static'));
 });
 
 gulp.task('app-css', function () {
@@ -76,7 +76,7 @@ gulp.task('app-css', function () {
     .pipe(plugins.less())
 //    .pipe(plugins.cssmin())
     .pipe(concat('moonshot.css'))
-    .pipe(gulp.dest('_build/static'));
+    .pipe(gulp.dest('dist/static'));
 });
 
 gulp.task('app-partials', function () {
@@ -84,7 +84,7 @@ gulp.task('app-partials', function () {
   gulp.src('src/**/*.partial.html')
     .pipe(templateCache('moonshot-templates.js',
                         {module: 'moonshot', root:'/'}))
-    .pipe(gulp.dest('_build/static'));
+    .pipe(gulp.dest('dist/static'));
 });
 
 gulp.task('app-html', ['app-js', 'app-css', 'app-partials'], function () {
@@ -93,7 +93,7 @@ gulp.task('app-html', ['app-js', 'app-css', 'app-partials'], function () {
     .pipe(cachebustJs.references())
     .pipe(cachebustCss.references())
     .pipe(plugins.rename('index.html'))
-    .pipe(gulp.dest('_build'));
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('app-css-watch', function () {
@@ -126,7 +126,7 @@ gulp.task('app-partials-watch', ['webserver'], function () {
 });
 
 gulp.task('webserver', function () {
-  gulp.src('_build')
+  gulp.src('dist')
     .pipe(
     plugins.webserver(
       {

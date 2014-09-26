@@ -24,23 +24,36 @@ Python
 
 To get the real REST API in place, get started on Python:
 
-#. pyvenv-3.4 env34
+#. virtualenv env27
 
-#. source env34/bin/activate
+#. source env27/bin/activate
 
-#. python3.4 setup.py develop
+#. python setup.py develop
 
-#. initialize_moonshot_db moonshot/development.ini
+#. pserve moonshot/frontend.ini --reload
 
-#. pserve moonshot/development.ini --reload
+#. pserve moonshot/backend.ini --reload
 
-If you now visit ``http://127.0.0.1:9001/`` you will get a version 
+If you now visit ``http://127.0.0.1:4220/`` you will get a version
 that does not mock out the REST API, but instead sends requests to the 
 local Pyramid app running on port ``3000``. You will still get the 
 reload-on-change for the frontend that is still being served by Gulp.
 
-** Note: Can't currently have 9000 and 9001 doing livereload at the 
-same time. **
-
 You can also have Pyramid serve up the frontend via static assets at 
 ``http://127.0.0.1:3000/``.
+
+Twitter
+=======
+
+To get Twitter authentication working, make a ``twitter.ini`` that
+looks like this::
+
+  [twitter:settings]
+  TOKEN_SECRET = some kind of secret
+  TWITTER_CONSUMER_KEY = abc09xvfdf9d0f9
+  TWITTER_CONSUMER_SECRET = kdjfgdf9fg9dfug9dg
+  TWITTER_CALLBACK_URL = http://127.0.0.1:3000
+
+To make these, you need to use the Twitter dev console.
+
+Finally, edit ``views.py`` and put in your Twitter name for USERS.

@@ -7,8 +7,6 @@ from moonshot._compat import (
     urlencode,
 )
 
-# from urlparse import parse_qsl
-# from urllib import urlencode
 from requests_oauthlib import OAuth1
 
 from pyramid.httpexceptions import (
@@ -17,12 +15,6 @@ from pyramid.httpexceptions import (
 )
 from pyramid.view import view_config
 
-config = dict(
-    TOKEN_SECRET='the doctor always lies',
-    TWITTER_CONSUMER_KEY='eAhM1uRJ0beGYohmqSeMntoH9',
-    TWITTER_CONSUMER_SECRET='8WASpTKIJILtEpboiHLd4c3NaKufcl5pWMLvKu7jKHqCcTkl6i',
-    TWITTER_CALLBACK_URL='http://127.0.0.1:3000'
-)
 USERS = dict(
     # Twitter usernames
     paulweveritt=dict(
@@ -46,7 +38,7 @@ authenticate_url = 'https://api.twitter.com/oauth/authenticate'
 
 
 # Helper Functions
-def create_jwt_token(user):
+def create_jwt_token(user, token_secret):
     payload = dict(
         iat=datetime.now(),
         exp=datetime.now() + timedelta(days=7),
@@ -56,13 +48,14 @@ def create_jwt_token(user):
             first_name=user['first_name'],
             last_name=user['last_name'],
             twitter=user['twitter']))
-    token = jwt.encode(payload, config['TOKEN_SECRET'])
+    token = jwt.encode(payload, token_secret)
     return token
 
 
 class MySite:
     def __init__(self, request):
         self.request = request
+        self.settings = request.registry.settings
 
         # If the request is to /auth/twitter, don't require auth
         if request.matched_route.name != 'auth_twitter':
@@ -72,7 +65,9 @@ class MySite:
                     detail='Missing authorization header')
             auth = request.headers.get('Authorization')
             token = auth.split()[1]
-            payload = jwt.decode(token, config['TOKEN_SECRET'])
+            payload = jwt.decode(token, self.settings[
+                'twitter:settings:token_secret'
+            ])
             # if datetime.fromtimestamp(payload['exp']) < datetime.now():
             # raise HTTPUnauthorized(detail='Token has expired')
 
@@ -93,8 +88,9 @@ class MySite:
 
         if request.params.get('oauth_token') and request.params.get(
                 'oauth_verifier'):
-            auth = OAuth1(config['TWITTER_CONSUMER_KEY'],
-                          client_secret=config['TWITTER_CONSUMER_SECRET'],
+            auth = OAuth1(self.settings['twitter:settings:twitter_consumer_key'],
+                          client_secret=self.settings[
+                              'twitter:settings:twitter_consumer_secret'],
                           resource_owner_key=request.params.get(
                               'oauth_token'),
                           verifier=request.params.get('oauth_verifier'))
@@ -103,13 +99,16 @@ class MySite:
 
             twitter = profile['screen_name']
             user = USERS.get(twitter)
-            token = create_jwt_token(user)
+            token_secret = self.settings['twitter:settings:token_secret']
+            token = create_jwt_token(user, token_secret)
             return dict(token=token)
         else:
-            oauth = OAuth1(config['TWITTER_CONSUMER_KEY'],
-                           client_secret=config[
-                               'TWITTER_CONSUMER_SECRET'],
-                           callback_uri=config['TWITTER_CALLBACK_URL'])
+            oauth = OAuth1(self.settings[
+                               'twitter:settings:twitter_consumer_key'],
+                           client_secret=self.settings[
+                               'twitter:settings:twitter_consumer_secret'],
+                           callback_uri=self.settings[
+                               'twitter:settings:twitter_callback_url'])
             r = requests.post(request_token_url, auth=oauth)
             oauth_token = dict(parse_qsl(r.text))
             qs = urlencode(dict(oauth_token=oauth_token['oauth_token']))

@@ -1,7 +1,7 @@
 from setuptools import setup
 
 requires = [
-    'pyramid', 'waitress', 'pyramid_sqlalchemy',
+    'pyramid', 'waitress', 'pyramid_sqlalchemy', 'wsgicors',
     'PyJWT', 'requests', 'requests-oauthlib'
 ]
 

@@ -21,3 +21,4 @@ phantomjsdriver.log
 karma-test-results.xml
 *.sqlite
 *.sqlite-journal
+twitter.ini
