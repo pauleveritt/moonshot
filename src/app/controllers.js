@@ -1,22 +1,5 @@
 (function () {
 
-  function LoginCtrl($auth) {
-    this.authenticate = function (provider) {
-      $auth.authenticate(provider);
-    };
-  }
-
-  function ProfileCtrl($http, $log, $auth) {
-    var _this = this;
-    this.user = {};
-
-    $http.get('/api/me')
-      .success(function (response) {
-                 $log.debug('server profile data:', response);
-                 _this.user = response.user;
-               });
-  }
-
   function HeaderCtrl($rootScope, $state, $auth) {
     var ctrl = this;
     this.$rootScope = $rootScope;
@@ -57,8 +40,6 @@
   }
 
   angular.module("moonshot")
-    .controller("HeaderCtrl", HeaderCtrl)
-    .controller("LoginCtrl", LoginCtrl)
-    .controller('ProfileCtrl', ProfileCtrl);
+    .controller("HeaderCtrl", HeaderCtrl);
 
 })();

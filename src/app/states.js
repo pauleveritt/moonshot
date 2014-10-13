@@ -17,24 +17,6 @@
                    template: '<div ui-view="content"></div>'
                  }
                }
-             })
-      .state('siteroot.login', {
-               url: '/login',
-               views: {
-                 'content': {
-                   templateUrl: '/app/login.partial.html',
-                   controller: 'LoginCtrl as LoginCtrl'
-                 }
-               }
-             })
-      .state('siteroot.profile', {
-               url: '/profile',
-               views: {
-                 'content': {
-                   templateUrl: '/app/profile.partial.html',
-                   controller: 'ProfileCtrl as ProfileCtrl'
-                 }
-               }
              });
 
     $urlRouterProvider.rule(function ($injector, $location) {
