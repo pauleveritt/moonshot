@@ -7,10 +7,6 @@ Next
 
 - Make sure instructions work correctly
 
-- Get rid of CORS
-
-- Get twitter settings without configparser
-
 - env34
 
 - Remove Todo app

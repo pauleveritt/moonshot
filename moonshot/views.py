@@ -1,12 +1,6 @@
 from datetime import datetime, timedelta
 import jwt
 import requests
-
-from moonshot._compat import (
-    parse_qsl,
-    urlencode,
-)
-
 from requests_oauthlib import OAuth1
 
 from pyramid.httpexceptions import (
@@ -15,23 +9,12 @@ from pyramid.httpexceptions import (
 )
 from pyramid.view import view_config
 
-USERS = dict(
-    # Twitter usernames
-    paulweveritt=dict(
-        id='paulweveritt',
-        email='p@x.com',
-        first_name='Firstie',
-        last_name='Lastie',
-        twitter='paulweveritt'
-    ),
-    stormfburg=dict(
-        id='stormfburg',
-        email='p@x.com',
-        first_name='STORM',
-        last_name='Fburg',
-        twitter='stormfburg'
-    )
+from moonshot._compat import (
+    parse_qsl,
+    urlencode,
 )
+from .users import USERS
+
 request_token_url = 'https://api.twitter.com/oauth/request_token'
 access_token_url = 'https://api.twitter.com/oauth/access_token'
 authenticate_url = 'https://api.twitter.com/oauth/authenticate'
@@ -113,6 +96,7 @@ class MySite:
             qs = urlencode(dict(oauth_token=oauth_token['oauth_token']))
             url = authenticate_url + '?' + qs
             return HTTPFound(location=url)
+
 
 @view_config(route_name='ok', renderer='json')
 def ok_view(request):
