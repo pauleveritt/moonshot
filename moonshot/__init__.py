@@ -2,8 +2,6 @@ from os.path import join
 from pyramid.config import Configurator
 from pyramid.compat import configparser
 
-from wsgicors import CORS
-
 
 def main(global_config, **settings):
     # Load up custom settings from the twitter.ini file
@@ -22,5 +20,5 @@ def main(global_config, **settings):
 
     config.add_static_view(name='/', path='moonshot:../dist')
 
-    return CORS(config.make_wsgi_app(), headers="*", methods="*",
-                maxage="180", origin="copy")
+
+    return config.make_wsgi_app()

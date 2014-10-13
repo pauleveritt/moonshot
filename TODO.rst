@@ -2,20 +2,30 @@
 TODO
 ====
 
-Ask Balazs
-==========
-
-
-
 Next
 ====
 
-- Write People and Help app
+- Clean out karma, coverage, etc. and droppings
+
+- Get rid of sqlalchemy
+
+- Make sure instructions work correctly
+
+- Get rid of CORS
+
+- Get twitter settings without configparser
+
+- env34
 
 - Remove Todo app
 
+- Digest stuff moonshot/old and playground
+
+
 After
 =====
+
+- Write People and Help app
 
 - Get login, forbidden, Restangular setErrorInterceptor going
 
