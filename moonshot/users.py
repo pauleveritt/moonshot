@@ -13,5 +13,13 @@ USERS = dict(
         first_name='STORM',
         last_name='Fburg',
         twitter='stormfburg'
-    )
+    ),
+    chrismcdonough=dict(
+        id='chrismcdonough',
+        email='p2@x.com',
+        first_name='Firstie',
+        last_name='Lastie',
+        twitter='chrismcdonough'
+    ),
+
 )
