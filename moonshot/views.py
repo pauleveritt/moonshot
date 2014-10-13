@@ -66,7 +66,7 @@ class MySite:
             auth = request.headers.get('Authorization')
             token = auth.split()[1]
             payload = jwt.decode(token, self.settings[
-                'twitter:settings:token_secret'
+                'TOKEN_SECRET'
             ])
             # if datetime.fromtimestamp(payload['exp']) < datetime.now():
             # raise HTTPUnauthorized(detail='Token has expired')
@@ -74,7 +74,6 @@ class MySite:
             # username = payload['sub']
             # self.user = USERS.get(username)
             self.payload = payload
-
 
     # Routes
     @view_config(route_name='profile', renderer='json')
@@ -88,9 +87,9 @@ class MySite:
 
         if request.params.get('oauth_token') and request.params.get(
                 'oauth_verifier'):
-            auth = OAuth1(self.settings['twitter:settings:twitter_consumer_key'],
+            auth = OAuth1(self.settings['TWITTER_CONSUMER_KEY'],
                           client_secret=self.settings[
-                              'twitter:settings:twitter_consumer_secret'],
+                              'TWITTER_CONSUMER_SECRET'],
                           resource_owner_key=request.params.get(
                               'oauth_token'),
                           verifier=request.params.get('oauth_verifier'))
@@ -99,19 +98,22 @@ class MySite:
 
             twitter = profile['screen_name']
             user = USERS.get(twitter)
-            token_secret = self.settings['twitter:settings:token_secret']
+            token_secret = self.settings['TOKEN_SECRET']
             token = create_jwt_token(user, token_secret)
             return dict(token=token)
         else:
             oauth = OAuth1(self.settings[
-                               'twitter:settings:twitter_consumer_key'],
+                               'TWITTER_CONSUMER_KEY'],
                            client_secret=self.settings[
-                               'twitter:settings:twitter_consumer_secret'],
+                               'TWITTER_CONSUMER_SECRET'],
                            callback_uri=self.settings[
-                               'twitter:settings:twitter_callback_url'])
+                               'TWITTER_CALLBACK_URL'])
             r = requests.post(request_token_url, auth=oauth)
             oauth_token = dict(parse_qsl(r.text))
             qs = urlencode(dict(oauth_token=oauth_token['oauth_token']))
             url = authenticate_url + '?' + qs
             return HTTPFound(location=url)
 
+@view_config(route_name='ok', renderer='json')
+def ok_view(request):
+    return dict(ok='OK')

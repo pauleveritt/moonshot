@@ -5,10 +5,6 @@ TODO
 Next
 ====
 
-- Clean out karma, coverage, etc. and droppings
-
-- Get rid of sqlalchemy
-
 - Make sure instructions work correctly
 
 - Get rid of CORS
