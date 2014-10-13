@@ -17,13 +17,13 @@
     };
   }
 
-  function MoonshotInit() {
+  function ModuleInit() {
     /* Empty for now */
   }
 
   angular.module("moonshot")
     .provider('moonshotMockRest', MoonshotMocks)
-    .config(MoonshotInit);
+    .config(ModuleInit);
 
 
 })();

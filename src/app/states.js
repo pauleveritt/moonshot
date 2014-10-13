@@ -1,6 +1,6 @@
 (function () {
 
-  function MoonshotInit($stateProvider, $urlRouterProvider, RestangularProvider) {
+  function ModuleInit($stateProvider, $urlRouterProvider, RestangularProvider) {
 
     RestangularProvider.setBaseUrl('http://127.0.0.1:3000/api');
 
@@ -49,5 +49,5 @@
   }
 
   angular.module("moonshot")
-    .config(MoonshotInit);
+    .config(ModuleInit);
 })();

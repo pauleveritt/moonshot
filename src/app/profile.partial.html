@@ -4,8 +4,12 @@
       <h2 class="text-center">Profile</h2>
 
       <p ng-if="ProfileCtrl.user">
-        User: {{ ProfileCtrl.user.first_name }}
-        {{ ProfileCtrl.user.last_name }}
+
+        <div>id: {{ ProfileCtrl.user.id }}</div>
+        <div>twitter: {{ ProfileCtrl.user.twitter }}</div>
+        <div>First Name: {{ ProfileCtrl.user.first_name }}</div>
+        <div>Last Name: {{ ProfileCtrl.user.last_name }}</div>
+        <div>Email: {{ ProfileCtrl.user.email }}</div>
       </p>
 
     </div>

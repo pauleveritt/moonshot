@@ -6,12 +6,13 @@
     };
   }
 
-  function ProfileCtrl($http, $log) {
+  function ProfileCtrl($http, $log, $auth) {
     var _this = this;
     this.user = {};
+
     $http.get('/api/me')
       .success(function (response) {
-                 $log.debug('api me', response);
+                 $log.debug('server profile data:', response);
                  _this.user = response.user;
                });
   }

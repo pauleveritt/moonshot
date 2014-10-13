@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="moonshot">
+<head>
+  <meta charset="utf-8">
+  <title>Moonshot</title>
+  <link rel="stylesheet" href="static/lib/moonshot-lib.min.css"/>
+  <link rel="stylesheet" href="static/moonshot.css"/>
+  <script type="text/javascript">
+    window.onerror = function (msg) {
+      document.getElementsByTagName('body')[0].setAttribute('data-jserror', msg);
+    };
+  </script>
+</head>
+<body>
+
+<div class="ui-view-container">
+    <div ui-view="header"></div>
+
+  <div id="content" class="container">
+    <div ui-view="content"></div>
+  </div>
+</div>
+
+<script src="static/lib/moonshot-lib.min.js"></script>
+<script src="static/moonshot.min.js"></script>
+<script src="static/moonshot-templates.js"></script>
+</body>
+</html>

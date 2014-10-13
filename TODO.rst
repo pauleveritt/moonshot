@@ -2,20 +2,20 @@
 TODO
 ====
 
-Ask Balazs
-==========
-
-
-
 Next
 ====
 
-- Write People and Help app
+- Make sure instructions work correctly
 
 - Remove Todo app
 
+- Digest stuff moonshot/old and playground
+
+
 After
 =====
+
+- Write People and Help app
 
 - Get login, forbidden, Restangular setErrorInterceptor going
 

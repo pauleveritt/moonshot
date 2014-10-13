@@ -15,9 +15,4 @@ __pycache__
 .DS_Store
 
 # Project
-/coverage
-_build
-phantomjsdriver.log
-karma-test-results.xml
-*.sqlite
-*.sqlite-journal
+twitter.ini

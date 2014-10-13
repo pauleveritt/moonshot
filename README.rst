@@ -4,10 +4,29 @@ moonshot
 HTML5-based REST-driven admin user interface for hierarchical, 
 noserver web applications.
 
+Twitter
+=======
+
+To get Twitter authentication working, make a ``twitter.ini`` that
+looks like this::
+
+    [app:main]
+    use = egg:moonshot
+    TOKEN_SECRET = something
+    TWITTER_CONSUMER_KEY = something
+    TWITTER_CONSUMER_SECRET = something
+    TWITTER_CALLBACK_URL = http://127.0.0.1:3000
+
+To make these, you need to use the Twitter dev console or get the keys
+from Paul.
+
+Finally, edit ``users.py`` and enter some information about the Twitter
+username you will be using.
+
 Installation
 ============
 
-Developer setup presumes a modern, NodeJS environment containing 
+Developer setup presumes a NodeJS environment containing
 ``npm``, ``bower``, and ``gulp``.
 
 #. npm install
@@ -16,31 +35,14 @@ Developer setup presumes a modern, NodeJS environment containing
 
 #. gulp
 
-You can now visit ``http://127.0.0.1:9000/`` to see a local, 
-reload-on-change web server with the REST API mocked out.
+#. virtualenv env27
 
-Python
-======
+#. source env27/bin/activate
 
-To get the real REST API in place, get started on Python:
+#. python setup.py develop
 
-#. pyvenv-3.4 env34
+#. pserve moonshot/backend.ini --reload
 
-#. source env34/bin/activate
-
-#. python3.4 setup.py develop
-
-#. initialize_moonshot_db moonshot/development.ini
-
-#. pserve moonshot/development.ini --reload
-
-If you now visit ``http://127.0.0.1:9001/`` you will get a version 
-that does not mock out the REST API, but instead sends requests to the 
-local Pyramid app running on port ``3000``. You will still get the 
-reload-on-change for the frontend that is still being served by Gulp.
-
-** Note: Can't currently have 9000 and 9001 doing livereload at the 
-same time. **
-
-You can also have Pyramid serve up the frontend via static assets at 
-``http://127.0.0.1:3000/``.
+Now visit `http://127.0.0.1:3000/` to see the AngularJS UI served up
+by a Pyramid static view. Do *not* use ``localhost`` instead of
+``127.0.0.1``.
