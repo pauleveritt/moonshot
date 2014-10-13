@@ -7,8 +7,6 @@ Next
 
 - Make sure instructions work correctly
 
-- env34
-
 - Remove Todo app
 
 - Digest stuff moonshot/old and playground
