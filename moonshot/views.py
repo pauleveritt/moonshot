@@ -3,10 +3,7 @@ import jwt
 import requests
 from requests_oauthlib import OAuth1
 
-from pyramid.httpexceptions import (
-    HTTPUnauthorized,
-    HTTPFound
-)
+from pyramid.httpexceptions import HTTPFound
 from pyramid.view import view_config
 
 from moonshot._compat import (
@@ -40,28 +37,10 @@ class MySite:
         self.request = request
         self.settings = request.registry.settings
 
-        # If the request is to /auth/twitter, don't require auth
-        if request.matched_route.name != 'auth_twitter':
-
-            if not request.headers.get('Authorization'):
-                raise HTTPUnauthorized(
-                    detail='Missing authorization header')
-            auth = request.headers.get('Authorization')
-            token = auth.split()[1]
-            payload = jwt.decode(token, self.settings[
-                'TOKEN_SECRET'
-            ])
-            # if datetime.fromtimestamp(payload['exp']) < datetime.now():
-            # raise HTTPUnauthorized(detail='Token has expired')
-
-            # username = payload['sub']
-            # self.user = USERS.get(username)
-            self.payload = payload
-
     # Routes
-    @view_config(route_name='profile', renderer='json')
+    @view_config(route_name='profile', renderer='json', permission='view')
     def profile(self):
-        return dict(user=USERS['paulweveritt'])
+        return dict(user=self.request.authenticated_userid)
 
 
     @view_config(route_name='auth_twitter', renderer='json')
@@ -98,6 +77,7 @@ class MySite:
             return HTTPFound(location=url)
 
 
-@view_config(route_name='ok', renderer='json')
+@view_config(route_name='ok', renderer='json', permission='view')
 def ok_view(request):
     return dict(ok='OK')
+
