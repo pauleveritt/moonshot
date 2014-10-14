@@ -5,10 +5,6 @@ TODO
 Next
 ====
 
-- (FE) Unpack the stuff in src/app into separate pieces
-
-- (FE) Get the other $alerts from Satellizer
-
 - (BE) Switch to rest_toolkit
 
 - (BE) Some concept of functional test suite
@@ -72,6 +68,8 @@ One Day
 
 Done
 ====
+
+- (FE) Get the other $alerts from Satellizer
 
 - (FE) Authorization for state-based and response-based security
 

@@ -57,15 +57,8 @@
             });
   }
 
-  function ProfileCtrl($http, $log) {
-    var _this = this;
-    this.user = {};
-
-    $http.get('/api/me')
-      .success(function (response) {
-                 $log.debug('server profile data:', response);
-                 _this.user = response.user;
-               });
+  function ProfileCtrl(profile) {
+    this.profile = profile.data.user;
   }
 
   angular.module("moonshot")
