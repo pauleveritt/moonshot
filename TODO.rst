@@ -5,8 +5,6 @@ TODO
 Next
 ====
 
-- (FE/BE) Replace "login" with "signin"
-
 - (FE/BE) Replace all responses with a dict containing ``data`` and
   anything else (e.g. schema)
 
@@ -77,6 +75,9 @@ One Day
 
 Done
 ====
+
+- (FE) Move logout to src/auth and redirect to siteroot.site with
+  an $alert
 
 - (FE) Start a README.rst in each module explaining implemented features
 

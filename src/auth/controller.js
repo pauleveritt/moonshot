@@ -23,9 +23,15 @@
     };
   }
 
-  function LogoutCtrl($auth, $state) {
+  function LogoutCtrl($auth, $state, $alert) {
     $auth.logout()
       .then(function () {
+              $alert({
+                       content: 'You have been logged out',
+                       animation: 'fadeZoomFadeDown',
+                       type: 'material',
+                       duration: 3
+                     });
               $state.go('siteroot.site');
             });
   }
