@@ -2,6 +2,27 @@
 
 
   function LoginCtrl($auth, $alert) {
+    this.login = function ($valid, username, password) {
+      $auth.login({ username: username, password: password })
+        .then(function () {
+                $alert({
+                         content: 'You have successfully logged in',
+                         animation: 'fadeZoomFadeDown',
+                         type: 'material',
+                         duration: 3
+                       });
+              })
+        .catch(function (response) {
+                 $alert({
+                          content: response.data.message,
+                          animation: 'fadeZoomFadeDown',
+                          type: 'material',
+                          duration: 3
+                        });
+               });
+
+    };
+
     this.authenticate = function (provider) {
       $auth.authenticate(provider)
         .then(function () {

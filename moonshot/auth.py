@@ -8,7 +8,7 @@ Authentication schemes for Moonshot:
 import requests
 from requests_oauthlib import OAuth1
 
-from pyramid.httpexceptions import HTTPFound
+from pyramid.httpexceptions import HTTPFound, HTTPUnauthorized
 from pyramid.view import view_config
 
 
@@ -17,6 +17,28 @@ from urllib.parse import urlencode
 
 from .users import get_user
 from .security import create_jwt_token
+
+class LoginAuth:
+    """ Username/password with tokens """
+
+    def __init__(self, request):
+        self.request = request
+        settings = request.registry.settings
+        self.token_secret = settings.get('TOKEN_SECRET')
+
+    @view_config(route_name='auth_login', renderer='json')
+    def login(self):
+        username = self.request.json_body.get('username')
+        password = self.request.json_body.get('password')
+        user = get_user('id', username)
+        if user:
+            user_password = user.get('password')
+            if user_password and user_password == password:
+                token = create_jwt_token(user, self.token_secret)
+                return dict(token=token)
+
+        # Otherwise bail out with an HTTP exception
+        raise HTTPUnauthorized(detail='Invalid username or password')
 
 
 class TwitterAuth:
@@ -66,5 +88,6 @@ class TwitterAuth:
 
 
 def includeme(config):
+    config.add_route('auth_login', '/api/auth/login')
     config.add_route('auth_twitter', '/api/auth/twitter')
     config.scan('.auth')

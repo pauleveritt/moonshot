@@ -5,17 +5,6 @@ TODO
 Next
 ====
 
-- (FE/BE) Replace all responses with a dict containing ``data`` and
-  anything else (e.g. schema)
-
-- (FE) Add username/password section to the form
-
-- (FE) Mock the username/password
-
-- (BE) Implement username/password security
-
-- (FE) Authorization for state-based and response-based security
-
 - (FE) Unpack the stuff in src/app into separate pieces
 
 - (FE) Get the other $alerts from Satellizer
@@ -25,6 +14,14 @@ Next
 - (BE) Some concept of functional test suite
 
 - (FE) After login, send back to "referrer"
+
+- (FE) Form validation errors on login screen
+
+- (FE/BE) Replace all responses with a dict containing ``data`` and
+  anything else (e.g. schema)
+
+- (FE) Mock the username/password
+
 
 After
 =====
@@ -75,6 +72,12 @@ One Day
 
 Done
 ====
+
+- (FE) Authorization for state-based and response-based security
+
+- (BE) Implement username/password security
+
+- (FE) Add username/password section to the form
 
 - (FE/BE) Convert all API URLs to ``/api/auth/twitter`` etc.
 

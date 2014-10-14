@@ -13,8 +13,10 @@
 
     <ul ng-if="!HeaderCtrl.$auth.isAuthenticated()"
         class="nav navbar-nav pull-right">
-      <li><a ui-sref="siteroot.login">Login</a></li>
-      <li><a href="/#/signup">Sign up</a></li>
+      <li ui-sref-active="active">
+        <a ui-sref="siteroot.login">Login</a></li>
+      <li>
+        <a href="/#/signup">Sign up</a></li>
     </ul>
     <ul ng-if="HeaderCtrl.$auth.isAuthenticated()"
         class="nav navbar-nav pull-right">
