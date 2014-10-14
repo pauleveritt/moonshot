@@ -2,8 +2,9 @@
   "version": 3,
   "file": "moonshot-lib.min.css",
   "sources": [
-    "bootstrap/dist/css/bootstrap.css"
+    "bootstrap/dist/css/bootstrap.css",
+    "angular-motion/dist/angular-motion.css"
   ],
   "names": [],
-  "mappings": "AAAA;AACA;AACA;AACA;AACA"
+  "mappings": "AAAA;AACA;AACA;AACA;AACA;;ACJA"
 }

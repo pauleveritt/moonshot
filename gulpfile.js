@@ -7,11 +7,14 @@ var libjs = [
   'angular-ui-router/release/angular-ui-router.js',
   'restangular/dist/restangular.js',
   'angular-mocks/angular-mocks.js',
+  'angular-strap/dist/angular-strap.js',
+  'angular-strap/dist/angular-strap.tpl.js',
   'satellizer/satellizer.js'
 ];
 
 var libcss = [
-  'bootstrap/dist/css/bootstrap.css'
+  'bootstrap/dist/css/bootstrap.css',
+  'angular-motion/dist/angular-motion.css'
 ];
 
 var libfonts = [

@@ -1,8 +1,25 @@
 (function () {
 
-  function LoginCtrl($auth) {
+
+  function LoginCtrl($auth, $alert) {
     this.authenticate = function (provider) {
-      $auth.authenticate(provider);
+      $auth.authenticate(provider)
+        .then(function () {
+                $alert({
+                         content: 'You have successfully logged in',
+                         animation: 'fadeZoomFadeDown',
+                         type: 'material',
+                         duration: 3
+                       });
+              })
+        .catch(function (response) {
+                 $alert({
+                          content: response.data,
+                          animation: 'fadeZoomFadeDown',
+                          type: 'material',
+                          duration: 3
+                        });
+               });
     };
   }
 

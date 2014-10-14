@@ -5,7 +5,8 @@
  */
 
 var appModules = [
-  'ngAnimate', 'ngMessages', 'ui.router', 'restangular', 'satellizer'
+  'ngAnimate', 'ngMessages', 'ui.router', 'restangular', 'satellizer',
+  'mgcrea.ngStrap'
 ];
 
 if (document.URL.indexOf(':9000') != -1) {
