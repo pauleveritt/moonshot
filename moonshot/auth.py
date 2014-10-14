@@ -66,5 +66,5 @@ class TwitterAuth:
 
 
 def includeme(config):
-    config.add_route('auth_twitter', '/auth/twitter')
+    config.add_route('auth_twitter', '/api/auth/twitter')
     config.scan('.auth')

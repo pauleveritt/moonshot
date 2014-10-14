@@ -44,8 +44,12 @@
   function ModuleInit($httpProvider, $authProvider) {
 
     $httpProvider.interceptors.push('authzRedirect');
+
+    // Satellizer setup
+    $authProvider.loginUrl = '/api/auth/login';
+    $authProvider.signupUrl = '/api/auth/signup';
     $authProvider.twitter({
-                            url: 'http://127.0.0.1:3000/auth/twitter'
+                            url: 'http://127.0.0.1:3000/api/auth/twitter'
                           });
   }
 

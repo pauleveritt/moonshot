@@ -76,6 +76,8 @@ One Day
 Done
 ====
 
+- (FE/BE) Convert all API URLs to ``/api/auth/twitter`` etc.
+
 - (FE) Move logout to src/auth and redirect to siteroot.site with
   an $alert
 
