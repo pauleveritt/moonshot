@@ -1,5 +1,6 @@
 import jwt
 from datetime import datetime, timedelta
+from base64 import b64encode, b64decode
 
 from pyramid.authentication import CallbackAuthenticationPolicy
 from pyramid.interfaces import IAuthenticationPolicy
@@ -17,7 +18,8 @@ def create_jwt_token(user, token_secret):
             first_name=user['first_name'],
             last_name=user['last_name'],
             twitter=user['twitter']))
-    token = jwt.encode(payload, token_secret)
+    bytes_token = jwt.encode(payload, token_secret)
+    token = bytes_token.decode('utf-8')
     return token
 
 
@@ -47,12 +49,13 @@ class JWTAuthenticationPolicy(CallbackAuthenticationPolicy):
         if not authorization:
             return None
         try:
-            authmeth, token = authorization.split(' ', 1)
+            authmeth, encoded_token = authorization.split(' ', 1)
         except ValueError: # not enough values to unpack
             return None
         if authmeth.lower() != 'bearer':
             return None
 
+        token = b64decode(encoded_token)
         try:
             payload = jwt.decode(token, self.token_secret)
         except jwt.DecodeError: # can't decode
