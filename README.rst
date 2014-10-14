@@ -1,7 +1,7 @@
 moonshot
 ========
 
-HTML5-based REST-driven admin user interface for hierarchical, 
+HTML5-based REST-driven admin user interface for hierarchical,
 noserver web applications.
 
 Twitter
@@ -26,9 +26,9 @@ username you will be using.
 Installation
 ============
 
-#. virtualenv env27
+#. pyvenv-3.4 env34
 
-#. source env27/bin/activate
+#. source env34/bin/activate
 
 #. python setup.py develop
 

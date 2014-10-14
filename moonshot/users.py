@@ -20,6 +20,13 @@ USERS = [
         first_name='Firstie',
         last_name='Lastie',
         twitter='chrismcdonough'
+    ),
+    dict(
+        id='blaflamme',
+        email='p2@x.com',
+        first_name='Firstie',
+        last_name='Lastie',
+        twitter='blaiselaflamme'
     )
 ]
 
