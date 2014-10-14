@@ -7,14 +7,18 @@ Next
 
 - (BE) Switch to rest_toolkit
 
+- (FE) Handle rest_toolkit errors, generically
+
+- (FE/BE) Replace all responses with a dict containing ``data`` and
+  anything else (e.g. schema)
+
+- (FE/BE) Introduce some JSON schemas
+
 - (BE) Some concept of functional test suite
 
 - (FE) After login, send back to "referrer"
 
 - (FE) Form validation errors on login screen
-
-- (FE/BE) Replace all responses with a dict containing ``data`` and
-  anything else (e.g. schema)
 
 - (FE) Mock the username/password
 
