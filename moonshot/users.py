@@ -1,25 +1,30 @@
-USERS = dict(
+USERS = [
     # Twitter usernames
-    paulweveritt=dict(
-        id='paulweveritt',
+    dict(
+        id='pauleveritt',
         email='p@x.com',
         first_name='Firstie',
         last_name='Lastie',
         twitter='paulweveritt'
     ),
-    stormfburg=dict(
+    dict(
         id='stormfburg',
         email='p@x.com',
         first_name='STORM',
         last_name='Fburg',
         twitter='stormfburg'
     ),
-    chrismcdonough=dict(
+    dict(
         id='chrismcdonough',
         email='p2@x.com',
         first_name='Firstie',
         last_name='Lastie',
         twitter='chrismcdonough'
-    ),
+    )
+]
 
-)
+
+def get_user(property, value):
+    for user in USERS:
+        if user.get(property) == value:
+            return user

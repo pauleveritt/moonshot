@@ -15,7 +15,7 @@ from pyramid.view import view_config
 from urllib.parse import parse_qsl
 from urllib.parse import urlencode
 
-from .users import USERS
+from .users import get_user
 from .security import create_jwt_token
 
 
@@ -59,8 +59,8 @@ class TwitterAuth:
         r = requests.post(self.access_token_url, auth=auth)
         profile = dict(parse_qsl(r.text))
 
-        twitter = profile['screen_name']
-        user = USERS.get(twitter)
+        user = get_user('twitter', profile['screen_name'])
+
         token = create_jwt_token(user, self.token_secret)
         return dict(token=token)
 

@@ -1,6 +1,6 @@
 from pyramid.view import view_config
 
-from .users import USERS
+from .users import get_user
 
 
 class MySite:
@@ -10,8 +10,8 @@ class MySite:
     # Routes
     @view_config(route_name='profile', renderer='json', permission='view')
     def profile(self):
-        twitter_name = self.request.authenticated_userid
-        user = USERS.get(twitter_name)
+        userid = self.request.authenticated_userid
+        user = get_user('id', userid)
         return dict(user=user)
 
 

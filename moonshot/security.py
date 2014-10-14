@@ -1,6 +1,5 @@
 import jwt
 from datetime import datetime, timedelta
-from base64 import b64encode, b64decode
 
 from pyramid.authentication import CallbackAuthenticationPolicy
 from pyramid.interfaces import IAuthenticationPolicy
@@ -55,7 +54,7 @@ class JWTAuthenticationPolicy(CallbackAuthenticationPolicy):
         if authmeth.lower() != 'bearer':
             return None
 
-        token = b64decode(encoded_token)
+        token = encoded_token
         try:
             payload = jwt.decode(token, self.token_secret)
         except jwt.DecodeError: # can't decode
