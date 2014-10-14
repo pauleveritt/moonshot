@@ -18,6 +18,7 @@ def main(global_config, **settings):
     config.add_route('auth_twitter', '/auth/twitter')
     config.add_route('profile', '/api/me')
     config.add_route('ok', '/api/ok')
+    config.scan('.auth')
     config.scan('.views')
     config.include('.subscribers')
 
