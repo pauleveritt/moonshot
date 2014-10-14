@@ -40,7 +40,9 @@ class MySite:
     # Routes
     @view_config(route_name='profile', renderer='json', permission='view')
     def profile(self):
-        return dict(user=self.request.authenticated_userid)
+        twitter_name = self.request.authenticated_userid
+        user = USERS.get(twitter_name)
+        return dict(user=user)
 
 
     @view_config(route_name='auth_twitter', renderer='json')

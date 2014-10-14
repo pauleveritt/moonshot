@@ -26,15 +26,6 @@ username you will be using.
 Installation
 ============
 
-Developer setup presumes a NodeJS environment containing
-``npm``, ``bower``, and ``gulp``.
-
-#. npm install
-
-#. bower install
-
-#. gulp
-
 #. virtualenv env27
 
 #. source env27/bin/activate
@@ -46,3 +37,16 @@ Developer setup presumes a NodeJS environment containing
 Now visit `http://127.0.0.1:3000/` to see the AngularJS UI served up
 by a Pyramid static view. Do *not* use ``localhost`` instead of
 ``127.0.0.1``.
+
+Developing the Frontend
+=======================
+
+Developer setup presumes a NodeJS environment containing
+``npm``, ``bower``, and ``gulp``.
+
+#. npm install
+
+#. bower install
+
+#. gulp
+
