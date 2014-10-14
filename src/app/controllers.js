@@ -6,13 +6,6 @@
     this.$state = $state;
     this.$auth = $auth;
 
-    this.logout = function () {
-      $auth.logout()
-        .then(function () {
-                $state.go('siteroot.login');
-              });
-    };
-
     this.sections = _($state.get())
       .filter(function (state) {
                 return _.has(state, "section");

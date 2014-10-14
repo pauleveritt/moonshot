@@ -23,7 +23,14 @@
     };
   }
 
-  function ProfileCtrl($http, $log, $auth) {
+  function LogoutCtrl($auth, $state) {
+    $auth.logout()
+      .then(function () {
+              $state.go('siteroot.site');
+            });
+  }
+
+  function ProfileCtrl($http, $log) {
     var _this = this;
     this.user = {};
 
@@ -36,6 +43,7 @@
 
   angular.module("moonshot")
     .controller("LoginCtrl", LoginCtrl)
+    .controller("LogoutCtrl", LogoutCtrl)
     .controller('ProfileCtrl', ProfileCtrl);
 
 })();

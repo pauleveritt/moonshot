@@ -12,6 +12,14 @@
                  }
                }
              })
+      .state('siteroot.logout', {
+               url: '/logout',
+               views: {
+                 'content': {
+                   controller: 'LogoutCtrl as LogoutCtrl'
+                 }
+               }
+             })
       .state('siteroot.profile', {
                url: '/profile',
                views: {

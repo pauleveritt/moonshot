@@ -2,12 +2,14 @@
 
   function ModuleInit(moonshotMockRestProvider) {
 
-    var usersData = [
-      {
-        'id': 'i1',
-        'title': 'Milk'
-      }
-    ];
+    var usersData = {
+      data: [
+        {
+          'id': 'i1',
+          'title': 'Milk'
+        }
+      ]
+    };
     moonshotMockRestProvider.addMock(
       'users',
       [

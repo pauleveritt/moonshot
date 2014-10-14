@@ -18,6 +18,7 @@ def main(global_config, **settings):
     config.include('.auth')
 
     config.add_route('profile', '/api/me')
+    config.add_route('users', '/api/users')
     config.add_route('ok', '/api/ok')
     config.scan('.views')
     config.include('.subscribers')
