@@ -23,19 +23,19 @@ USERS = [
         last_name='Lastie',
         twitter='chrismcdonough',
         password='password'
-        twitter='chrismcdonough'
     ),
     dict(
         id='blaflamme',
         email='p2@x.com',
         first_name='Firstie',
         last_name='Lastie',
-        twitter='blaiselaflamme'
+        twitter='blaiselaflamme',
+        password='password'
     )
 ]
 
 
-def get_user(property, value):
+def get_user(prop, value):
     for user in USERS:
-        if user.get(property) == value:
+        if user.get(prop) == value:
             return user
