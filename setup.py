@@ -1,7 +1,10 @@
 from setuptools import setup
 
 requires = [
-    'pyramid', 'waitress', 'PyJWT', 'requests', 'requests-oauthlib'
+    'pyramid', 'waitress', 'PyJWT', 'rest_toolkit',
+
+    # Twitter
+    'requests', 'requests-oauthlib'
 ]
 
 setup(name='moonshot',
