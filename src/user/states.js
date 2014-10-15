@@ -23,8 +23,16 @@
                  }
                },
                resolve: {
-                 users: function (Restangular) {
-                   return Restangular.all('users').get();
+                 users: function (Users, $alert) {
+                   return Users.getUsers()
+                     .error(function (error) {
+                              $alert({
+                                       content: error.message,
+                                       animation: 'fadeZoomFadeDown',
+                                       type: 'material',
+                                       duration: 3
+                                     });
+                            });
                  }
                }
              });

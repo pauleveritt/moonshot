@@ -15,12 +15,13 @@ def main(global_config, **settings):
         JWTAuthenticationPolicy(settings['TOKEN_SECRET'])
         )
     config.set_authorization_policy(ACLAuthorizationPolicy())
+    config.include('.views')
     config.include('.auth')
 
     config.add_route('profile', '/api/me')
     config.add_route('users', '/api/users')
     config.add_route('ok', '/api/ok')
-    config.scan('.views')
+
     config.include('.subscribers')
 
     config.add_static_view(name='/', path='moonshot:../dist')

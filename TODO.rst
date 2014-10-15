@@ -7,6 +7,8 @@ Next
 
 - (BE) Switch to rest_toolkit
 
+- (FE) Handle 403s and 500s
+
 - (FE) Handle rest_toolkit errors, generically
 
 - (FE/BE) Replace all responses with a dict containing ``data`` and

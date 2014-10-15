@@ -1,7 +1,8 @@
 USERS = [
     # Twitter usernames
     dict(
-        id='pauleveritt',
+        _id=1,
+        username='pauleveritt',
         email='p@x.com',
         first_name='Firstie',
         last_name='Lastie',
@@ -9,7 +10,8 @@ USERS = [
         password='password'
     ),
     dict(
-        id='stormfburg',
+        _id=2,
+        username='stormfburg',
         email='p@x.com',
         first_name='STORM',
         last_name='Fburg',
@@ -17,7 +19,8 @@ USERS = [
         password='password'
     ),
     dict(
-        id='chrismcdonough',
+        _id=3,
+        username='chrismcdonough',
         email='p2@x.com',
         first_name='Firstie',
         last_name='Lastie',
@@ -25,7 +28,8 @@ USERS = [
         password='password'
     ),
     dict(
-        id='blaflamme',
+        _id=4,
+        username='blaflamme',
         email='p2@x.com',
         first_name='Firstie',
         last_name='Lastie',

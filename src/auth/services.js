@@ -7,6 +7,9 @@
       },
       updateProfile: function (profileData) {
         return $http.put('/api/me', profileData);
+      },
+      getUsers: function () {
+        return $http.get('/api/users');
       }
     };
   }

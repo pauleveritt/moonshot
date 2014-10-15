@@ -12,8 +12,8 @@ def create_jwt_token(user, token_secret):
         iat=datetime.now(),
         exp=datetime.now() + timedelta(days=14),
         user=dict(
-            id=user['id'],
-            email=user['email'],
+            _id=user['_id'],
+            username=user['username'],
             first_name=user['first_name'],
             last_name=user['last_name'],
             twitter=user['twitter']))
@@ -57,10 +57,11 @@ class JWTAuthenticationPolicy(CallbackAuthenticationPolicy):
         token = encoded_token
         try:
             payload = jwt.decode(token, self.token_secret)
+            print('payload3393', payload)
         except jwt.DecodeError: # can't decode
             return None
 
         try:
-            return payload['user']['id']
+            return payload['user']['_id']
         except KeyError:
             return None

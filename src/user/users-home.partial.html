@@ -6,20 +6,18 @@
     <thead>
     <tr>
       <th>ID</th>
-      <th>Userid</th>
+      <th>Username</th>
       <th>First Name</th>
       <th>Last Name</th>
-      <th>Email</th>
       <th>Twitter Name</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="user in UsersHomeCtrl.users">
-      <td>{{ user.id }}</td>
-      <td>{{ user.userId }}</td>
-      <td>{{ user.firstName }}</td>
-      <td>{{ user.lastName }}</td>
-      <td>{{ user.emailAddress }}</td>
+      <td>{{ user._id }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.first_name }}</td>
+      <td>{{ user.last_name }}</td>
       <td>{{ user.twitter }}</td>
     </tr>
     </tbody>

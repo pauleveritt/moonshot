@@ -11,17 +11,18 @@
         // We can get an /api/ response of forbidden for
         // some data needed in a view. Flash an alert saying that this
         // data was requested.
+        var url = rejection.config.url;
         if (rejection.status == 403 || rejection.status == 401) {
           // Redirect to the login form
           $state.go('siteroot.login');
+          var msg = 'Login required for: ' + url;
+          $alert({
+                   content: msg,
+                   animation: 'fadeZoomFadeDown',
+                   type: 'material',
+                   duration: 3
+                 });
         }
-        var msg = 'Login required for: ' + 'xx';
-        $alert({
-                 content: msg,
-                 animation: 'fadeZoomFadeDown',
-                 type: 'material',
-                 duration: 3
-               });
         return $q.reject(rejection);
       }
     };
