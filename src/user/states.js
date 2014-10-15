@@ -10,6 +10,7 @@
       .state('users', {
                url: '/users/',
                parent: 'siteroot',
+               authenticate: true,
                section: {
                  title: 'Users',
                  priority: 1
@@ -23,7 +24,7 @@
                },
                resolve: {
                  users: function (Restangular) {
-                   return Restangular.all('users').getList();
+                   return Restangular.all('users').get();
                  }
                }
              });

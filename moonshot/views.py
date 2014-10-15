@@ -1,6 +1,6 @@
 from pyramid.view import view_config
 
-from .users import get_user
+from .users import get_user, USERS
 
 
 class MySite:
@@ -14,6 +14,10 @@ class MySite:
         user = get_user('id', userid)
         return dict(user=user)
 
+
+    @view_config(route_name='users', renderer='json', permission='view')
+    def users_view(self):
+        return dict(data=USERS)
 
     @view_config(route_name='ok', renderer='json')
     def ok_view(self):

@@ -1,16 +1,56 @@
 <div class="row">
-      <h2>Log in</h2>
-</div>
-<div class="row">
-  <div class="col-md-3">
-    <button class="btn btn-block btn-twitter"
-            ng-click="LoginCtrl.authenticate('twitter')">
-      <i class="fa fa-twitter fa-2x"></i> Sign in with Twitter
-    </button>
-    <p class="text-center text-muted">
-      <small>Don't have an account yet? <a href="/#/signup">Sign
-        up</a></small>
-    </p>
+  <div class="col-md-offset-4 col-md-4 text-center">
+    <div class="panel-body">
+      <p>
+        <button class="btn btn-twitter"
+                ng-click="LoginCtrl.authenticate('twitter')">
+          <i class="fa fa-twitter"></i> Twitter Sign In
+        </button>
+        <button class="btn btn-facebook"
+                ng-click="authenticate('facebook')">
+          <i class="fa fa-facebook"></i> Facebook Sign In
+        </button>
+      </p>
 
+      <div class="signup-or-separator">
+        <h6 class="text">or</h6>
+        <hr>
+      </div>
+
+      <h2 class="text-center">Local Login</h2>
+      <form method="post"
+            ng-submit="LoginCtrl.login(loginForm.$valid, username, password)"
+            name="loginForm">
+        <div class="form-group">
+          <input class="form-control input-lg" type="text" name="username"
+                 ng-model="username" placeholder="Username" required
+                 autofocus>
+          <span class="ion-at form-control-feedback"></span>
+        </div>
+
+        <div class="form-group has-feedback">
+          <input class="form-control input-lg" type="password"
+                 name="password" ng-model="password"
+                 placeholder="Password" required>
+          <span class="ion-key form-control-feedback"></span>
+        </div>
+
+        <button type="submit" ng-disabled="loginForm.$invalid"
+                class="btn btn-lg  btn-block btn-success">Log in
+        </button>
+
+        <br/>
+
+        <p class="text-center">
+          <a href="#">Forgot your password?</a>
+        </p>
+
+        <p class="text-center text-muted">
+          <small>Don't have an account yet? <a href="/#/signup">Sign
+            up</a></small>
+        </p>
+
+      </form>
+    </div>
   </div>
 </div>

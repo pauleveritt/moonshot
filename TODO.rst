@@ -5,52 +5,92 @@ TODO
 Next
 ====
 
-- Make sure instructions work correctly
+- (BE) Switch to rest_toolkit
 
-- Remove Todo app
+- (FE) Handle rest_toolkit errors, generically
 
-- Digest stuff moonshot/old and playground
+- (FE/BE) Replace all responses with a dict containing ``data`` and
+  anything else (e.g. schema)
+
+- (FE/BE) Introduce some JSON schemas
+
+- (BE) Some concept of functional test suite
+
+- (FE) After login, send back to "referrer"
+
+- (FE) Form validation errors on login screen
+
+- (FE) Mock the username/password
 
 
 After
 =====
 
-- Write People and Help app
+- (BE) Expired tokens
 
-- Get login, forbidden, Restangular setErrorInterceptor going
+- (FE) Move all Restangular calls to the Moonshot service
 
-- Move header -> MoonMenu component with submenus
+- (BE) Try again to get CORS working
+
+- Try an abstract state leading to a real state for '/' which has the
+  layout
+
+- Remove Todo app, playground, old, etc.
+
+- Digest stuff moonshot/old and playground
 
 - Forms
 
 - Breadcrumbs
 
-- Get Protractor tests that fail on jserror via a shared requirejs function
-
 - Directive that marks a menu as active based on having a state ancestor
+
 
 Later
 =====
 
-- Change state/superstate to be like tmp
+- (BE) Replace security callback with real groupfinder
 
-- Traversal: context-view, ancestors
+- Embed access tokens in URLs for emails to principals with no login
 
-- Get <title> to show context and view, then add to tests
+- (FE) Ensure <title> does the right thing per view
 
-- i18n
+- (FE/BE) Support Satellizer's "signup" mode
 
 - Better animation
 
+- Karma and Protractor tests
+
+- Get Protractor tests that fail on jserror via a shared requirejs function
+
+
 One Day
 =======
+
+- i18n
 
 
 Done
 ====
 
-- Converted to _build and dist
+- (FE) Get the other $alerts from Satellizer
 
+- (FE) Authorization for state-based and response-based security
+
+- (BE) Implement username/password security
+
+- (FE) Add username/password section to the form
+
+- (FE/BE) Convert all API URLs to ``/api/auth/twitter`` etc.
+
+- (FE) Move logout to src/auth and redirect to siteroot.site with
+  an $alert
+
+- (FE) Start a README.rst in each module explaining implemented features
+
+- Make sure instructions work correctly
+
+- Converted to dist
 
 - Animation
 

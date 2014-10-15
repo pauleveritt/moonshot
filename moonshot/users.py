@@ -5,20 +5,24 @@ USERS = [
         email='p@x.com',
         first_name='Firstie',
         last_name='Lastie',
-        twitter='paulweveritt'
+        twitter='paulweveritt',
+        password='password'
     ),
     dict(
         id='stormfburg',
         email='p@x.com',
         first_name='STORM',
         last_name='Fburg',
-        twitter='stormfburg'
+        twitter='stormfburg',
+        password='password'
     ),
     dict(
         id='chrismcdonough',
         email='p2@x.com',
         first_name='Firstie',
         last_name='Lastie',
+        twitter='chrismcdonough',
+        password='password'
         twitter='chrismcdonough'
     ),
     dict(
