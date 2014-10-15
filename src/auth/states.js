@@ -22,6 +22,7 @@
              })
       .state('siteroot.profile', {
                url: '/profile',
+               authenticate: true,
                views: {
                  'content': {
                    templateUrl: '/auth/profile.partial.html',

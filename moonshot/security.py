@@ -57,7 +57,6 @@ class JWTAuthenticationPolicy(CallbackAuthenticationPolicy):
         token = encoded_token
         try:
             payload = jwt.decode(token, self.token_secret)
-            print('payload3393', payload)
         except jwt.DecodeError: # can't decode
             return None
 

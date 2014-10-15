@@ -5,18 +5,16 @@ Authentication schemes for Moonshot:
 - Twitter
 """
 
-import requests
-from requests_oauthlib import OAuth1
-
-from pyramid.httpexceptions import HTTPFound, HTTPUnauthorized
-
 from urllib.parse import parse_qsl
 from urllib.parse import urlencode
 
+import requests
+from requests_oauthlib import OAuth1
+from rest_toolkit import resource
+from pyramid.httpexceptions import HTTPFound, HTTPUnauthorized
+
 from .users import get_user
 from .security import create_jwt_token
-
-from rest_toolkit import resource
 
 
 @resource('/api/auth/login')
@@ -31,7 +29,7 @@ def login_resource(resource, request):
     token_secret = settings.get('TOKEN_SECRET')
     username = request.json_body.get('username')
     password = request.json_body.get('password')
-    user = get_user('id', username)
+    user = get_user('username', username)
     if user:
         user_password = user.get('password')
         if user_password and user_password == password:
