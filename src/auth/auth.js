@@ -46,11 +46,13 @@
 
     $httpProvider.interceptors.push('authzRedirect');
 
+    var baseUrl = 'http://127.0.0.1:3000';
+
     // Satellizer setup
-    $authProvider.loginUrl = '/api/auth/login';
-    $authProvider.signupUrl = '/api/auth/signup';
+    $authProvider.loginUrl = baseUrl + '/api/auth/login';
+    $authProvider.signupUrl = baseUrl + '/api/auth/signup';
     $authProvider.twitter({
-                            url: 'http://127.0.0.1:3000/api/auth/twitter'
+                            url: baseUrl + '/api/auth/twitter'
                           });
   }
 
@@ -59,5 +61,4 @@
     .config(ModuleInit)
     .run(AuthzStateRedirect);
 
-})
-();
+})();

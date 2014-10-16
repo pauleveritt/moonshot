@@ -5,10 +5,6 @@ TODO
 Next
 ====
 
-- Switch to pip with a fork of rest_toolkit
-
-- (BE) Try wsgicors again
-
 - (BE) Make a sample application with SQLA
 
 - (BE) Land the FE/BE schema interceptors
@@ -78,6 +74,10 @@ One Day
 
 Done
 ====
+
+- (BE) Get CORS working for Twitter popup in Satellizer
+
+- (BE) Get CORS working for username/password
 
 - (BE) Switch to rest_toolkit
 
