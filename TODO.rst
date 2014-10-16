@@ -5,11 +5,15 @@ TODO
 Next
 ====
 
-- (BE) Switch to rest_toolkit
+- Switch to pip with a fork of rest_toolkit
 
-- (FE) Handle 403s and 500s
+- (BE) Try wsgicors again
 
-- (FE) Handle rest_toolkit errors, generically
+- (BE) Make a sample application with SQLA
+
+- (BE) Land the FE/BE schema interceptors
+
+- (FE/BE) Handle rest_toolkit errors, generically
 
 - (FE/BE) Replace all responses with a dict containing ``data`` and
   anything else (e.g. schema)
@@ -74,6 +78,10 @@ One Day
 
 Done
 ====
+
+- (BE) Switch to rest_toolkit
+
+- (FE) Handle 403s and 500s
 
 - (FE) Get the other $alerts from Satellizer
 
