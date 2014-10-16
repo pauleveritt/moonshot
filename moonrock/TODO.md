@@ -3,15 +3,15 @@
 - [X] make a branch
 - [X] change the directory name and clean up references
 - [X] start a README.md and TODO.md in moonrock
-- [X] write some minimal unit tests
+- [X] write some minimal unit tests (setup)
+- [ ] add more unit tests
 
 ## SQLAlchemy
 
-- [ ] Add the dependency, as well as pyramid_sqlalchemy
+- [X] Add the dependency, as well as pyramid_sqlalchemy
 - [ ] Put stuff into the INI file per the pyramid_sqlalchemy docs
 - [ ] Make a models directory with a file users.py
-- [ ] Change the app startup to initialize the sqlite file and shove in some data
-- [ ] Or, make a console script
+- [ ] Change the app startup to initialize the sqlite file and shove in some data or, make a console script
 - [ ] Get a root_factory in place
 - [ ] Replace users.py with a SQLA query
 - [ ] If possible, some unit tests with mocks
