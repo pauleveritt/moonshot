@@ -1,6 +1,6 @@
 ## Moonrock
 
-- [ ] make a branch
+- [X] make a branch
 - [ ] change the directory name and clean up references
-- [ ] start a READDEM.rst and TODO.rst in moonrock
+- [ ] start a README.md and TODO.md in moonrock
 - [ ] write some minimal unit tests
