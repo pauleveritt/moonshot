@@ -1,7 +1,6 @@
 var libjs = [
   'lodash/dist/lodash.js',
   'angular/angular.js',
-  'ui-router/release/angular-ui-router.js',
   'angular-animate/angular-animate.js',
   'angular-messages/angular-messages.js',
   'angular-ui-router/release/angular-ui-router.js',

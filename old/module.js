@@ -5,8 +5,7 @@
  */
 
 var moonshotModules = [
-  "ngAnimate", "ngMessages", "ui.router", "restangular",
-  "traversal"
+  "ngAnimate", "ngMessages", "ui.router", "restangular"
 ];
 
 if (document.URL.indexOf(":9000") != -1) {

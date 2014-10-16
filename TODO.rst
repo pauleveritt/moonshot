@@ -5,6 +5,14 @@ TODO
 Next
 ====
 
+- (FE) Get Karma/Protractor tests landed again with gulp support
+
+- (FE) MoonTraverser with test support
+
+- (FE) Integrate MoonTraverser into state handling
+
+
+
 - (BE) Make a sample application with SQLA
 
 - (BE) Land the FE/BE schema interceptors
