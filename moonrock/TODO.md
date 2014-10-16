@@ -3,7 +3,7 @@
 - [X] make a branch
 - [X] change the directory name and clean up references
 - [X] start a README.md and TODO.md in moonrock
-- [ ] write some minimal unit tests
+- [X] write some minimal unit tests
 
 ## SQLAlchemy
 
