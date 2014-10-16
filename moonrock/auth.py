@@ -1,5 +1,5 @@
 """
-Authentication schemes for Moonshot:
+Authentication schemes for Moonrock:
 
 - Username/password
 - Twitter

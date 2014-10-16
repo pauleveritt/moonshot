@@ -11,6 +11,6 @@ setup(name='moonshot',
       install_requires=requires,
       entry_points="""\
       [paste.app_factory]
-      main = moonshot:main
+      main = moonrock:main
       """
     )

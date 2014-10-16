@@ -14,6 +14,6 @@ def main(global_config, **settings):
 
     config.include('.subscribers')
 
-    config.add_static_view(name='/', path='moonshot:../dist')
+    config.add_static_view(name='/', path='moonrock:../dist')
 
     return config.make_wsgi_app()
