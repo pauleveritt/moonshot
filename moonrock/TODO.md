@@ -9,7 +9,7 @@
 ## SQLAlchemy
 
 - [X] Add the dependency, as well as pyramid_sqlalchemy
-- [ ] Put stuff into the INI file per the pyramid_sqlalchemy docs
+- [X] Put stuff into the INI file per the pyramid_sqlalchemy docs
 - [ ] Make a models directory with a file users.py
 - [ ] Change the app startup to initialize the sqlite file and shove in some data or, make a console script
 - [ ] Get a root_factory in place
