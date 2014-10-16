@@ -9,6 +9,7 @@ requires = [
 
 setup(name='moonshot',
       install_requires=requires,
+      test_suite="moonrock",
       entry_points="""\
       [paste.app_factory]
       main = moonrock:main
