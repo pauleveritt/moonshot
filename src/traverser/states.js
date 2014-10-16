@@ -9,8 +9,9 @@
                    template: "",
                    controller: "TraverserCtrl as TraverserCtrl",
                    resolve: {
-                     x: function () {
-                       return 192;
+                     resolvedPath: function (Traverser, $location) {
+                       var path = $location.path();
+                       return Traverser.resolvePath(path);
                      }
                    }
                  }

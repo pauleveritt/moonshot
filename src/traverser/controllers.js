@@ -1,8 +1,8 @@
 (function () {
 
-    function TraverserCtrl($log, $location, x) {
+    function TraverserCtrl($log, $location, resolvedPath) {
       var path = $location.path();
-      $log.debug('TraverserCtrl', x);
+      $log.debug('TraverserCtrl', resolvedPath);
 
       if (path != '/bogusx') {
         // This should be a not found
