@@ -4,7 +4,14 @@ requires = [
     'pyramid', 'waitress', 'PyJWT', 'rest_toolkit',
 
     # Twitter
-    'requests', 'requests-oauthlib'
+    'requests', 'requests-oauthlib',
+
+    # SQLAlchemy
+    'pyramid_tm',
+    'SQLAlchemy',
+    'transaction',
+    'zope.sqlalchemy',
+
 ]
 
 setup(name='moonshot',
@@ -13,5 +20,8 @@ setup(name='moonshot',
       entry_points="""\
       [paste.app_factory]
       main = moonrock:main
+      [console_scripts]
+      initialize_moonrock_db = moonrock.scripts.initializedb:main
+
       """
     )
