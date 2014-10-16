@@ -1,4 +1,4 @@
-## Moonrock
+## Moonrock TODO list
 
 - [X] make a branch
 - [ ] change the directory name and clean up references
@@ -32,7 +32,7 @@ References:
 - [ ] Instead, make view classes that return JSON
 
 References:
-* hptp://pyramid-tutorials.readthedocs.org/en/latest/quick_traversal/sqlroot.html
+* http://pyramid-tutorials.readthedocs.org/en/latest/quick_traversal/sqlroot.html
 * http://pyramid-tutorials.readthedocs.org/en/latest/quick_traversal/sqladdcontent.html
 
 ## Authorization
