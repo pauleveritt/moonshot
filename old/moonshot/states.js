@@ -19,8 +19,7 @@
                }
              })
 
-    // NotFound, Error, and Forbidden views
-    $stateProvider
+      // NotFound, Error, and Forbidden views
       .state("notfound", {
                parent: "siteroot",
                templateUrl: "moonshot/notfound.partial.html",

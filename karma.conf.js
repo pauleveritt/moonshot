@@ -20,7 +20,8 @@ module.exports = function (config) {
         // Common stuff
         'src/module.js',
 
-        'src/traverser/traverser.js',
+        'src/traverser/init.js',
+        'src/traverser/services.js',
         'src/traverser/tests/service.specs.js'
       ],
 
