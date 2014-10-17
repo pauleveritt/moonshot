@@ -1,15 +1,10 @@
-/*
-
- */
-
-
 var AppPage = require("./AppPage");
 var page = new AppPage();
 
 describe("Home Page", function () {
 
   beforeEach(function () {
-    page.get("/");
+    page.get("/#/");
   });
 
   it("should display the correct title", function () {
