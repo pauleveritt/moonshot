@@ -14,6 +14,9 @@ def main(global_config, **settings):
 
     config.include('.subscribers')
 
+    config.include('pyramid_tm')
+    config.include('pyramid_sqlalchemy')
+
     config.add_static_view(name='/', path='moonrock:../dist')
 
     return config.make_wsgi_app()

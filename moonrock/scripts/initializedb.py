@@ -1,4 +1,5 @@
 # TODO: implement console script when models will be available
+# TODO: refactor using pyramid_sqlalchemy
 import os
 import sys
 import transaction

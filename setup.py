@@ -8,9 +8,8 @@ requires = [
 
     # SQLAlchemy
     'pyramid_tm',
-    'SQLAlchemy',
+    'pyramid_sqlalchemy',
     'transaction',
-    'zope.sqlalchemy',
 
 ]
 
