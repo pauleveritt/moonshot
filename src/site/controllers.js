@@ -1,7 +1,7 @@
 (function () {
 
     function SiteFormCtrl($log) {
-      $log.debug('SiteFormCtrl')
+      $log.debug('SiteFormCtrl');
   }
 
   angular.module("moonshot")

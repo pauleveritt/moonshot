@@ -35,7 +35,6 @@
 
   angular.module("moonshot")
     .config(ModuleConfig)
-//    .run(ModuleRun)
-  ;
+    .run(ModuleRun);
 
 })();

@@ -31,7 +31,7 @@
       // Find all view declarations for this viewName
 
       // Based on priority settings,
-    }
+    };
   }
 
   angular.module("moonshot")

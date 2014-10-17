@@ -1,12 +1,12 @@
 (function () {
 
-    function TraverserCtrl($log, $location, resolvedPath) {
+    function TraverserCtrl($log, $location, resolvedPath, $state) {
       var path = $location.path();
       $log.debug('TraverserCtrl', resolvedPath);
 
-      if (path != '/bogusx') {
+      if (path != '/bogus') {
         // This should be a not found
-        $state.go('notfound')
+        $state.go('notfound');
       }
   }
 

@@ -83,7 +83,7 @@ gulp.task('app-css', function () {
 
 gulp.task('app-partials', function () {
   var templateCache = require('gulp-angular-templatecache');
-  gulp.src('src/**/*.partial.html')
+  gulp.src('src/*/*.partial.html')
     .pipe(templateCache('moonshot-templates.js',
                         {module: 'moonshot', root:'/'}))
     .pipe(gulp.dest('dist/static'));
@@ -99,7 +99,7 @@ gulp.task('app-html', ['app-js', 'app-css', 'app-partials'], function () {
 });
 
 gulp.task('app-css-watch', function () {
-  var watcher = gulp.watch('./src/**/*.less', ['app-css']);
+  var watcher = gulp.watch('./src/*/*.less', ['app-css']);
   watcher.on('change', function (event) {
     console.log('#### Changed: ' + event.path);
   });
@@ -107,7 +107,7 @@ gulp.task('app-css-watch', function () {
 
 
 gulp.task('app-js-watch', function () {
-  var watcher = gulp.watch('./src/**/*.js', ['app-js']);
+  var watcher = gulp.watch('./src/*/*.js', ['app-js']);
   watcher.on('change', function (event) {
     console.log('#### Changed: ' + event.path);
   });
@@ -121,7 +121,7 @@ gulp.task('app-html-watch', ['webserver'], function () {
 });
 
 gulp.task('app-partials-watch', ['webserver'], function () {
-  var watcher = gulp.watch('./src/**/*.partial.html', ['app-partials']);
+  var watcher = gulp.watch('./src/*/*.partial.html', ['app-partials']);
   watcher.on('change', function (event) {
     console.log('#### Changed: ' + event.path);
   });
