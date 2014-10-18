@@ -11,8 +11,6 @@ Next
 
 - (FE) Integrate MoonTraverser into state handling
 
-
-
 - (BE) Make a sample application with SQLA
 
 - (BE) Land the FE/BE schema interceptors
