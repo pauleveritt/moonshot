@@ -12,12 +12,13 @@ class User(BaseObject):
     id = Column(Integer(),
                 Sequence('user_id_seq'),
                 primary_key = True)
-    username = Column(String(255))
-    email = Column(String(255))
-    first_name = Column(String(255))
-    last_name = Column(String(255))
-    twitter = Column(String(255))
-    password = Column(String(255))
+    userid = Column(String(20), unique=True)
+    username = Column(String(120), unique=True)
+    email = Column(String(120))
+    first_name = Column(String(120))
+    last_name = Column(String(120))
+    twitter = Column(String(120))
+    password = Column(String(120))
 
     def __repr__(self):
         return "<User(id=%d, username='%s')>" % (self.id, self.username)
