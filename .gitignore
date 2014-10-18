@@ -4,7 +4,7 @@
 /bower_components
 /node_modules
 .idea
-*-karma-test-results.xml
+karma-test-results.xml
 coverage
 *egg-info*
 *.pyc

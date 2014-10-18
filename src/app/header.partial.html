@@ -4,7 +4,7 @@
     <div class="navbar-header">
       <a class="navbar-brand" ui-sref="home">Moonshot</a>
     </div>
-    <ul class="nav navbar-nav">
+    <ul id="sections" class="nav navbar-nav">
       <li ng-repeat="section in HeaderCtrl.sections"
           ui-sref-active="active">
         <a ui-sref="{{ section.state}}">{{ section.title }}</a>

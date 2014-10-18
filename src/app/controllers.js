@@ -32,7 +32,20 @@
     });
   }
 
+
+  function NotFoundCtrl($location) {
+    this.path = $location.path();
+  }
+
+  function ErrorCtrl($stateParams) {
+    this.toState = $stateParams.toState;
+    this.error = $stateParams.error;
+  }
+
+
   angular.module("moonshot")
-    .controller("HeaderCtrl", HeaderCtrl);
+    .controller("HeaderCtrl", HeaderCtrl)
+    .controller("NotFoundCtrl", NotFoundCtrl)
+    .controller("ErrorCtrl", ErrorCtrl);
 
 })();
