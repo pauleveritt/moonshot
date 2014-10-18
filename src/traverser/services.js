@@ -4,7 +4,6 @@
     var _this = this;
 
     this.x = 1;
-    this.userTraversal = true; // Let traversal be disabled at config
 
     // At startup, take the list of states and make a viewMap. The
     // viewMap will look like:
@@ -45,6 +44,8 @@
 
                    }
                  });
+
+      this.disableTraversal = _.isEmpty(this.viewMap);
     };
 
     this.resolvePath = function (path) {

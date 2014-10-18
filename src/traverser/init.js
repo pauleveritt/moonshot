@@ -4,8 +4,16 @@
 
     $urlRouterProvider.otherwise(function ($injector) {
       // The URL failed to resolve. Let's give a try at traversal.
-      var $state = $injector.get('$state');
-      $state.go('siteroot.traverse');
+      var
+        $state = $injector.get('$state'),
+        Traverser = $injector.get('Traverser');
+
+      // If there are viewConfig settings on any states, use traversal
+      if (!Traverser.disableTraversal) {
+        $state.go('siteroot.traverse');
+      } else {
+        // TODO generate a notfound
+      }
     });
 
   }
