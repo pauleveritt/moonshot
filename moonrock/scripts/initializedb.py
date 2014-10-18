@@ -1,42 +1,89 @@
-# TODO: implement console script when models will be available
-# TODO: refactor using pyramid_sqlalchemy
 import os
 import sys
 import transaction
 
+from pyramid.paster import get_appsettings
+from pyramid.config import Configurator
+from pyramid_sqlalchemy import Session
 from sqlalchemy import engine_from_config
 
-from pyramid.paster import (
-    get_appsettings,
-    setup_logging,
+from ..models.users import (
+    BaseObject,
+    User
     )
 
-from pyramid.scripts.common import parse_vars
-
-#from ..models import (
-#    DBSession,
-#    MyModel,
-#    Base,
-#    )
-
+USERS = [
+    # Twitter usernames
+    dict(
+        id=1,
+        username='pauleveritt',
+        email='p@x.com',
+        first_name='Firstie',
+        last_name='Lastie',
+        twitter='paulweveritt',
+        password='password'
+    ),
+    dict(
+        id=2,
+        username='stormfburg',
+        email='p@x.com',
+        first_name='STORM',
+        last_name='Fburg',
+        twitter='stormfburg',
+        password='password'
+    ),
+    dict(
+        id=3,
+        username='chrismcdonough',
+        email='p2@x.com',
+        first_name='Firstie',
+        last_name='Lastie',
+        twitter='chrismcdonough',
+        password='password'
+    ),
+    dict(
+        id=4,
+        username='blaflamme',
+        email='p2@x.com',
+        first_name='Firstie',
+        last_name='Lastie',
+        twitter='blaiselaflamme',
+        password='password'
+    ),
+    dict(
+        id=5,
+        username='davidemoro',
+        email='p2@x.com',
+        first_name='Firstie',
+        last_name='Lastie',
+        twitter='davidemoro',
+        password='password'
+    )
+]
 
 def usage(argv):
     cmd = os.path.basename(argv[0])
-    print('usage: %s <config_uri> [var=value]\n'
+    print('usage: %s <config_uri>\n'
           '(example: "%s development.ini")' % (cmd, cmd))
     sys.exit(1)
 
 
 def main(argv=sys.argv):
-    if len(argv) < 2:
-        usage(argv)
-#    config_uri = argv[1]
-#    options = parse_vars(argv[2:])
-#    setup_logging(config_uri)
-#    settings = get_appsettings(config_uri, options=options)
-#    engine = engine_from_config(settings, 'sqlalchemy.')
-#    DBSession.configure(bind=engine)
-#    Base.metadata.create_all(engine)
-#    with transaction.manager:
-#        model = MyModel(name='one', value=1)
-#        DBSession.add(model)
+    config_uri = argv[1]
+    settings = get_appsettings(config_uri)
+    config = Configurator(settings=settings)
+    config.include('pyramid_sqlalchemy')
+    engine = engine_from_config(settings, 'sqlalchemy.')
+    BaseObject.metadata.create_all(engine)
+    with transaction.manager:
+        for user in USERS:
+            model = User(id = user['id'],
+                         username=user['username'],
+                         email=user['email'],
+                         first_name=user['first_name'],
+                         last_name=user['last_name'],
+                         twitter=user['twitter'],
+                         password=user['password'])
+            Session.add(model)
+
+

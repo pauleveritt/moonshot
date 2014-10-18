@@ -2,7 +2,8 @@ from pyramid.security import Authenticated
 
 from rest_toolkit import resource
 
-from .users import get_user, USERS
+from pyramid_sqlalchemy import Session
+from .models.users import User
 
 
 @resource('/api/me')
@@ -16,7 +17,7 @@ class ProfileResource(object):
 @ProfileResource.GET(permission='view')
 def profile_view(resource, request):
     userid = request.authenticated_userid
-    user = get_user('_id', userid)
+    user = Session.query(User).filter(User.id == userid).one()
     return dict(user=user)
 
 
@@ -30,7 +31,17 @@ class UsersResource(object):
 
 @UsersResource.GET(permission='view')
 def users_view(resource, request):
-    return dict(data=USERS)
+    users = Session.query(User).all()
+    def dictify(elem):
+        return dict(id = elem.id,
+                    username = elem.username,
+                    email = elem.email,
+                    first_name = elem.first_name,
+                    last_name = elem.last_name,
+                    twitter = elem.twitter,
+                    password = elem.password,
+                   )
+    return dict(data=[dictify(user) for user in users])
 
 
 @resource('/api/users/{id:\d+}')
@@ -40,7 +51,7 @@ class UserResource(object):
     def __init__(self, request):
         user_id = request.matchdict['id']
         if user_id:
-            self.user = get_user('_id', int(user_id))
+            self.user = Session.query(User).filter(User.id == int(user_id)).one()
         if self.user is None:
             raise KeyError('Unknown user id')
 
