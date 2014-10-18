@@ -2,7 +2,19 @@
 
   <h3 id="heading">Root Folder</h3>
 
-  <p>id: {{ rfdctrl.context.id}}</p>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th>Resource Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="i in rfdctrl.context.items">
+      <td><a ng-href="#{{i.path}}">{{ i.title }}</a></td>
+      <td>{{ i.resourceType }}</td>
+    </tr>
+    </tbody>
+  </table>
 
-  <p>The root folder might have some extra information in it.</p>
 </div>

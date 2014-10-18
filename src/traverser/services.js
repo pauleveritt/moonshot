@@ -60,19 +60,17 @@
         // Most specific:
         var resourceType = context.resourceType;
         if (viewConfig.resourceType == resourceType) {
-          console.debug('Matched resource type');
           return true;
         }
 
         // Finally, a resourceType of null means this should match any
         // kind of resourceType.
-        if (viewConfig.resourceType == null) {
+        if (viewConfig.resourceType === null) {
           return true;
         }
       });
 
-      var targetState = matchingView ? matchingView.stateName : null;
-      return targetState;
+      return matchingView ? matchingView.stateName : null;
     };
 
     this.transitionTo = function (context, viewName, parents) {

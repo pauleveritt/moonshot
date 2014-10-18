@@ -20,7 +20,12 @@
     var nextState = Traverser.resolveState(
       Traverser.context, Traverser.viewName, Traverser.parents);
 
-    $state.go(nextState);
+    if (nextState) {
+      $state.go(nextState);
+    } else {
+      // Traverser failed to find a matching view
+      $state.go('notfound');
+    }
 
   }
 
