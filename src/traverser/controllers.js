@@ -2,6 +2,8 @@
 
   function TraverserCtrl($state, resolvedPath) {
 
+    this.x = 939;
+
     // First hande the case where resolvedPath says it couldn't
     // find anything.
 
@@ -10,11 +12,9 @@
       $state.go('notfound');
     }
 
-    var
-      context = resolvedPath.context,
-      viewName = resolvedPath.viewName,
-      parents = resolvedPath.parents;
-    console.debug('TraverserCtrl', context, viewName, parents);
+    this.context = resolvedPath.context;
+    this.viewName = resolvedPath.viewName;
+    this.parents = resolvedPath.parents;
 
   }
 
