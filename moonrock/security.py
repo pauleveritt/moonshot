@@ -12,11 +12,11 @@ def create_jwt_token(user, token_secret):
         iat=datetime.now(),
         exp=datetime.now() + timedelta(days=14),
         user=dict(
-            _id=user['_id'],
-            username=user['username'],
-            first_name=user['first_name'],
-            last_name=user['last_name'],
-            twitter=user['twitter']))
+            _id=user.id,
+            username=user.username,
+            first_name=user.first_name,
+            last_name=user.last_name,
+            twitter=user.twitter))
     bytes_token = jwt.encode(payload, token_secret)
     token = bytes_token.decode('utf-8')
     return token

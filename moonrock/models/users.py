@@ -22,3 +22,11 @@ class User(BaseObject):
 
     def __repr__(self):
         return "<User(id=%d, username='%s')>" % (self.id, self.username)
+
+    def __json__(self, request):
+        return dict(
+                    _id = self.id,
+                    userid=self.userid,
+                    first_name=self.first_name,
+                    last_name=self.last_name
+                   )
