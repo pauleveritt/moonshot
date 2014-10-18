@@ -22,10 +22,10 @@ module.exports = function (config) {
 
         // Traverser
         'src/traverser/init.js',
-        'src/traverser/services.js',
-        'src/traverser/tests/services.specs.js',
-        'src/traverser/controllers.js',
-        'src/traverser/tests/controllers.specs.js'
+//        'src/traverser/services.js',
+//        'src/traverser/tests/services.specs.js',
+//        'src/traverser/controllers.js',
+//        'src/traverser/tests/controllers.specs.js'
       ],
 
       // base path, that will be used to resolve files and exclude

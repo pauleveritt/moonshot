@@ -11,7 +11,11 @@
   }
 
   function ModuleRun($rootScope, $state, Traverser) {
-    // Let's handle NotFound and Error
+
+    // Grab all the registered view_config info from the states. Make
+    // a dict with a key of the view name, value all the view_config
+    // info.
+    Traverser.makeViewMap($state.get());
 
     // Not Found. Tried to go to a state that doesn't exist.
     $rootScope
@@ -27,9 +31,11 @@
       .$on(
       '$stateChangeError',
       function (event, toState, toParams, fromState, fromParams, error) {
+        console.debug('$stateChangeError', error);
 
         event.preventDefault();
         $state.go("error", {toState: toState.name, error: error});
+
       });
   }
 

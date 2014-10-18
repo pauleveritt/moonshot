@@ -1,27 +1,49 @@
 (function () {
 
-  function Traverser() {
+  function Traverser($http) {
+    var _this = this;
+
     this.x = 1;
     this.userTraversal = true; // Let traversal be disabled at config
 
-    this._views = {};
-
-    this.getViewMap = function () {
-      // Walk all the states looking for view declarations, then
-      // arrange by view name, then view declarations in priority
-
+    // At startup, take the list of states and make a viewMap.
+    this.viewMap = {};
+    this.makeViewMap = function (states) {
+      this.viewMap = {};
+      _(states)
+        .filter(function (state) {
+                  return _.has(state, "viewConfig");
+                })
+        .forEach(function (state) {
+                   console.debug('39939', state)
+                   var vc = state.viewConfig;
+                   var viewName = vc.viewName;
+                   if (!_this.viewMap.viewName) {
+                     _this.viewMap.viewName = [];
+                   }
+                   _this.viewMap.viewName.push(
+                     {
+                       name: vc.name,
+                       resourceType: vc.resourceType,
+                       stateName: state.name
+                     }
+                   );
+                 })
     };
 
     this.resolvePath = function (path) {
-      var r = {
-        context: {
-          id: 193, title: "Some Document", _self: '/s/1/3',
-          type: 'document'},
-        parents: [1,2,3],
-        viewName: 'edit'
-      };
+      return $http.get('/api' + path);
+    };
 
-      return r;
+    this.resolveState = function (context, viewName) {
+      // Based on request info, find the matching view in the view
+      // map based on priority.
+
+      var views = _this.viewMap[viewName];
+//      var matchingView = _(views, func)
+
+      var targetState = 'rootfolder-default';
+      return targetState;
     };
 
     this.transitionTo = function (context, viewName, parents) {

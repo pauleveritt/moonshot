@@ -1,8 +1,6 @@
 (function () {
 
-  function TraverserCtrl($state, resolvedPath) {
-
-    this.x = 939;
+  function TraverserCtrl($state, resolvedPath, Traverser) {
 
     // First hande the case where resolvedPath says it couldn't
     // find anything.
@@ -12,9 +10,16 @@
       $state.go('notfound');
     }
 
-    this.context = resolvedPath.context;
-    this.viewName = resolvedPath.viewName;
-    this.parents = resolvedPath.parents;
+    var data = resolvedPath.data.data;
+    Traverser.context = data.context;
+    Traverser.viewName = data.viewName;
+    Traverser.parents = data.parents;
+
+    // Get the next state. Look in all the registered states at
+    // view_config information.
+    var nextState = Traverser.resolveState(
+      Traverser.context, Traverser.viewName, Traverser.parents);
+    $state.go(nextState);
 
   }
 

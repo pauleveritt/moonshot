@@ -11,7 +11,9 @@ describe("Moonshot Controllers", function () {
     $scope = $rootScope.$new();
 
     mockResolvedPath = {
-      context: {_id: 1}
+      data: {
+        data: {context: {_id: 1}}
+      }
     };
 
 //    spyOn(mockResolvedPath, 'context').andCallThrough();

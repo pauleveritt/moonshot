@@ -9,9 +9,18 @@
                    template: "",
                    controller: "TraverserCtrl as TraverserCtrl",
                    resolve: {
-                     resolvedPath: function (Traverser, $location) {
+                     resolvedPath: function (Traverser, $location, $alert) {
                        var path = $location.path();
-                       return Traverser.resolvePath(path);
+                       return Traverser.resolvePath(path)
+                         .catch(function (response) {
+                                  var msg = 'Traversal error: ' + response.data.message;
+                                  $alert({
+                                           content: msg,
+                                           animation: 'fadeZoomFadeDown',
+                                           type: 'material',
+                                           duration: 3
+                                         });
+                                });
                      }
                    }
                  }
