@@ -28,5 +28,7 @@ class User(BaseObject):
                     id = self.id,
                     userid=self.userid,
                     first_name=self.first_name,
-                    last_name=self.last_name
+                    last_name=self.last_name,
+                    twitter=self.twitter,
+                    email=self.email
                    )
