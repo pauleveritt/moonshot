@@ -19,6 +19,7 @@
     // view_config information.
     var nextState = Traverser.resolveState(
       Traverser.context, Traverser.viewName, Traverser.parents);
+
     $state.go(nextState);
 
   }

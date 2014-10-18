@@ -6,7 +6,16 @@
     this.x = 1;
     this.userTraversal = true; // Let traversal be disabled at config
 
-    // At startup, take the list of states and make a viewMap.
+    // At startup, take the list of states and make a viewMap. The
+    // viewMap will look like:
+    // default:
+    //   [
+    //      {resourceType: 'Folder', containment: something,
+    //       stateName: 'folder-default'
+    //      }
+    //   ]
+    // Meaning, it has the predicate information used in Pyramid
+    // views. We key on viewName just to speed up the resolution.
     this.viewMap = {};
     this.makeViewMap = function (states) {
       this.viewMap = {};
@@ -15,20 +24,27 @@
                   return _.has(state, "viewConfig");
                 })
         .forEach(function (state) {
-                   console.debug('39939', state)
                    var vc = state.viewConfig;
-                   var viewName = vc.viewName;
-                   if (!_this.viewMap.viewName) {
-                     _this.viewMap.viewName = [];
-                   }
-                   _this.viewMap.viewName.push(
-                     {
-                       name: vc.name,
-                       resourceType: vc.resourceType,
-                       stateName: state.name
+                   if (vc) {
+                     // This state has a viewConfig
+                     var viewName = vc.name;
+
+                     // If the viewMap doesn't yet have this
+                     // viewName, add it with an empty seq
+                     if (!_this.viewMap[viewName]) {
+                       _this.viewMap[viewName] = [];
                      }
-                   );
-                 })
+                     // Now push info from this state onto the viewMap
+                     _this.viewMap[viewName].push(
+                       {
+                         name: vc.name,
+                         resourceType: vc.resourceType,
+                         stateName: state.name
+                       }
+                     );
+
+                   }
+                 });
     };
 
     this.resolvePath = function (path) {
@@ -40,9 +56,22 @@
       // map based on priority.
 
       var views = _this.viewMap[viewName];
-//      var matchingView = _(views, func)
+      var matchingView = _.find(views, function (viewConfig) {
+        // Most specific:
+        var resourceType = context.resourceType;
+        if (viewConfig.resourceType == resourceType) {
+          console.debug('Matched resource type');
+          return true;
+        }
 
-      var targetState = 'rootfolder-default';
+        // Finally, a resourceType of null means this should match any
+        // kind of resourceType.
+        if (viewConfig.resourceType == null) {
+          return true;
+        }
+      });
+
+      var targetState = matchingView ? matchingView.stateName : null;
       return targetState;
     };
 

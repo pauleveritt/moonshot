@@ -39,7 +39,7 @@
                }
              })
 
-          .state("folder-default", {
+      .state("folder-default", {
                parent: "siteroot",
                viewConfig: {
                  name: 'default',
