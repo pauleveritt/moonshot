@@ -41,7 +41,7 @@ class JWTAuthenticationPolicy(CallbackAuthenticationPolicy):
 
     def callback(self, username, request):
         # TODO replace this with a proper groupfinder
-        return ['moonshot.Users']
+        return ['moonrock.Users']
 
     def unauthenticated_userid(self, request):
         authorization = request.headers.get('Authorization')

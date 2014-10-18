@@ -35,6 +35,15 @@ USERS = [
         last_name='Lastie',
         twitter='blaiselaflamme',
         password='password'
+    ),
+    dict(
+        _id=5,
+        username='davidemoro',
+        email='p2@x.com',
+        first_name='Firstie',
+        last_name='Lastie',
+        twitter='davidemoro',
+        password='password'
     )
 ]
 

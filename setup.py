@@ -4,13 +4,23 @@ requires = [
     'pyramid', 'waitress', 'PyJWT', 'rest_toolkit',
 
     # Twitter
-    'requests', 'requests-oauthlib'
+    'requests', 'requests-oauthlib',
+
+    # SQLAlchemy
+    'pyramid_tm',
+    'pyramid_sqlalchemy',
+    'transaction',
+
 ]
 
 setup(name='moonshot',
       install_requires=requires,
+      test_suite="moonrock",
       entry_points="""\
       [paste.app_factory]
-      main = moonshot:main
+      main = moonrock:main
+      [console_scripts]
+      initialize_moonrock_db = moonrock.scripts.initializedb:main
+
       """
     )
