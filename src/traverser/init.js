@@ -20,6 +20,10 @@
 
   function ModuleRun($rootScope, $state, Traverser) {
 
+    // Put the Traverser on the root scope so that it is available in
+    // all templates.
+    $rootScope.traverser = Traverser;
+
     // Grab all the registered view_config info from the states. Make
     // a dict with a key of the view name, value all the view_config
     // info.

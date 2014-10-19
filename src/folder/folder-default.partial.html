@@ -1,8 +1,13 @@
 <div class="row">
 
-  <h3 id="heading">Regular Folder</h3>
+  <div
+      ng-if="traverser.parents"
+      ng-include="'/folder/breadcrumbs.partial.html'"></div>
+  <h3 id="heading" ng-bind="traverser.context.title">Regular Folder</h3>
 
-  <div>Back to <a ng-href="#/root">Root</a></div>
 
-  <p>id: {{ fdctrl.context.id}}</p>
+  <div
+      ng-if="traverser.context.items"
+      ng-include="'/folder/contents.partial.html'"></div>
+
 </div>

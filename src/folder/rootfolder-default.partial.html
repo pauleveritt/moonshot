@@ -1,20 +1,11 @@
 <div class="row">
 
-  <h3 id="heading">Root Folder</h3>
+  <h3 id="heading" ng-bind="traverser.context.title">Root Folder</h3>
 
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>Title</th>
-      <th>Resource Type</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="i in rfdctrl.context.items">
-      <td><a ng-href="#{{i.path}}">{{ i.title }}</a></td>
-      <td>{{ i.resourceType }}</td>
-    </tr>
-    </tbody>
-  </table>
+  <p>This is the root folder. It has some special properties and
+  thus is a different type.</p>
 
+  <div
+      ng-if="traverser.context.items"
+      ng-include="'/folder/contents.partial.html'"></div>
 </div>

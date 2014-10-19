@@ -1,0 +1,15 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Resource Type</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="i in traverser.context.items">
+    <td><a ng-href="#{{i.path}}">{{ i.title }}</a></td>
+    <td>{{ i.resourceType }}</td>
+  </tr>
+  </tbody>
+</table>
+
