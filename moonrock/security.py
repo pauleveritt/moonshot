@@ -1,9 +1,13 @@
 import jwt
+from sqlalchemy.orm.exc import NoResultFound
 from datetime import datetime, timedelta
 
 from pyramid.authentication import CallbackAuthenticationPolicy
 from pyramid.interfaces import IAuthenticationPolicy
+from pyramid_sqlalchemy import Session
 from zope.interface import implementer
+
+from .models.users import User
 
 
 # Helper Functions
@@ -62,6 +66,13 @@ class JWTAuthenticationPolicy(CallbackAuthenticationPolicy):
         except KeyError:
             return None
 
+
 def groupfinder(username, request):
-    # TODO replace this with a proper groupfinder
-    return ['moonrock.Users']
+    groups = []
+    try:
+        user = Session.query(User).filter(User.username == username).one()
+    except NoResultFound:
+        pass
+    else:
+        groups = user.groups
+    return groups
