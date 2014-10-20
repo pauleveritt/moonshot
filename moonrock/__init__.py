@@ -1,12 +1,13 @@
 from pyramid.config import Configurator
 from pyramid.authorization import ACLAuthorizationPolicy
+from .security import groupfinder
 
 
 def main(global_config, **settings):
     from .security import JWTAuthenticationPolicy
     config = Configurator(settings=settings)
     config.set_authentication_policy(
-        JWTAuthenticationPolicy(settings['TOKEN_SECRET'])
+        JWTAuthenticationPolicy(settings['TOKEN_SECRET'], callback=groupfinder)
         )
     config.set_authorization_policy(ACLAuthorizationPolicy())
     config.include('.views')

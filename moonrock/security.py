@@ -24,8 +24,9 @@ def create_jwt_token(user, token_secret):
 
 @implementer(IAuthenticationPolicy)
 class JWTAuthenticationPolicy(CallbackAuthenticationPolicy):
-    def __init__(self, token_secret):
+    def __init__(self, token_secret, callback=None):
         self.token_secret = token_secret
+        self.callback = callback
 
     def remember(self, request, principal, **kw):
         """ A no-op. JWT authentication does not provide a protocol for
@@ -38,10 +39,6 @@ class JWTAuthenticationPolicy(CallbackAuthenticationPolicy):
         forgetting the token. Client is responsible for that..
         """
         return []
-
-    def callback(self, username, request):
-        # TODO replace this with a proper groupfinder
-        return ['moonrock.Users']
 
     def unauthenticated_userid(self, request):
         authorization = request.headers.get('Authorization')
@@ -64,3 +61,7 @@ class JWTAuthenticationPolicy(CallbackAuthenticationPolicy):
             return payload['user']['_id']
         except KeyError:
             return None
+
+def groupfinder(username, request):
+    # TODO replace this with a proper groupfinder
+    return ['moonrock.Users']
