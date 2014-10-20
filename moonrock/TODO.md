@@ -14,6 +14,7 @@
 - [X] Change the app startup to initialize the sqlite file and shove in some data or, make a console script
 - [ ] Get a root_factory in place
 - [X] Replace users.py with a SQLA query
+- [X] Implement groupfinder callback
 - [ ] If possible, some unit tests with mocks
 
 ## rest_toolkit SQL support
