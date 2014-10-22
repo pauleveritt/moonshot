@@ -5,7 +5,8 @@ from .security import groupfinder
 
 def main(global_config, **settings):
     from .security import JWTAuthenticationPolicy
-    config = Configurator(settings=settings)
+    config = Configurator(settings=settings,
+                          root_factory='moonrock.models.root.RootFactory')
     config.set_authentication_policy(
         JWTAuthenticationPolicy(settings['TOKEN_SECRET'], callback=groupfinder)
         )
