@@ -6,14 +6,13 @@ from pyramid.paster import get_appsettings
 from pyramid.config import Configurator
 from pyramid_sqlalchemy import Session
 from sqlalchemy import engine_from_config
-import json
 
 from ..models.users import (
     BaseObject,
     User
     )
 
-groups = json.dumps(['moonrock.Users'])
+groups = ['moonrock.Users']
 
 USERS = [
     # Twitter usernames
