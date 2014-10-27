@@ -1,0 +1,9 @@
+<div
+    ng-if="traverser.parents"
+    ng-include="'/folder/breadcrumbs.partial.html'"></div>
+<div class="pull-right">
+  <button class="btn btn-default btn-sm">
+    <i class="glyphicon glyphicon-plus"></i>
+  </button>
+</div>
+<h3 id="heading" ng-bind="traverser.context.title">Regular Folder</h3>
