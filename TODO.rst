@@ -5,9 +5,16 @@ TODO
 Next
 ====
 
-- (FE) Get Karma/Protractor tests landed again with gulp support
+- (FE) Try to use the generic angular-permission package
 
-- (FE) MoonTraverser with test support
+- (FE) Traverser with test support
+
+  * Change folder mocks to actually recurse through a tree
+  * Mocks that also support finding a view
+  * Most basic precedence case, back in traveser, with a test
+  * Richer set of precedence cases with tests
+  * Add/edit/delete on folders
+  * Folders and documents
 
 - (FE) Integrate MoonTraverser into state handling
 
@@ -80,6 +87,8 @@ One Day
 
 Done
 ====
+
+- (FE) Get Karma/Protractor tests landed again with gulp support
 
 - (BE) Get CORS working for Twitter popup in Satellizer
 

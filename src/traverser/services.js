@@ -38,7 +38,8 @@
                        {
                          name: vc.name,
                          resourceType: vc.resourceType,
-                         stateName: state.name
+                         stateName: state.name,
+                         marker: vc.marker
                        }
                      );
 
@@ -65,69 +66,57 @@
         parentTypes = _.uniq(_.map(parents, function (p) {
           return p.resourceType;
         })),
-        markers = _.map(parents, function (p) {
-          return p.markers;
-        }),
-        parentMarkers = _.uniq(_.flatten(markers)),
-        pathInfo = context.path;
+//        markers = _.map(parents, function (p) {
+//          return p.markers;
+//        }),
+//        parentMarkers = _.uniq(_.flatten(markers)),
+        markers = context.markers;
+      pathInfo = context.path;
+
+      // Go through all the views, assigning a score
+      var matchingView = null;
+      var viewResults = _.map(views, function (viewConfig) {
+        if (!matchingView) {
+          // Initialize all the possible predicates
+          var r = {stateName: viewConfig.stateName};
+          r.isResourceType = false;
+          r.inParentTypes = false;
+          r.inMarkers = false;
+//          inParentMarkers = false,
+          r.inPathInfo = false;
+
+          r.score = 0;
 
 
-      var matchingView = _.find(views, function (viewConfig) {
-        // Predicate calculations for this viewConfig against the
-        // current context/viewName/parents/etc.
+          // If this viewConfig states each predicate case, and it matches,
+          // set to true.
 
-        // Initialize all the possible predicates
-        var
-          isResourceType = false,
-          inParentTypes = false,
-          inParentMarkers = false,
-          inPathInfo = false;
-
-        // If this viewConfig states each predicate case, and it matches,
-        // set to true.
-        if (!_.has(viewConfig, 'resourceType')) {
-          // Special case...if the viewConfig does *not* specify a
-          // resourceType, it means match any resourceType;
-          isResourceType = true;
-        }
-        if (viewConfig.resourceType) {
-          isResourceType = viewConfig.resourceType === resourceType;
-        }
-        if (viewConfig.containment) {
-          inParentTypes = _.contains(parentTypes, viewConfig.contains);
-        }
-        if (viewConfig.marker) {
-          inParentMarkers = _.contains(parentMarkers, viewConfig.marker);
-        }
-        if (viewConfig.pathInfo) {
-          inPathInfo = _.contains(pathInfo, viewConfig.pathInfo);
-        }
-
-        // Now do the resolution based on precedence.
-        // Speed up by using inversion. A nested if starting with the
-        // *least* precedence.
-        if (isResourceType) {
-          // Least prececence: resource type of context
-          if (inParentTypes) {
-            // Next least precedence: resource types of parents
-            if (inPathInfo) {
-              // Next least precedence: context in a certain path
-              if (inParentMarkers) {
-                // Highest level of precedence
-                return true;
-              }
-              return true;
-            }
-            return true;
+          if (!_.has(viewConfig, 'resourceType')) {
+            // Special case...if the viewConfig does *not* specify a
+            // resourceType, it means match any resourceType;
+            r.isResourceType = true;
           }
-          return true;
-        }
+          if (viewConfig.resourceType) {
+            r.isResourceType = viewConfig.resourceType === resourceType;
+          }
+          if (viewConfig.containment) {
+            r.inParentTypes = _.contains(parentTypes, viewConfig.contains);
+          }
+          if (viewConfig.marker) {
+//          inParentMarkers = _.contains(parentMarkers, viewConfig.marker);
+            r.inMarkers = _.contains(markers, viewConfig.marker);
+          }
+          if (viewConfig.pathInfo) {
+            r.inPathInfo = _.contains(pathInfo, viewConfig.pathInfo);
+          }
 
-        // Nothing matched, return false;
-        return false;
+          return r;
+        }
       });
 
-      return matchingView ? matchingView.stateName : null;
+      console.debug(488448, viewResults);
+
+      return matchingView;
     };
 
     this.transitionTo = function (context, viewName, parents) {
@@ -140,7 +129,7 @@
     };
   }
 
-  angular.module("moonshot")
+  angular.module("traverser", [])
     .service("Traverser", Traverser);
 
 })();

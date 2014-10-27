@@ -21,9 +21,9 @@ module.exports = function (config) {
         'src/module.js',
 
         // Traverser
-        'src/traverser/init.js',
-//        'src/traverser/services.js',
-//        'src/traverser/tests/services.specs.js',
+//        'src/traverser/init.js',
+        'src/traverser/services.js',
+        'src/traverser/tests/services.specs.js',
 //        'src/traverser/controllers.js',
 //        'src/traverser/tests/controllers.specs.js'
       ],

@@ -3,6 +3,11 @@
 
   <div ng-include="'/folder/fheading.partial.html'"></div>
 
+  <p><em>This is an invoices folder. It has
+    <code>marker: invoices</code> on the data and
+    <code>marker: invoices</code> on the state's
+    <code>viewConfig</code>.</em></p>
+
   <div
       ng-if="traverser.context.items"
       ng-include="'/folder/contents.partial.html'"></div>

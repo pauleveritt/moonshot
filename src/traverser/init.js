@@ -12,7 +12,7 @@
       if (!Traverser.disableTraversal) {
         $state.go('siteroot.traverse');
       } else {
-        // TODO generate a notfound
+        $state.go("notfound", {unfoundStateTo: 'siteroot.traverse'});
       }
     });
 

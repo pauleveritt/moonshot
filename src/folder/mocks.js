@@ -2,9 +2,22 @@
 
   function ModuleInit(moonshotMockRestProvider) {
 
+    /*
+
+    Folders
+    ---------
+    context
+      - id, name, resourceType, markers, _self
+      - items
+    path
+    viewName
+    parents
+     */
+
     var
       f1a = {path: '/root/folder1/foldera', id: 10, resourceType: 'Folder',
-        title: 'Folder 1A', viewName: 'default', items: []},
+        title: 'Folder 1A', viewName: 'default', items: [],
+        markers: ['invoices']},
       f1b = {path: '/root/folder1/folderB', id: 11, resourceType: 'Folder',
         title: 'Folder 1B', viewName: 'default', items: []},
       f1 = {path: '/root/folder1', id: 1, resourceType: 'Folder',

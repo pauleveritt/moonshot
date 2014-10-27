@@ -51,8 +51,22 @@
                    controller: "FolderDefaultCtrl as fdctrl"
                  }
                }
-             });
+             })
 
+      .state("invoicefolder-default", {
+               parent: "siteroot",
+               viewConfig: {
+                 name: 'default',
+                 resourceType: 'Folder',
+                 marker: 'invoices'
+               },
+               views: {
+                 "content": {
+                   templateUrl: "/folder/invoicefolder-default.partial.html",
+                   controller: "FolderDefaultCtrl as fdctrl"
+                 }
+               }
+             });
   }
 
   angular.module("moonshot")
