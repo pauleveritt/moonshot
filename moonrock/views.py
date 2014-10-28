@@ -14,8 +14,6 @@ from .rest_ext import MoonSQLResource
 class ProfileResource(MoonSQLResource, ViewableResource):
     __acl__ = (('Allow', Authenticated, 'view'),)
 
-    toplevel_key = 'user'
-
     @property
     def context_query(self):
         return Query(User).filter(User.id == self.userid)
@@ -45,7 +43,6 @@ class UsersResource(ViewableResource):
 @resource('/api/users/{id:\d+}', read_permission='view')
 class UserResource(MoonSQLResource, ViewableResource):
     __acl__ = (('Allow', Authenticated, 'view'),)
-    toplevel_key = 'data'
 
     @property
     def context_query(self):

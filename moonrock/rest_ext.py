@@ -10,11 +10,7 @@ class MoonSQLResource(SQLResource):
     """Base class for resources based on SQLAlchemy ORM models.
     """
 
-    @abc.abstractproperty
-    def toplevel_key(self):
-        """JSON key name to put the data in
-        """
-        raise NotImplemented()
+    toplevel_key = 'data'
 
     @property
     def userid(self):

@@ -58,7 +58,7 @@
   }
 
   function ProfileCtrl(profile) {
-    this.profile = profile.data.user;
+    this.profile = profile.data.data;
   }
 
   angular.module("moonshot")
