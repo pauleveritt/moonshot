@@ -34,6 +34,12 @@ Installation
 
 #. pserve moonshot/backend.ini --reload
 
+For the Moonrock demo backend:
+
+#. rm moonrock/moonrock.sqlite
+
+#. initialize_moonrock_db moonrock/backend.ini
+
 Now visit `http://127.0.0.1:3000/` to see the AngularJS UI served up
 by a Pyramid static view. Do *not* use ``localhost`` instead of
 ``127.0.0.1``.
