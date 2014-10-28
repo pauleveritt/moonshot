@@ -1,3 +1,5 @@
+from rest_toolkit.ext.sql import SQLResource
+
 from sqlalchemy import (
     Column,
     Integer,
@@ -5,21 +7,14 @@ from sqlalchemy import (
     ForeignKey,
     String
     )
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import (
-    scoped_session,
-    sessionmaker,
     relationship,
     backref
     )
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.util import classproperty
-from zope.sqlalchemy import ZopeTransactionExtension
 
-DBSession = scoped_session(
-    sessionmaker(extension=ZopeTransactionExtension()))
-Base = declarative_base()
-
+from pyramid_sqlalchemy import BaseObject, Session
 
 def u(s):
     # Backwards compatibility for Python 3 not having unicode()
@@ -30,10 +25,10 @@ def u(s):
 
 
 def root_factory(request):
-    return DBSession.query(Node).filter_by(parent_id=None).one()
+    return Session.query(Node).filter_by(parent_id=None).one()
 
 
-class Node(Base):
+class Node(BaseObject):
     __tablename__ = 'node'
     id = Column(Integer, primary_key=True)
     name = Column(Unicode(50), nullable=False)
@@ -54,20 +49,20 @@ class Node(Base):
     def __setitem__(self, key, node):
         node.name = u(key)
         if self.id is None:
-            DBSession.flush()
+            Session.flush()
         node.parent_id = self.id
-        DBSession.add(node)
-        DBSession.flush()
+        Session.add(node)
+        Session.flush()
 
     def __getitem__(self, key):
         try:
-            return DBSession.query(Node).filter_by(
+            return Session.query(Node).filter_by(
                 name=key, parent=self).one()
         except NoResultFound:
             raise KeyError(key)
 
     def values(self):
-        return DBSession.query(Node).filter_by(parent=self)
+        return Session.query(Node).filter_by(parent=self)
 
     @property
     def __name__(self):

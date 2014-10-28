@@ -4,10 +4,10 @@ from pyramid.httpexceptions import HTTPFound
 from pyramid.location import lineage
 from pyramid.view import view_config
 
-from .models import (
+from .models.site import (
     Folder,
     Document
-    )
+)
 
 
 class TutorialViews(object):
@@ -17,7 +17,8 @@ class TutorialViews(object):
         self.parents = reversed(list(lineage(context)))
 
     @view_config(renderer="templates/root.jinja2",
-                 context=Folder, custom_predicates=[lambda c, r: c is r.root])
+                 context=Folder,
+                 custom_predicates=[lambda c, r: c is r.root])
     def root(self):
         page_title = 'Quick Tutorial: Root'
         return dict(page_title=page_title)
@@ -55,3 +56,12 @@ class TutorialViews(object):
     def document(self):
         page_title = 'Quick Tutorial: Document'
         return dict(page_title=page_title)
+
+
+@view_config(name='foo')
+def foo_view(context, request):
+    from pyramid.response import Response
+
+    print(context.title)
+
+    return Response(body='<h1>hello</h1>')
