@@ -36,7 +36,7 @@
                      // Now push info from this state onto the viewMap
                      _this.viewMap[viewName].push(
                        {
-                         name: vc.name,
+                         name: viewName,
                          resourceType: vc.resourceType,
                          stateName: state.name,
                          containment: vc.containment,
