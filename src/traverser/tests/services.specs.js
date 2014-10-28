@@ -61,13 +61,12 @@ describe("Traverser Service", function () {
         {name: 'folderview',
           viewConfig: {resourceType: 'folder', name: 'default'}},
         {name: 'folderview-containment',
-          // why containment and contains? Shouldn't be sufficient just contains
-          viewConfig: {resourceType: 'folder', name: 'default', containment: true, contains: 'rootfolder'}},
+          viewConfig: {resourceType: 'folder', name: 'default', containment: 'rootfolder'}},
         {name: 'some.route'}
       ];
       Traverser.makeViewMap(states);
       var viewConfig = Traverser.viewMap.default[0];
-      expect(viewConfig.contains).toBe('rootfolder');
+      expect(viewConfig.containment).toBe('rootfolder');
     });
 
     it("should make a viewMap (best match ordering with containment AND marker - simple case)", function () {
@@ -75,10 +74,9 @@ describe("Traverser Service", function () {
         {name: 'folderview',
           viewConfig: {resourceType: 'folder', name: 'default'}},
         {name: 'folderview-containment',
-          // why containment and contains? Shouldn't be sufficient just contains
-          viewConfig: {resourceType: 'folder', name: 'default', containment: true, contains: 'rootfolder'}},
+          viewConfig: {resourceType: 'folder', name: 'default', containment: 'rootfolder'}},
         {name: 'folderview-containment-marker',
-          viewConfig: {resourceType: 'folder', name: 'default', containment: true, contains: 'rootfolder', marker: 'somemarker'}},
+          viewConfig: {resourceType: 'folder', name: 'default', containment: 'rootfolder', marker: 'somemarker'}},
         {name: 'some.route'}
       ];
       Traverser.makeViewMap(states);
@@ -91,8 +89,7 @@ describe("Traverser Service", function () {
         {name: 'folderview',
           viewConfig: {resourceType: 'folder', name: 'default'}},
         {name: 'folderview-containment',
-          // why containment and contains? Shouldn't be sufficient just contains
-          viewConfig: {resourceType: 'folder', name: 'default', containment: true, contains: 'rootfolder'}},
+          viewConfig: {resourceType: 'folder', name: 'default', containment: 'rootfolder'}},
         {name: 'folderview-marker',
           viewConfig: {resourceType: 'folder', name: 'default', marker: 'somemarker'}},
         {name: 'some.route'}

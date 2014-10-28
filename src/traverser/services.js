@@ -100,7 +100,7 @@
             r.isResourceType = viewConfig.resourceType === resourceType;
           }
           if (viewConfig.containment) {
-            r.inParentTypes = _.contains(parentTypes, viewConfig.contains);
+            r.inParentTypes = _.contains(parentTypes, viewConfig.containment);
           }
           if (viewConfig.marker) {
 //          inParentMarkers = _.contains(parentMarkers, viewConfig.marker);
