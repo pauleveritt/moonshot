@@ -1,22 +1,24 @@
+from sqlalchemy.orm import Query
 from pyramid.security import Authenticated
 
 from rest_toolkit import resource
 from rest_toolkit.abc import ViewableResource
 
 from pyramid_sqlalchemy import Session
+
 from .models.users import User
+from .rest_ext import MoonSQLResource
 
 
 @resource('/api/me', read_permission='view')
-class ProfileResource(ViewableResource):
+class ProfileResource(MoonSQLResource, ViewableResource):
     __acl__ = (('Allow', Authenticated, 'view'),)
 
-    def __init__(self, request):
-        userid = request.authenticated_userid
-        self.user = Session.query(User).filter(User.id == userid).one()
+    toplevel_key = 'user'
 
-    def to_dict(self):
-        return dict(user=self.user)
+    @property
+    def context_query(self):
+        return Query(User).filter(User.id == self.userid)
 
 
 @resource('/api/users', read_permission='view')
@@ -41,19 +43,13 @@ class UsersResource(ViewableResource):
 
 
 @resource('/api/users/{id:\d+}', read_permission='view')
-class UserResource(ViewableResource):
+class UserResource(MoonSQLResource, ViewableResource):
     __acl__ = (('Allow', Authenticated, 'view'),)
+    toplevel_key = 'data'
 
-    def __init__(self, request):
-        user_id = request.matchdict['id']
-        if user_id:
-            self.user = Session.query(User).filter(
-                User.id == int(user_id)).one()
-        if self.user is None:
-            raise KeyError('Unknown user id')
-
-    def to_dict(self):
-        return dict(data=self.user)
+    @property
+    def context_query(self):
+        return Query(User).filter(User.id == self.userid)
 
 
 def includeme(config):

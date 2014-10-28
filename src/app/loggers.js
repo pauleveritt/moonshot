@@ -17,7 +17,7 @@
         if (1 == 1) {
           var response_data = response.data;
           $log.info('response url/method/data',
-                    config.url, config.method);
+                    config.url, config.method, response.data);
         }
         return response || $q.when(response);
       },
