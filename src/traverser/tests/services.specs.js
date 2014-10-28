@@ -21,7 +21,29 @@ describe("Traverser Service", function () {
       expect(viewConfig.resourceType).toBe('folder');
     });
 
-    it("should make a viewMap (best match ordering)", function () {
+    it("should make a viewMap (should update stateName)", function () {
+      var states = [
+        {name: 'folderview',
+          viewConfig: {resourceType: 'folder', name: 'default'}},
+        {name: 'some.route'}
+      ];
+      Traverser.makeViewMap(states);
+      var viewConfig = Traverser.viewMap.default[0];
+      expect(viewConfig.stateName).toBe('folderview');
+    });
+
+    it("should make a viewMap (standard angular routes should not be defined)", function () {
+      var states = [
+        {name: 'folderview',
+          viewConfig: {resourceType: 'folder', name: 'default'}},
+        {name: 'some.route'}
+      ];
+      Traverser.makeViewMap(states);
+      var viewConfig = Traverser.viewMap.default[0];
+      expect(Traverser.viewMap['some.route']).toBe(undefined);
+    });
+
+    it("should make a viewMap (best match ordering with marker)", function () {
       var states = [
         {name: 'folderview',
           viewConfig: {resourceType: 'folder', name: 'default'}},
@@ -34,6 +56,51 @@ describe("Traverser Service", function () {
       expect(viewConfig.marker).toBe('somemarker');
     });
 
+    it("should make a viewMap (best match ordering with containment)", function () {
+      var states = [
+        {name: 'folderview',
+          viewConfig: {resourceType: 'folder', name: 'default'}},
+        {name: 'folderview-containment',
+          // why containment and contains? Shouldn't be sufficient just contains
+          viewConfig: {resourceType: 'folder', name: 'default', containment: true, contains: 'rootfolder'}},
+        {name: 'some.route'}
+      ];
+      Traverser.makeViewMap(states);
+      var viewConfig = Traverser.viewMap.default[0];
+      expect(viewConfig.contains).toBe('rootfolder');
+    });
+
+    it("should make a viewMap (best match ordering with containment AND marker - simple case)", function () {
+      var states = [
+        {name: 'folderview',
+          viewConfig: {resourceType: 'folder', name: 'default'}},
+        {name: 'folderview-containment',
+          // why containment and contains? Shouldn't be sufficient just contains
+          viewConfig: {resourceType: 'folder', name: 'default', containment: true, contains: 'rootfolder'}},
+        {name: 'folderview-containment-marker',
+          viewConfig: {resourceType: 'folder', name: 'default', containment: true, contains: 'rootfolder', marker: 'somemarker'}},
+        {name: 'some.route'}
+      ];
+      Traverser.makeViewMap(states);
+      var viewConfig = Traverser.viewMap.default[0];
+      expect(viewConfig.marker).toBe('somemarker');
+    });
+
+    it("should make a viewMap (best match ordering with containment AND marker - complex case)", function () {
+      var states = [
+        {name: 'folderview',
+          viewConfig: {resourceType: 'folder', name: 'default'}},
+        {name: 'folderview-containment',
+          // why containment and contains? Shouldn't be sufficient just contains
+          viewConfig: {resourceType: 'folder', name: 'default', containment: true, contains: 'rootfolder'}},
+        {name: 'folderview-marker',
+          viewConfig: {resourceType: 'folder', name: 'default', marker: 'somemarker'}},
+        {name: 'some.route'}
+      ];
+      Traverser.makeViewMap(states);
+      var viewConfig = Traverser.viewMap.default[0];
+      expect(viewConfig.marker).toBe('somemarker');    // marker highest precedence?
+    });
   });
 
   describe("Resolve states", function () {
