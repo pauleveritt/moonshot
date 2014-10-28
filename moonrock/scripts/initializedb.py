@@ -11,6 +11,7 @@ from ..models.users import (
     BaseObject,
     User
     )
+from ..models.folder import Folder
 
 groups = ['moonrock.Users']
 
@@ -83,6 +84,8 @@ def main(argv=sys.argv):
     engine = engine_from_config(settings, 'sqlalchemy.')
     BaseObject.metadata.create_all(engine)
     with transaction.manager:
+        root = Folder(name='', title='My SQLTraversal Root')
+        Session.add(root)
         for user in USERS:
             model = User(id = user['id'],
                          username=user['username'],

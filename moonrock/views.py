@@ -48,6 +48,12 @@ class UserResource(MoonSQLResource, ViewableResource):
     def context_query(self):
         return Query(User).filter(User.id == self.userid)
 
+from pyramid.response import Response
+from pyramid.view import view_config
+
+@view_config(name='foo')
+def foo_view(context, request):
+    return Response(body='<h1>Response</h1>')
 
 def includeme(config):
     config.scan('.views')
