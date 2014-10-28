@@ -1,9 +1,13 @@
 import jwt
+from sqlalchemy.orm.exc import NoResultFound
 from datetime import datetime, timedelta
 
 from pyramid.authentication import CallbackAuthenticationPolicy
 from pyramid.interfaces import IAuthenticationPolicy
+from pyramid_sqlalchemy import Session
 from zope.interface import implementer
+
+from .models.users import User
 
 
 # Helper Functions
@@ -24,8 +28,9 @@ def create_jwt_token(user, token_secret):
 
 @implementer(IAuthenticationPolicy)
 class JWTAuthenticationPolicy(CallbackAuthenticationPolicy):
-    def __init__(self, token_secret):
+    def __init__(self, token_secret, callback=None):
         self.token_secret = token_secret
+        self.callback = callback
 
     def remember(self, request, principal, **kw):
         """ A no-op. JWT authentication does not provide a protocol for
@@ -38,10 +43,6 @@ class JWTAuthenticationPolicy(CallbackAuthenticationPolicy):
         forgetting the token. Client is responsible for that..
         """
         return []
-
-    def callback(self, username, request):
-        # TODO replace this with a proper groupfinder
-        return ['moonrock.Users']
 
     def unauthenticated_userid(self, request):
         authorization = request.headers.get('Authorization')
@@ -64,3 +65,14 @@ class JWTAuthenticationPolicy(CallbackAuthenticationPolicy):
             return payload['user']['_id']
         except KeyError:
             return None
+
+
+def groupfinder(username, request):
+    groups = []
+    try:
+        user = Session.query(User).filter(User.username == username).one()
+    except NoResultFound:
+        pass
+    else:
+        groups = user.groups
+    return groups

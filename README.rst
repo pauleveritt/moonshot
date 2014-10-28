@@ -30,7 +30,7 @@ Installation
 
 #. source env34/bin/activate
 
-#. python setup.py develop
+#. pip install -r requirements.txt
 
 #. pserve moonshot/backend.ini --reload
 

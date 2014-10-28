@@ -12,6 +12,8 @@ from ..models.users import (
     User
     )
 
+groups = ['moonrock.Users']
+
 USERS = [
     # Twitter usernames
     dict(
@@ -21,7 +23,8 @@ USERS = [
         first_name='Firstie',
         last_name='Lastie',
         twitter='paulweveritt',
-        password='password'
+        password='password',
+        groups=groups
     ),
     dict(
         id=2,
@@ -30,7 +33,8 @@ USERS = [
         first_name='STORM',
         last_name='Fburg',
         twitter='stormfburg',
-        password='password'
+        password='password',
+        groups=groups
     ),
     dict(
         id=3,
@@ -39,7 +43,8 @@ USERS = [
         first_name='Firstie',
         last_name='Lastie',
         twitter='chrismcdonough',
-        password='password'
+        password='password',
+        groups=groups
     ),
     dict(
         id=4,
@@ -48,7 +53,8 @@ USERS = [
         first_name='Firstie',
         last_name='Lastie',
         twitter='blaiselaflamme',
-        password='password'
+        password='password',
+        groups=groups
     ),
     dict(
         id=5,
@@ -57,7 +63,8 @@ USERS = [
         first_name='Firstie',
         last_name='Lastie',
         twitter='davidemoro',
-        password='password'
+        password='password',
+        groups=groups
     )
 ]
 
@@ -83,7 +90,8 @@ def main(argv=sys.argv):
                          first_name=user['first_name'],
                          last_name=user['last_name'],
                          twitter=user['twitter'],
-                         password=user['password'])
+                         password=user['password'],
+                         groups=user['groups'])
             Session.add(model)
 
 
