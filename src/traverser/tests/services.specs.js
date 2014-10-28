@@ -21,6 +21,20 @@ describe("Traverser Service", function () {
       expect(viewConfig.resourceType).toBe('folder');
     });
 
+    it("should make a viewMap (best match ordering)", function () {
+      var states = [
+        {name: 'folderview',
+          viewConfig: {resourceType: 'folder', name: 'default'}},
+        {name: 'folderview',
+          viewConfig: {resourceType: 'folder', name: 'default', marker: 'somemarker'}},
+        {name: 'some.route'}
+      ];
+      Traverser.makeViewMap(states);
+      var viewConfig = Traverser.viewMap.default[0];
+      expect(viewConfig.resourceType).toBe('folder');
+      expect(viewConfig.marker).toBe('somemarker');
+    });
+
   });
 
   describe("Resolve states", function () {
@@ -38,7 +52,7 @@ describe("Traverser Service", function () {
       expect(toState).toBe('folder');
     });
 
-    xit("should choose the highest precedence", function () {
+    it("should choose the highest precedence", function () {
       var states = [
         {name: 'view1',
           viewConfig: {name: 'default',
