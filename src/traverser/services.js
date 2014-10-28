@@ -39,6 +39,7 @@
                          name: vc.name,
                          resourceType: vc.resourceType,
                          stateName: state.name,
+                         containment: vc.containment,
                          marker: vc.marker
                        }
                      );
