@@ -114,8 +114,6 @@
         }
       });
 
-      console.debug(488448, viewResults);
-
       return matchingView;
     };
 
