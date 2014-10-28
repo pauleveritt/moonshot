@@ -25,13 +25,12 @@ describe("Traverser Service", function () {
       var states = [
         {name: 'folderview',
           viewConfig: {resourceType: 'folder', name: 'default'}},
-        {name: 'folderview',
+        {name: 'folderview-marker',
           viewConfig: {resourceType: 'folder', name: 'default', marker: 'somemarker'}},
         {name: 'some.route'}
       ];
       Traverser.makeViewMap(states);
       var viewConfig = Traverser.viewMap.default[0];
-      expect(viewConfig.resourceType).toBe('folder');
       expect(viewConfig.marker).toBe('somemarker');
     });
 
