@@ -2,20 +2,18 @@ import os
 import sys
 import transaction
 
-from sqlalchemy import engine_from_config
 from pyramid.config import Configurator
 from pyramid_sqlalchemy import Session
+from pyramid_sqlalchemy.meta import metadata
 from pyramid.paster import (
     get_appsettings,
     setup_logging,
-    )
-
-from .models.sqltraversal import BaseObject
+)
 
 from .models.site import (
     Document,
     Folder,
-    )
+)
 
 
 def usage(argv):
@@ -25,8 +23,8 @@ def usage(argv):
     sys.exit(1)
 
 
-
 def main(argv=sys.argv):
+    # Usage and configuration
     if len(argv) != 2:
         usage(argv)
     config_uri = argv[1]
@@ -34,13 +32,11 @@ def main(argv=sys.argv):
     settings = get_appsettings(config_uri)
     config = Configurator(settings=settings)
     config.include('pyramid_sqlalchemy')
-    config.include('pyramid_tm')
 
-    engine = engine_from_config(settings, 'sqlalchemy.')
-    BaseObject.metadata.create_all(engine)
-
+    # Make the database with schema and default data
     with transaction.manager:
+        metadata.create_all()
         root = Folder(name='', title='My SQLTraversal Root')
         Session.add(root)
         f1 = root['f1'] = Folder(title='Folder 1')
-        f1['da'] = Document(title='Document A')
+        f1['da'] = Document(title='Document 1A')

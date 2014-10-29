@@ -3,5 +3,6 @@ waitress==0.8
 PyJWT==0.2
 requests-oauthlib==0.4
 pyramid_tm==0.7
+pyramid_sqlalchemy==1.2.2
 git+git://github.com/wichert/rest_toolkit.git
 -e .

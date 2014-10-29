@@ -1,13 +1,6 @@
 from setuptools import setup
 
 requires = [
-    'pyramid',
-    'pyramid_jinja2',
-    'pyramid_tm',
-    'sqlalchemy',
-    'pyramid_tm',
-    'zope.sqlalchemy',
-    'pyramid_debugtoolbar'
 ]
 
 setup(name='tutorial',
