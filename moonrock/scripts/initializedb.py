@@ -10,11 +10,11 @@ from pyramid.paster import (
     setup_logging,
 )
 
-from moonrock.models.site import (
+from ..models.site import (
     Document,
     Folder,
 )
-from moonrock.models.users import User, USERS
+from ..models.users import User, USERS
 
 
 def usage(argv):

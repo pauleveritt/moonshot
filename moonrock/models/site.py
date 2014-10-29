@@ -1,3 +1,7 @@
+from pyramid.security import (
+    Allow,
+    Everyone,
+)
 from sqlalchemy import (
     Column,
     Integer,
@@ -5,12 +9,14 @@ from sqlalchemy import (
     ForeignKey,
     )
 
-from moonrock.models.sqltraversal import Node
+from .sqltraversal import Node
 
 class Folder(Node):
     __tablename__ = 'folder'
     id = Column(Integer, ForeignKey('node.id'), primary_key=True)
     title = Column(Text)
+    __acl__ = [(Allow, Everyone, 'view'),
+               (Allow, 'group:editors', 'edit')]
 
 
 class Document(Node):

@@ -7,10 +7,10 @@ from rest_toolkit.abc import ViewableResource
 from pyramid_sqlalchemy import Session
 
 from .models.users import User
-from moonrock.models.site import (
-    Folder,
-    Document
-)
+
+# Don't delete this...we have some kind of eager loading on
+# polymorphic identity tht causes an error if Folder is not imported.
+from .models.site import Folder, Document
 
 from .rest_ext import MoonSQLResource
 
@@ -52,13 +52,3 @@ class UserResource(MoonSQLResource, ViewableResource):
     @property
     def context_query(self):
         return Query(User).filter(User.id == self.userid)
-
-from pyramid.response import Response
-from pyramid.view import view_config
-
-@view_config(name='foo')
-def foo_view(context, request):
-    return Response(body='<h1>Response</h1>')
-
-# def includeme(config):
-#     config.scan('.views')
