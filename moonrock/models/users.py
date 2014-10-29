@@ -6,7 +6,7 @@ from sqlalchemy.types import (
 from sqlalchemy import Sequence
 from pyramid_sqlalchemy import BaseObject
 
-from .common import ArrayType
+from . import ArrayType
 
 groups = ['moonrock.Users']
 
