@@ -10,10 +10,12 @@ from pyramid.paster import (
     setup_logging,
 )
 
-from .models.site import (
+from moonrock.models.site import (
     Document,
     Folder,
 )
+# from moonrock.models.users import User
+# from moonrock.scripts.initializedb import USERS
 
 
 def usage(argv):
@@ -40,3 +42,14 @@ def main(argv=sys.argv):
         Session.add(root)
         f1 = root['f1'] = Folder(title='Folder 1')
         f1['da'] = Document(title='Document 1A')
+
+        # for user in USERS:
+        #     u = User(id=user['id'],
+        #              username=user['username'],
+        #              email=user['email'],
+        #              first_name=user['first_name'],
+        #              last_name=user['last_name'],
+        #              twitter=user['twitter'],
+        #              password=user['password'],
+        #              groups=user['groups'])
+        #     Session.add(u)

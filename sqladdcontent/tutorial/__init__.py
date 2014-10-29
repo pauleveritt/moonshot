@@ -1,6 +1,6 @@
 from pyramid.config import Configurator
 
-from .models.sqltraversal import (
+from moonrock.models.sqltraversal import (
     root_factory
 )
 

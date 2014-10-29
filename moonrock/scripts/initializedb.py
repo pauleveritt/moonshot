@@ -7,7 +7,7 @@ from pyramid.config import Configurator
 from pyramid_sqlalchemy import Session
 from sqlalchemy import engine_from_config
 
-from ..models.users import (
+from moonrock.models.users import (
     BaseObject,
     User
     )

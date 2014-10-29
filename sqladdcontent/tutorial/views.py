@@ -4,7 +4,7 @@ from pyramid.httpexceptions import HTTPFound
 from pyramid.location import lineage
 from pyramid.view import view_config
 
-from .models.site import (
+from moonrock.models.site import (
     Folder,
     Document
 )

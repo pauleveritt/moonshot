@@ -4,11 +4,11 @@ from sqlalchemy import (
     Unicode,
     ForeignKey,
     String
-    )
+)
 from sqlalchemy.orm import (
     relationship,
     backref
-    )
+)
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.util import classproperty
 
@@ -38,7 +38,7 @@ class Node(BaseObject):
         )
 
     def __setitem__(self, key, node):
-        node.name = key
+        node.name = str(key)
         if self.id is None:
             Session.flush()
         node.parent_id = self.id
