@@ -1,27 +1,18 @@
-from rest_toolkit.ext.sql import SQLResource
-
 from sqlalchemy import (
     Column,
     Integer,
     Unicode,
     ForeignKey,
     String
-    )
+)
 from sqlalchemy.orm import (
     relationship,
     backref
-    )
+)
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.util import classproperty
 
 from pyramid_sqlalchemy import BaseObject, Session
-
-def u(s):
-    # Backwards compatibility for Python 3 not having unicode()
-    try:
-        return unicode(s)
-    except NameError:
-        return str(s)
 
 
 def root_factory(request):
@@ -47,7 +38,7 @@ class Node(BaseObject):
         )
 
     def __setitem__(self, key, node):
-        node.name = u(key)
+        node.name = str(key)
         if self.id is None:
             Session.flush()
         node.parent_id = self.id

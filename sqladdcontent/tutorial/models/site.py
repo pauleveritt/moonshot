@@ -5,7 +5,7 @@ from sqlalchemy import (
     ForeignKey,
     )
 
-from .sqltraversal import Node
+from tutorial.models.sqltraversal import Node
 
 class Folder(Node):
     __tablename__ = 'folder'
