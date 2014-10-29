@@ -8,13 +8,13 @@ Authentication schemes for Moonrock:
 from urllib.parse import parse_qsl
 from urllib.parse import urlencode
 
+from pyramid.httpexceptions import HTTPFound, HTTPUnauthorized
+from pyramid_sqlalchemy import Session
 import requests
 from requests_oauthlib import OAuth1
 from rest_toolkit import resource
-from pyramid.httpexceptions import HTTPFound, HTTPUnauthorized
 
 from .security import create_jwt_token
-from pyramid_sqlalchemy import Session
 from .models.users import User
 
 
