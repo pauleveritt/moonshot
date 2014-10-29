@@ -14,11 +14,16 @@ def main(global_config, **settings):
 
     # Wire up security policy
     from moonrock.security import JWTAuthenticationPolicy
+
     config.set_authentication_policy(
         JWTAuthenticationPolicy(settings['TOKEN_SECRET'],
                                 callback=groupfinder)
     )
     config.set_authorization_policy(ACLAuthorizationPolicy())
+    config.include('moonrock.auth')
+    config.include('moonrock.subscribers')
 
     config.scan('.views')
+    config.add_static_view(name='/', path='moonrock:../dist')
+
     return config.make_wsgi_app()
