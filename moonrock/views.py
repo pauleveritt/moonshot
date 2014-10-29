@@ -7,6 +7,11 @@ from rest_toolkit.abc import ViewableResource
 from pyramid_sqlalchemy import Session
 
 from .models.users import User
+from moonrock.models.site import (
+    Folder,
+    Document
+)
+
 from .rest_ext import MoonSQLResource
 
 
@@ -55,5 +60,5 @@ from pyramid.view import view_config
 def foo_view(context, request):
     return Response(body='<h1>Response</h1>')
 
-def includeme(config):
-    config.scan('.views')
+# def includeme(config):
+#     config.scan('.views')

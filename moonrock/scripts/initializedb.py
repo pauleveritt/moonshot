@@ -2,17 +2,19 @@ import os
 import sys
 import transaction
 
-from pyramid.paster import get_appsettings
 from pyramid.config import Configurator
 from pyramid_sqlalchemy import Session
-from sqlalchemy import engine_from_config
-
-from moonrock.models.users import (
-    BaseObject,
-    User,
-    USERS
+from pyramid_sqlalchemy.meta import metadata
+from pyramid.paster import (
+    get_appsettings,
+    setup_logging,
 )
-from ..models.folder import Folder
+
+from moonrock.models.site import (
+    Document,
+    Folder,
+)
+from moonrock.models.users import User, USERS
 
 
 def usage(argv):
@@ -23,24 +25,30 @@ def usage(argv):
 
 
 def main(argv=sys.argv):
+    # Usage and configuration
+    if len(argv) != 2:
+        usage(argv)
     config_uri = argv[1]
+    setup_logging(config_uri)
     settings = get_appsettings(config_uri)
     config = Configurator(settings=settings)
     config.include('pyramid_sqlalchemy')
-    engine = engine_from_config(settings, 'sqlalchemy.')
-    BaseObject.metadata.create_all(engine)
+
+    # Make the database with schema and default data
     with transaction.manager:
+        metadata.create_all()
         root = Folder(name='', title='My SQLTraversal Root')
         Session.add(root)
+        f1 = root['f1'] = Folder(title='Folder 1')
+        f1['da'] = Document(title='Document 1A')
+
         for user in USERS:
-            model = User(id=user['id'],
-                         username=user['username'],
-                         email=user['email'],
-                         first_name=user['first_name'],
-                         last_name=user['last_name'],
-                         twitter=user['twitter'],
-                         password=user['password'],
-                         groups=user['groups'])
-            Session.add(model)
-
-
+            u = User(id=user['id'],
+                     username=user['username'],
+                     email=user['email'],
+                     first_name=user['first_name'],
+                     last_name=user['last_name'],
+                     twitter=user['twitter'],
+                     password=user['password'],
+                     groups=user['groups'])
+            Session.add(u)

@@ -23,14 +23,14 @@ class TutorialViews(object):
 
         return Session.query(User).all()
 
-    @view_config(renderer="templates/root.jinja2",
+    @view_config(renderer="tutorial:templates/root.jinja2",
                  context=Folder,
                  custom_predicates=[lambda c, r: c is r.root])
     def root(self):
         page_title = 'Quick Tutorial: Root'
         return dict(page_title=page_title)
 
-    @view_config(renderer="templates/folder.jinja2",
+    @view_config(renderer="tutorial:templates/folder.jinja2",
                  context=Folder)
     def folder(self):
         page_title = 'Quick Tutorial: Folder'
@@ -59,7 +59,7 @@ class TutorialViews(object):
         url = self.request.resource_url(new_document)
         return HTTPFound(location=url)
 
-    @view_config(renderer="templates/document.jinja2",
+    @view_config(renderer="tutorial:templates/document.jinja2",
                  context=Document)
     def document(self):
         page_title = 'Quick Tutorial: Document'
