@@ -1,8 +1,8 @@
 from pyramid.config import Configurator
+from pyramid.authorization import ACLAuthorizationPolicy
 
-from moonrock.models.sqltraversal import (
-    root_factory
-)
+from moonrock.models.sqltraversal import root_factory
+from moonrock.security import groupfinder
 
 
 def main(global_config, **settings):
@@ -11,6 +11,14 @@ def main(global_config, **settings):
     config.include('pyramid_tm')
     config.include('pyramid_sqlalchemy')
     config.include('pyramid_jinja2')
+
+    # Wire up security policy
+    from moonrock.security import JWTAuthenticationPolicy
+    config.set_authentication_policy(
+        JWTAuthenticationPolicy(settings['TOKEN_SECRET'],
+                                callback=groupfinder)
+    )
+    config.set_authorization_policy(ACLAuthorizationPolicy())
 
     config.scan('.views')
     return config.make_wsgi_app()
