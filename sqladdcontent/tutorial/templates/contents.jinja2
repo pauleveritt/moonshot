@@ -6,3 +6,10 @@
         </li>
     {% endfor %}
 </ul>
+<h4>Users</h4>
+    {% for user in view.users %}
+        <li>
+            {{ user.first_name }} {{ user.last_name }}
+        </li>
+    {% endfor %}
+</ul>

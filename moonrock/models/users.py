@@ -8,6 +8,63 @@ from pyramid_sqlalchemy import BaseObject
 
 from .common import ArrayType
 
+groups = ['moonrock.Users']
+
+USERS = [
+    # Twitter usernames
+    dict(
+        id=1,
+        username='pauleveritt',
+        email='p@x.com',
+        first_name='Firstie',
+        last_name='Lastie',
+        twitter='paulweveritt',
+        password='password',
+        groups=groups
+    ),
+    dict(
+        id=2,
+        username='stormfburg',
+        email='p@x.com',
+        first_name='STORM',
+        last_name='Fburg',
+        twitter='stormfburg',
+        password='password',
+        groups=groups
+    ),
+    dict(
+        id=3,
+        username='chrismcdonough',
+        email='p2@x.com',
+        first_name='Firstie',
+        last_name='Lastie',
+        twitter='chrismcdonough',
+        password='password',
+        groups=groups
+    ),
+    dict(
+        id=4,
+        username='blaflamme',
+        email='p2@x.com',
+        first_name='Firstie',
+        last_name='Lastie',
+        twitter='blaiselaflamme',
+        password='password',
+        groups=groups
+    ),
+    dict(
+        id=5,
+        username='davidemoro',
+        email='p2@x.com',
+        first_name='Firstie',
+        last_name='Lastie',
+        twitter='davidemoro',
+        password='password',
+        groups=groups
+    )
+]
+
+
 class User(BaseObject):
     __tablename__ = 'users'
 

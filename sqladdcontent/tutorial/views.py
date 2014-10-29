@@ -16,6 +16,13 @@ class TutorialViews(object):
         self.request = request
         self.parents = reversed(list(lineage(context)))
 
+    @property
+    def users(self):
+        from pyramid_sqlalchemy import Session
+        from moonrock.models.users import User
+
+        return Session.query(User).all()
+
     @view_config(renderer="templates/root.jinja2",
                  context=Folder,
                  custom_predicates=[lambda c, r: c is r.root])
@@ -27,6 +34,7 @@ class TutorialViews(object):
                  context=Folder)
     def folder(self):
         page_title = 'Quick Tutorial: Folder'
+
         return dict(page_title=page_title)
 
     @view_config(name="add_folder", context=Folder)
@@ -61,7 +69,5 @@ class TutorialViews(object):
 @view_config(name='foo')
 def foo_view(context, request):
     from pyramid.response import Response
-
-    print(context.title)
 
     return Response(body='<h1>hello</h1>')

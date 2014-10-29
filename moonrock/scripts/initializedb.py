@@ -9,65 +9,11 @@ from sqlalchemy import engine_from_config
 
 from moonrock.models.users import (
     BaseObject,
-    User
-    )
+    User,
+    USERS
+)
 from ..models.folder import Folder
 
-groups = ['moonrock.Users']
-
-USERS = [
-    # Twitter usernames
-    dict(
-        id=1,
-        username='pauleveritt',
-        email='p@x.com',
-        first_name='Firstie',
-        last_name='Lastie',
-        twitter='paulweveritt',
-        password='password',
-        groups=groups
-    ),
-    dict(
-        id=2,
-        username='stormfburg',
-        email='p@x.com',
-        first_name='STORM',
-        last_name='Fburg',
-        twitter='stormfburg',
-        password='password',
-        groups=groups
-    ),
-    dict(
-        id=3,
-        username='chrismcdonough',
-        email='p2@x.com',
-        first_name='Firstie',
-        last_name='Lastie',
-        twitter='chrismcdonough',
-        password='password',
-        groups=groups
-    ),
-    dict(
-        id=4,
-        username='blaflamme',
-        email='p2@x.com',
-        first_name='Firstie',
-        last_name='Lastie',
-        twitter='blaiselaflamme',
-        password='password',
-        groups=groups
-    ),
-    dict(
-        id=5,
-        username='davidemoro',
-        email='p2@x.com',
-        first_name='Firstie',
-        last_name='Lastie',
-        twitter='davidemoro',
-        password='password',
-        groups=groups
-    )
-]
 
 def usage(argv):
     cmd = os.path.basename(argv[0])
@@ -87,7 +33,7 @@ def main(argv=sys.argv):
         root = Folder(name='', title='My SQLTraversal Root')
         Session.add(root)
         for user in USERS:
-            model = User(id = user['id'],
+            model = User(id=user['id'],
                          username=user['username'],
                          email=user['email'],
                          first_name=user['first_name'],
