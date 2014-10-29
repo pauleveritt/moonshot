@@ -2,6 +2,7 @@
 
   function Traverser($http) {
     var _this = this;
+    var predicateOrder = ['resourceType', 'marker', 'containment'];
 
     this.x = 1;
 
@@ -24,24 +25,41 @@
                 })
         .forEach(function (state) {
                    var vc = state.viewConfig;
+                   var viewName;
+                   var tmpElem;
+                   var insertIndex = 0;
+                   var tmpIndex = 0;
+                   var tmpArray;
+                   var slicedArray;
                    if (vc) {
                      // This state has a viewConfig
-                     var viewName = vc.name;
+                     viewName = vc.name;
+                     tmpElem =  {
+                       name: viewName,
+                       resourceType: vc.resourceType,
+                       stateName: state.name,
+                       containment: vc.containment,
+                       marker: vc.marker
+                     };
 
                      // If the viewMap doesn't yet have this
                      // viewName, add it with an empty seq
                      if (!_this.viewMap[viewName]) {
-                       _this.viewMap[viewName] = [];
+                       _this.viewMap[viewName] = [tmpElem];
                      }
-                     // Now push info from this state onto the viewMap
-                     _this.viewMap[viewName].push(
-                       {
-                         name: vc.name,
-                         resourceType: vc.resourceType,
-                         stateName: state.name,
-                         marker: vc.marker
-                       }
-                     );
+                     else {
+                       // Now push info from this state onto the viewMap
+                       tmpArray = _this.viewMap[viewName];
+                       predicateOrder.forEach(function (predicate) {
+                         tmpIndex = _.findIndex(tmpArray, predicate);
+                         if (tmpIndex >= 0) {
+                           insertIndex = insertIndex + tmpIndex;
+                           tmpArray = tmpArray.slice(tmpIndex);
+                         }
+                       });
+
+                       _this.viewMap[viewName].splice(insertIndex, 0, tmpElem);
+                     }
 
                    }
                  });
@@ -100,7 +118,7 @@
             r.isResourceType = viewConfig.resourceType === resourceType;
           }
           if (viewConfig.containment) {
-            r.inParentTypes = _.contains(parentTypes, viewConfig.contains);
+            r.inParentTypes = _.contains(parentTypes, viewConfig.containment);
           }
           if (viewConfig.marker) {
 //          inParentMarkers = _.contains(parentMarkers, viewConfig.marker);
@@ -113,8 +131,6 @@
           return r;
         }
       });
-
-      console.debug(488448, viewResults);
 
       return matchingView;
     };
