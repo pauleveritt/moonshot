@@ -1,5 +1,9 @@
 from sqlalchemy.orm import Query
 from pyramid.security import Authenticated
+from pyramid.view import (
+    view_config,
+    view_defaults
+)
 
 from rest_toolkit import resource
 from rest_toolkit.abc import ViewableResource
@@ -52,3 +56,27 @@ class UserResource(MoonSQLResource, ViewableResource):
     @property
     def context_query(self):
         return Query(User).filter(User.id == self.userid)
+
+
+#
+# Traversal
+#
+@view_defaults(route_name='traverse', renderer='json', context=Folder)
+class FolderViews:
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    @view_config()
+    def default_view(self):
+        return dict(context=self.context)
+
+    @view_config(name='history')
+    def history_view(self):
+        history = [1, 2, 3]
+        return dict(context=self.context, history=history)
+
+
+def includeme(config):
+    config.add_route('traverse', '/api/root/*traverse')
+    config.scan('.views')

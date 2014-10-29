@@ -23,7 +23,8 @@ def main(global_config, **settings):
     config.include('.auth')
     config.include('.subscribers')
 
-    config.scan('.views')
+    config.include('.views')
+
     config.add_static_view(name='/', path='moonrock:../dist')
 
     return config.make_wsgi_app()
