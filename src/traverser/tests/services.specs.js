@@ -47,6 +47,34 @@ describe("Traverser Service", function () {
       expect(viewConfig.resourceType).toBe('folder');
     });
 
+    it("should make a viewMap (special case - no resourceType)", function () {
+      var states = [
+        {name: 'folderview',
+          viewConfig: {resourceType: 'folder', name: 'default'}},
+        {name: 'folderview1',
+          viewConfig: {name: 'default'}},
+        {name: 'some.route'}
+      ];
+      Traverser.makeViewMap(states);
+      var viewConfig = Traverser.viewMap.default[1];
+      expect(viewConfig.resourceType).toBe(undefined);
+    });
+
+    it("should make a viewMap (special case - no resourceType + marker)", function () {
+      var states = [
+        {name: 'folderview',
+          viewConfig: {resourceType: 'folder', name: 'default'}},
+        {name: 'folderview1',
+          viewConfig: {name: 'default'}},
+        {name: 'folderview2',
+          viewConfig: {name: 'default', marker: 'marker1'}},
+        {name: 'some.route'}
+      ];
+      Traverser.makeViewMap(states);
+      expect(Traverser.viewMap.default[0].marker).toBe('marker1');
+      expect(Traverser.viewMap.default[1].resourceType).toBe('folder');
+    });
+
     it("should make a viewMap (should update stateName)", function () {
       var states = [
         {name: 'folderview',
