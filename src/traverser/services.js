@@ -2,7 +2,7 @@
 
   function Traverser($http) {
     var _this = this;
-    var predicateOrder = ['resourceType', 'marker', 'containment'];
+    var predicateOrder = ['marker', 'containment', 'resourceType'];
 
     this.x = 1;
 
@@ -21,50 +21,42 @@
       this.viewMap = {};
       _(states)
         .filter(function (state) {
-                  return _.has(state, "viewConfig");
-                })
+          return _.has(state, "viewConfig");
+          })
         .forEach(function (state) {
-                   var vc = state.viewConfig;
-                   var viewName;
-                   var tmpElem;
-                   var insertIndex = 0;
-                   var tmpIndex = 0;
-                   var tmpArray;
-                   var slicedArray;
-                   if (vc) {
-                     // This state has a viewConfig
-                     viewName = vc.name;
-                     tmpElem =  {
-                       name: viewName,
-                       resourceType: vc.resourceType,
-                       stateName: state.name,
-                       containment: vc.containment,
-                       marker: vc.marker
-                     };
+          var vc = state.viewConfig;
+          var viewName;
+          var tmpElem;
+          if (vc) {
+            // This state has a viewConfig
+            viewName = vc.name;
+            tmpElem =  {
+              name: viewName,
+              resourceType: vc.resourceType,
+              stateName: state.name,
+              containment: vc.containment,
+              marker: vc.marker
+            };
 
-                     // If the viewMap doesn't yet have this
-                     // viewName, add it with an empty seq
-                     if (!_this.viewMap[viewName]) {
-                       _this.viewMap[viewName] = [tmpElem];
-                     }
-                     else {
-                       // Now push info from this state onto the viewMap
-                       tmpArray = _this.viewMap[viewName];
-                       predicateOrder.forEach(function (predicate) {
-                         tmpIndex = _.findIndex(tmpArray, predicate);
-                         if (tmpIndex >= 0) {
-                           insertIndex = insertIndex + tmpIndex;
-                           tmpArray = tmpArray.slice(tmpIndex);
-                         }
-                       });
+            // If the viewMap doesn't yet have this
+            // viewName, add it with an empty seq
+            if (!_this.viewMap[viewName]) {
+              _this.viewMap[viewName] = [tmpElem];
+            }
+            else {
+              _this.viewMap[viewName].push(tmpElem);
+            }
+          }
+        });
 
-                       _this.viewMap[viewName].splice(insertIndex, 0, tmpElem);
-                     }
+        // Post processing of viewMap with best match order
+        _(_this.viewMap)
+          .forEach(function (value, key) {
+            // TODO: use predicateOrder and improve this code
+            _this.viewMap[key] = _(_this.viewMap[key]).chain().sortBy(function (item) {return item.marker;}).sortBy(function(item) {return item.containment;}).sortBy(function(item) {return item.marker;}).value();
+          });
 
-                   }
-                 });
-
-      this.disableTraversal = _.isEmpty(this.viewMap);
+        this.disableTraversal = _.isEmpty(this.viewMap);
     };
 
     this.resolvePath = function (path) {
