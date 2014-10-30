@@ -98,6 +98,57 @@ describe("Traverser Service", function () {
       var viewConfig = Traverser.viewMap.default[0];
       expect(viewConfig.marker).toBe('somemarker');    // marker highest precedence?
     });
+
+    it("should make a viewMap (bug 1)", function () {
+      // the first version of viewMap algorithm suffers a problem
+      var states = [
+        {name: 'folderview-1',
+          viewConfig: {resourceType: 'f1', name: 'default'}},
+        {name: 'folderview-2',
+          viewConfig: {resourceType: 'f2', name: 'default'}},
+        {name: 'folderview-3',
+          viewConfig: {resourceType: 'f1', name: 'default', containment: 'c1'}},
+        {name: 'folderview-4',
+          viewConfig: {resourceType: 'f3', name: 'default'}},
+        {name: 'folderview-5',
+          viewConfig: {resourceType: 'f3', name: 'default', containment: 'c1'}}
+      ];
+      // we should get f3c1, f3, f2, f1c1, f1 instead of f3, f2, f1c1, f3c1, f1
+      Traverser.makeViewMap(states);
+      var viewConfigDefault = Traverser.viewMap.default;
+      var config1Index = _.findIndex(viewConfigDefault, {stateName: 'folderview-1'});
+      var config2Index = _.findIndex(viewConfigDefault, {stateName: 'folderview-2'});
+      var config3Index = _.findIndex(viewConfigDefault, {stateName: 'folderview-3'});
+      var config4Index = _.findIndex(viewConfigDefault, {stateName: 'folderview-4'});
+      var config5Index = _.findIndex(viewConfigDefault, {stateName: 'folderview-5'});
+
+      // viewConfigs should exists
+      expect(config1Index >= 0).toBe(true);
+      expect(config2Index >= 0).toBe(true);
+      expect(config3Index >= 0).toBe(true);
+      expect(config4Index >= 0).toBe(true);
+      expect(config5Index >= 0).toBe(true);
+
+      // order precedence
+      expect(config3Index < config1Index).toBe(true);
+      expect(config5Index < config4Index).toBe(true);
+    });
+
+    it("should make a viewMap (bug 2)", function () {
+      // the first version of viewMap algorithm suffers a problem
+      var states = [
+        {name: 'folderview-1',
+          viewConfig: {resourceType: 'f1', name: 'default'}},
+        {name: 'folderview-2',
+          viewConfig: {resourceType: 'f1', name: 'default', marker: 'm1', containment: 'c1'}},
+        {name: 'folderview-3',
+          viewConfig: {resourceType: 'f1', name: 'default', containment: 'c1'}},
+      ];
+      // we should get f1m1c1, f1c1, f1 instead of f1c1, f1m1c1, f1
+      Traverser.makeViewMap(states);
+      var viewConfig = Traverser.viewMap.default[0];
+      expect(viewConfig.stateName).toBe('folderview-2');
+    });
   });
 
   describe("Resolve states", function () {
