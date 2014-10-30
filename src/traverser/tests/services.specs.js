@@ -10,6 +10,22 @@ describe("Traverser Service", function () {
 
   describe("Making a view map", function () {
 
+    it("should NOT make a viewMap", function () {
+      var states = [
+        {name: 'some.route'}
+      ];
+      Traverser.makeViewMap(states);
+      expect(_.isEmpty(Traverser.viewMap)).toBe(true);
+    });
+
+    it("should NOT make a viewMap (check disableTraversal false)", function () {
+      var states = [
+        {name: 'some.route'}
+      ];
+      Traverser.makeViewMap(states);
+      expect(Traverser.disableTraversal).toBe(true);
+    });
+
     it("should make a viewMap", function () {
       var states = [
         {name: 'folderview',
