@@ -2,7 +2,6 @@
 
   function Traverser($http) {
     var _this = this;
-    var predicateOrder = ['marker', 'containment', 'resourceType'];
 
     // At startup, take the list of states and make a viewMap. The
     // viewMap will look like:
@@ -15,46 +14,74 @@
     // Meaning, it has the predicate information used in Pyramid
     // views. We key on viewName just to speed up the resolution.
     this.viewMap = {};
+    this.resetViewMap = function() {
+      // Reset viewMap
+      _this.viewMap = {};
+    };
+    this.addStateToViewMap = function(state) {
+      // Add a new state to viewMap (without best-match ordering)
+      var vc = state.viewConfig;
+      var viewName;
+      var tmpElem;
+      if (vc) {
+        // This state has a viewConfig
+        viewName = vc.name;
+        tmpElem =  {
+          name: viewName,
+          resourceType: vc.resourceType,
+          stateName: state.name,
+          containment: vc.containment,
+          marker: vc.marker
+        };
+
+        // If the viewMap doesn't yet have this
+        // viewName, add it with an empty seq
+        if (!_this.viewMap[viewName]) {
+          _this.viewMap[viewName] = [tmpElem];
+        }
+        else {
+          _this.viewMap[viewName].push(tmpElem);
+        }
+      }
+    };
+    this.updateTraversal = function () {
+      // Update _this.disableTraversal property if _this.viewMap is empty
+      _this.disableTraversal = _.isEmpty(_this.viewMap);
+    };
+    this.orderViewMap = function () {
+      // Post processing of viewMap with best match order
+      _(_this.viewMap)
+        .forEach(function (value, key) {
+          _this.viewMap[key] = _(_this.viewMap[key])
+            .chain()
+            .sortBy(function (item) {
+              return item.marker;
+              })
+            .sortBy(function (item) {
+              return item.containment;
+              })
+            .sortBy(function (item) {
+              return item.marker;
+              })
+            .value();
+        });
+    };
     this.makeViewMap = function (states) {
-      this.viewMap = {};
+      // reset view map
+      _this.resetViewMap();
+
+      // add (only viewConfig based) states to viewMap
       _(states)
         .filter(function (state) {
           return _.has(state, "viewConfig");
           })
-        .forEach(function (state) {
-          var vc = state.viewConfig;
-          var viewName;
-          var tmpElem;
-          if (vc) {
-            // This state has a viewConfig
-            viewName = vc.name;
-            tmpElem =  {
-              name: viewName,
-              resourceType: vc.resourceType,
-              stateName: state.name,
-              containment: vc.containment,
-              marker: vc.marker
-            };
+        .forEach(_this.addStateToViewMap);
 
-            // If the viewMap doesn't yet have this
-            // viewName, add it with an empty seq
-            if (!_this.viewMap[viewName]) {
-              _this.viewMap[viewName] = [tmpElem];
-            }
-            else {
-              _this.viewMap[viewName].push(tmpElem);
-            }
-          }
-        });
+      // Post processing of viewMap with best match order
+      _this.orderViewMap();
 
-        // Post processing of viewMap with best match order
-        _(_this.viewMap)
-          .forEach(function (value, key) {
-            // TODO: use predicateOrder and improve this code
-            _this.viewMap[key] = _(_this.viewMap[key]).chain().sortBy(function (item) {return item.marker;}).sortBy(function(item) {return item.containment;}).sortBy(function(item) {return item.marker;}).value();
-          });
-
-        this.disableTraversal = _.isEmpty(this.viewMap);
+      // Update _this.disableTraversal property if _this.viewMap is empty
+      _this.updateTraversal();
     };
 
     this.resolvePath = function (path) {
