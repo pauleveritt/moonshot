@@ -18,12 +18,22 @@ describe("Traverser Service", function () {
       expect(_.isEmpty(Traverser.viewMap)).toBe(true);
     });
 
-    it("should NOT make a viewMap (check disableTraversal false)", function () {
+    it("should NOT make a viewMap (check disableTraversal true)", function () {
       var states = [
         {name: 'some.route'}
       ];
       Traverser.makeViewMap(states);
       expect(Traverser.disableTraversal).toBe(true);
+    });
+
+    it("should make a viewMap (check disableTraversal false)", function () {
+      var states = [
+        {name: 'folderview',
+          viewConfig: {resourceType: 'folder', name: 'default'}},
+        {name: 'some.route'}
+      ];
+      Traverser.makeViewMap(states);
+      expect(Traverser.disableTraversal).toBe(false);
     });
 
     it("should make a viewMap", function () {
