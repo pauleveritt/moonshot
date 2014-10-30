@@ -4,8 +4,6 @@
     var _this = this;
     var predicateOrder = ['marker', 'containment', 'resourceType'];
 
-    this.x = 1;
-
     // At startup, take the list of states and make a viewMap. The
     // viewMap will look like:
     // default:
