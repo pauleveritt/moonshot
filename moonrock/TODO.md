@@ -1,5 +1,6 @@
 ## Moonrock TODO list
 
+- [ ] Convert to __acl__ as a function
 - [X] make a branch
 - [X] change the directory name and clean up references
 - [X] start a README.md and TODO.md in moonrock

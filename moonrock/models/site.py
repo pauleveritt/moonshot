@@ -22,7 +22,8 @@ class Folder(Node):
     def __json__(self, request):
         return dict(
             id=self.id,
-            title=self.title
+            title=self.title,
+            resourceType='Folder'
         )
 
 

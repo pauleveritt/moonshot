@@ -69,12 +69,33 @@ class FolderViews:
 
     @view_config()
     def default_view(self):
-        return dict(context=self.context)
+        parents = ['a', 'b']
+        response = dict(
+            schema='some_schema',
+            data=dict(
+                context=self.context,
+                viewName='default',
+                parents=parents
+            )
+        )
+        print('\n ## Response', response)
+        return response
 
     @view_config(name='history')
     def history_view(self):
         history = [1, 2, 3]
-        return dict(context=self.context, history=history)
+        parents = ['a', 'b']
+        response = dict(
+            schema='some_schema',
+            data=dict(
+                context=self.context,
+                parents=parents,
+                view=dict(
+                    history=history
+                )
+            )
+        )
+        return response
 
 
 def includeme(config):
