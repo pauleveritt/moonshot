@@ -209,6 +209,16 @@ describe("Traverser Service", function () {
 
     var toState;
 
+    it("no available state (missing view)", function () {
+      var states = [
+        {name: 'state1', viewConfig: {name: 'default'}}
+      ];
+      Traverser.makeViewMap(states);
+      var context = {title: 'Context 1'};
+      toState = Traverser.resolveState(context, 'aview');
+      expect(toState).toBe(undefined);
+    });
+
     it("should choose the highest precedence (just one state)", function () {
       var states = [
         {name: 'state1', viewConfig: {name: 'default'}}

@@ -96,45 +96,50 @@
       // Get the view matching this resolved viewName from the viewMap
       views = _this.viewMap[viewName];
 
-      // Get some of the data needed by the predicates
-      parentTypes = _.uniq(_.map(parents, function (p) {
-        return p.resourceType;
-      }));
-//        markers = _.map(parents, function (p) {
-//          return p.markers;
-//        }),
-//        parentMarkers = _.uniq(_.flatten(markers)),
-      markers = context.markers;
-      pathInfo = context.path;
-
-      // Go through all the views, assigning a score
-      matchingView = null;
-      for (i=0; i<views.length; i++) {
-        viewConfig = views[i];
-
-        if (viewConfig.resourceType) {
-          if (viewConfig.resourceType !== resourceType) {
+      if (views) {
+        // Get some of the data needed by the predicates
+        parentTypes = _.uniq(_.map(parents, function (p) {
+          return p.resourceType;
+        }));
+  //        markers = _.map(parents, function (p) {
+  //          return p.markers;
+  //        }),
+  //        parentMarkers = _.uniq(_.flatten(markers)),
+        markers = context.markers;
+        pathInfo = context.path;
+  
+        // Go through all the views, assigning a score
+        matchingView = null;
+        for (i=0; i<views.length; i++) {
+          viewConfig = views[i];
+  
+          if (viewConfig.resourceType) {
+            if (viewConfig.resourceType !== resourceType) {
+                continue;
+            }
+          }
+          if (viewConfig.containment) {
+            if (! _.contains(parentTypes, viewConfig.containment)) {
+                continue;
+            }
+          }
+          if (viewConfig.marker) {
+            if (! _.contains(markers, viewConfig.marker)) {
+              continue
+            }
+          }
+          if (viewConfig.pathInfo) {
+            if (! _.contains(pathInfo, viewConfig.pathInfo)) {
               continue;
-          }
-        }
-        if (viewConfig.containment) {
-          if (! _.contains(parentTypes, viewConfig.containment)) {
-              continue;
-          }
-        }
-        if (viewConfig.marker) {
-          if (! _.contains(markers, viewConfig.marker)) {
-            continue
-          }
-        }
-        if (viewConfig.pathInfo) {
-          if (! _.contains(pathInfo, viewConfig.pathInfo)) {
-            continue;
-          }
+            }
+          };
+  
+          return viewConfig.stateName;
+          
         };
-
-        return viewConfig.stateName;
-        
+      }
+      else {
+        return undefined;
       }
 /*      viewResults = _.map(views, function (viewConfig) {
         if (!matchingView) {
