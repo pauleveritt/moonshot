@@ -209,29 +209,36 @@ describe("Traverser Service", function () {
 
     var toState;
 
-    it("should choose the highest precedence", function () {
+    it("should choose the highest precedence (just one state)", function () {
       var states = [
-        {name: 'some-state', viewConfig: {name: 'default'}
-        }
+        {name: 'state1', viewConfig: {name: 'default'}}
       ];
       Traverser.makeViewMap(states);
-      var args = {title: 'Context 1', viewName: 'default'};
-      toState = Traverser.resolveState(args);
-      expect(toState).toBe('folder');
+      var context = {title: 'Context 1'};
+      toState = Traverser.resolveState(context, 'default');
+      expect(toState).toBe('state1');
     });
 
-    it("should choose the highest precedence", function () {
+    it("should choose the highest precedence (no marker interface)", function () {
       var states = [
-        {name: 'view1',
-          viewConfig: {name: 'default',
-            resourceType: 'folder'}
-        }
+        {name: 'state1', viewConfig: {name: 'default'}},
+        {name: 'state2', viewConfig: {name: 'default', marker: 'somemarker'}}
       ];
       Traverser.makeViewMap(states);
+      var context = {title: 'Context 1'};
+      toState = Traverser.resolveState(context, 'default');
+      expect(toState).toBe('state1');
+    });
 
-
-      var viewConfig = Traverser.viewMap.default[0];
-      expect(viewConfig.resourceType).toBe('folder');
+    it("should choose the highest precedence (with marker interface)", function () {
+      var states = [
+        {name: 'state1', viewConfig: {name: 'default'}},
+        {name: 'state2', viewConfig: {name: 'default', marker: 'somemarker'}}
+      ];
+      Traverser.makeViewMap(states);
+      var context = {title: 'Context 1', markers: ['somemarker']};
+      toState = Traverser.resolveState(context, 'default');
+      expect(toState).toBe('state2');
     });
 
   });

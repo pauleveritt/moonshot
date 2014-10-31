@@ -91,26 +91,52 @@
     this.resolveState = function (context, viewName, parents) {
       // Based on request info, find the matching view in the view
       // map based on priority.
+      var views, parentTypes, matchingView, i, view;
 
       // Get the view matching this resolved viewName from the viewMap
-      var views = _this.viewMap[viewName];
+      views = _this.viewMap[viewName];
 
       // Get some of the data needed by the predicates
-      var
-        resourceType = context.resourceType,
-        parentTypes = _.uniq(_.map(parents, function (p) {
-          return p.resourceType;
-        })),
+      parentTypes = _.uniq(_.map(parents, function (p) {
+        return p.resourceType;
+      }));
 //        markers = _.map(parents, function (p) {
 //          return p.markers;
 //        }),
 //        parentMarkers = _.uniq(_.flatten(markers)),
-        markers = context.markers;
+      markers = context.markers;
       pathInfo = context.path;
 
       // Go through all the views, assigning a score
-      var matchingView = null;
-      var viewResults = _.map(views, function (viewConfig) {
+      matchingView = null;
+      for (i=0; i<views.length; i++) {
+        viewConfig = views[i];
+
+        if (viewConfig.resourceType) {
+          if (viewConfig.resourceType !== resourceType) {
+              continue;
+          }
+        }
+        if (viewConfig.containment) {
+          if (! _.contains(parentTypes, viewConfig.containment)) {
+              continue;
+          }
+        }
+        if (viewConfig.marker) {
+          if (! _.contains(markers, viewConfig.marker)) {
+            continue
+          }
+        }
+        if (viewConfig.pathInfo) {
+          if (! _.contains(pathInfo, viewConfig.pathInfo)) {
+            continue;
+          }
+        };
+
+        return viewConfig.stateName;
+        
+      }
+/*      viewResults = _.map(views, function (viewConfig) {
         if (!matchingView) {
           // Initialize all the possible predicates
           var r = {stateName: viewConfig.stateName};
@@ -150,6 +176,7 @@
       });
 
       return matchingView;
+*/
     };
 
     this.transitionTo = function (context, viewName, parents) {
