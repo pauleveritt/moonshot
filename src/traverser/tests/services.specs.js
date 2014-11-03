@@ -295,6 +295,20 @@ describe("Traverser Service", function () {
       expect(toState).toBe('folderview2');
     });
 
+    it("should choose the highest precedence (special case - containment)", function () {
+      var states = [
+        {name: 'folderview',
+          viewConfig: {resourceType: 'folder', name: 'default'}},
+        {name: 'folderview-containment',
+          viewConfig: {resourceType: 'folder', name: 'default', containment: 'rootfolder'}},
+        {name: 'some.route'}
+      ];
+      Traverser.makeViewMap(states);
+      var context = {title: 'Context 1', resourceType: 'folder'};
+      toState = Traverser.resolveState(context, 'default', [{resourceType: 'rootfolder'}]);
+      expect(toState).toBe('folderview-containment');
+    });
+
   });
 
 });
