@@ -189,7 +189,7 @@ describe("Traverser Service", function () {
     });
 
     it("should make a viewMap (bug 2)", function () {
-      // the first version of viewMap algorithm suffers a problem
+      // the very first version of viewMap algorithm suffers a problem
       var states = [
         {name: 'folderview-1',
           viewConfig: {resourceType: 'f1', name: 'default'}},
@@ -389,6 +389,22 @@ describe("Traverser Service", function () {
       var context = {title: 'Context 1', resourceType: 'f3'};
       toState = Traverser.resolveState(context, 'default', [{resourceType: 'c1'}]);
       expect(toState).toBe('folderview-5');
+    });
+
+    it("should choose the highest precedence (bug 2 case - containment match)", function () {
+      // the very first version of viewMap algorithm suffers a problem
+      var states = [
+        {name: 'folderview-1',
+          viewConfig: {resourceType: 'f1', name: 'default'}},
+        {name: 'folderview-2',
+          viewConfig: {resourceType: 'f1', name: 'default', marker: 'm1', containment: 'c1'}},
+        {name: 'folderview-3',
+          viewConfig: {resourceType: 'f1', name: 'default', containment: 'c1'}},
+      ];
+      Traverser.makeViewMap(states);
+      var context = {title: 'Context 1', resourceType: 'f1'};
+      toState = Traverser.resolveState(context, 'default', [{resourceType: 'c1'}]);
+      expect(toState).toBe('folderview-3');
     });
 
   });
