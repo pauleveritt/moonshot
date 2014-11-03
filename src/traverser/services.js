@@ -114,7 +114,7 @@
           viewConfig = views[i];
   
           if (viewConfig.resourceType) {
-            if (viewConfig.resourceType !== resourceType) {
+            if (viewConfig.resourceType !== context.resourceType) {
                 continue;
             }
           }
