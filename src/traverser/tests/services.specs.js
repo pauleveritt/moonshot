@@ -407,6 +407,22 @@ describe("Traverser Service", function () {
       expect(toState).toBe('folderview-3');
     });
 
+    it("should choose the highest precedence (bug 2 case - marker and containment match)", function () {
+      // the very first version of viewMap algorithm suffers a problem
+      var states = [
+        {name: 'folderview-1',
+          viewConfig: {resourceType: 'f1', name: 'default'}},
+        {name: 'folderview-2',
+          viewConfig: {resourceType: 'f1', name: 'default', marker: 'm1', containment: 'c1'}},
+        {name: 'folderview-3',
+          viewConfig: {resourceType: 'f1', name: 'default', containment: 'c1'}},
+      ];
+      Traverser.makeViewMap(states);
+      var context = {title: 'Context 1', resourceType: 'f1', markers: ['marker1', 'm1']};
+      toState = Traverser.resolveState(context, 'default', [{resourceType: 'c1'}]);
+      expect(toState).toBe('folderview-2');
+    });
+
   });
 
 });
