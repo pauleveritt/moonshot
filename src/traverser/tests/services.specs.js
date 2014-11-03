@@ -251,7 +251,7 @@ describe("Traverser Service", function () {
       expect(toState).toBe('state2');
     });
 
-    it("should choose the highest precedence (special case - no resourceType)", function () {
+    it("should choose the highest precedence (special case - no resourceType match)", function () {
       var states = [
         {name: 'folderview',
           viewConfig: {resourceType: 'folder', name: 'default'}},
@@ -263,6 +263,20 @@ describe("Traverser Service", function () {
       var context = {title: 'Context 1', resourceType: 'MyFolder'};
       toState = Traverser.resolveState(context, 'default');
       expect(toState).toBe('folderview1');
+    });
+
+    it("should choose the highest precedence (special case - resourceType match)", function () {
+      var states = [
+        {name: 'folderview',
+          viewConfig: {resourceType: 'folder', name: 'default'}},
+        {name: 'folderview1',
+          viewConfig: {name: 'default'}},
+        {name: 'some.route'}
+      ];
+      Traverser.makeViewMap(states);
+      var context = {title: 'Context 1', resourceType: 'folder'};
+      toState = Traverser.resolveState(context, 'default');
+      expect(toState).toBe('folderview');
     });
 
   });
