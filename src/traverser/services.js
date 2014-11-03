@@ -98,13 +98,15 @@
 
       if (views) {
         // Get some of the data needed by the predicates
-        parentTypes = _.uniq(_.map(parents, function (p) {
-          return p.resourceType;
-        }));
-  //        markers = _.map(parents, function (p) {
-  //          return p.markers;
-  //        }),
-  //        parentMarkers = _.uniq(_.flatten(markers)),
+        parentsChain =_(parents)
+          .chain()
+          .map(function (p) {
+            return [p.resourceType, p.markers];
+            })
+          .zip()
+          .value();
+        parentTypes = _.uniq(parentsChain[0]);
+//        parentMarkers = _.uniq(parentsChain[1]);
         markers = context.markers;
         pathInfo = context.path;
   
