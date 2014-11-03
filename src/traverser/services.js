@@ -31,6 +31,7 @@
           resourceType: vc.resourceType,
           stateName: state.name,
           containment: vc.containment,
+          pathInfo: vc.pathInfo,
           marker: vc.marker
         };
 
@@ -58,7 +59,13 @@
               return item.marker;
               })
             .sortBy(function (item) {
+              return item.resourceType;
+              })
+            .sortBy(function (item) {
               return item.containment;
+              })
+            .sortBy(function (item) {
+              return item.pathInfo;
               })
             .sortBy(function (item) {
               return item.marker;
