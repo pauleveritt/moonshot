@@ -150,7 +150,7 @@ describe("Traverser Service", function () {
       ];
       Traverser.makeViewMap(states);
       var viewConfig = Traverser.viewMap.default[0];
-      expect(viewConfig.marker).toBe('somemarker');    // marker highest precedence?
+      expect(viewConfig.marker).toBe('somemarker');
     });
 
     it("should make a viewMap (bug 1)", function () {
