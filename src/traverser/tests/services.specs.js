@@ -203,6 +203,22 @@ describe("Traverser Service", function () {
       var viewConfig = Traverser.viewMap.default[0];
       expect(viewConfig.stateName).toBe('folderview-2');
     });
+
+    it("should make a viewMap (pathInfo bug)", function () {
+      var states = [
+        {name: 'folderview-1',
+          viewConfig: {resourceType: 'f1', name: 'default'}},
+        {name: 'folderview-2',
+          viewConfig: {resourceType: 'f1', name: 'default', marker: 'm1', containment: 'c1'}},
+        {name: 'folderview-3',
+          viewConfig: {resourceType: 'f1', name: 'default', containment: 'c1'}},
+        {name: 'folderview-4',
+          viewConfig: {resourceType: 'f1', name: 'default', marker: 'm1', containment: 'c1', pathInfo: 'f/'}}
+      ];
+      Traverser.makeViewMap(states);
+      var viewConfig = Traverser.viewMap.default[0];
+      expect(viewConfig.stateName).toBe('folderview-4');
+    });
   });
 
   describe("Resolve states", function () {
@@ -445,7 +461,7 @@ describe("Traverser Service", function () {
 
   describe("Resolve states (pathInfo)", function () {
 
-    iit("should choose the highest precedence (more specific path info)", function () {
+    it("should choose the highest precedence (more specific path info)", function () {
       var states = [
         {name: 'folderview-1',
           viewConfig: {resourceType: 'f1', name: 'default'}},
