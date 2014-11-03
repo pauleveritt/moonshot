@@ -128,7 +128,7 @@
           if (viewConfig.marker) {
             if (! _.contains(markers, viewConfig.marker)) {
               if (! _.contains(parentMarkers, viewConfig.marker)) {
-                continue
+                continue;
               }
             }
           }
@@ -136,11 +136,11 @@
             if (! _.contains(pathInfo, viewConfig.pathInfo)) {
               continue;
             }
-          };
+          }
   
           return viewConfig.stateName;
           
-        };
+        }
       }
       else {
         return undefined;
