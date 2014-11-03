@@ -425,5 +425,23 @@ describe("Traverser Service", function () {
 
   });
 
+  describe("Resolve states (parentTypes markers)", function () {
+
+    it("should choose the highest precedence (containment markers - simple)", function () {
+      var states = [
+        {name: 'folderview-1',
+          viewConfig: {resourceType: 'f1', name: 'default'}},
+        {name: 'folderview-2',
+          viewConfig: {resourceType: 'f1', name: 'default', marker: 'm1', containment: 'c1'}},
+        {name: 'folderview-3',
+          viewConfig: {resourceType: 'f1', name: 'default', containment: 'c1'}}
+      ];
+      Traverser.makeViewMap(states);
+      var context = {title: 'Context 1', resourceType: 'f1', markers: ['othermarker']};
+      toState = Traverser.resolveState(context, 'default', [{resourceType: 'c1', markers: ['m1']}]);
+      expect(toState).toBe('folderview-2');
+    });
+  });
+
 });
 
