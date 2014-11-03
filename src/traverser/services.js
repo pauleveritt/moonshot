@@ -91,7 +91,7 @@
     this.resolveState = function (context, viewName, parents) {
       // Based on request info, find the matching view in the view
       // map based on priority.
-      var views, parentTypes, matchingView, i, view, parentMarkers;
+      var views, parentTypes, matchingView, i, view, parentMarkers, viewConfigMarker;
 
       // Get the view matching this resolved viewName from the viewMap
       views = _this.viewMap[viewName];
@@ -114,6 +114,7 @@
         matchingView = null;
         for (i=0; i<views.length; i++) {
           viewConfig = views[i];
+          viewConfigMarker = viewConfig.marker;
   
           if (viewConfig.resourceType) {
             if (viewConfig.resourceType !== context.resourceType) {
@@ -126,8 +127,8 @@
             }
           }
           if (viewConfig.marker) {
-            if (! _.contains(markers, viewConfig.marker)) {
-              if (! _.contains(parentMarkers, viewConfig.marker)) {
+            if (! _.contains(markers, viewConfigMarker)) {
+              if (! _.contains(parentMarkers, viewConfigMarker)) {
                 continue;
               }
             }
