@@ -427,7 +427,7 @@ describe("Traverser Service", function () {
 
   describe("Resolve states (parentTypes markers)", function () {
 
-    it("should choose the highest precedence (containment markers - simple)", function () {
+    it("should choose the highest precedence (containment parent markers match)", function () {
       var states = [
         {name: 'folderview-1',
           viewConfig: {resourceType: 'f1', name: 'default'}},
@@ -440,6 +440,26 @@ describe("Traverser Service", function () {
       var context = {title: 'Context 1', resourceType: 'f1', markers: ['othermarker']};
       toState = Traverser.resolveState(context, 'default', [{resourceType: 'c1', markers: ['m1']}]);
       expect(toState).toBe('folderview-2');
+    });
+  });
+
+  describe("Resolve states (pathInfo)", function () {
+
+    iit("should choose the highest precedence (more specific path info)", function () {
+      var states = [
+        {name: 'folderview-1',
+          viewConfig: {resourceType: 'f1', name: 'default'}},
+        {name: 'folderview-2',
+          viewConfig: {resourceType: 'f1', name: 'default', marker: 'm1', containment: 'c1'}},
+        {name: 'folderview-3',
+          viewConfig: {resourceType: 'f1', name: 'default', containment: 'c1'}},
+        {name: 'folderview-4',
+          viewConfig: {resourceType: 'f1', name: 'default', marker: 'm1', containment: 'c1', pathInfo: '/f'}}
+      ];
+      Traverser.makeViewMap(states);
+      var context = {title: 'Context 1', resourceType: 'f1', path: '/f/f1', markers: ['othermarker']};
+      toState = Traverser.resolveState(context, 'default', [{resourceType: 'c1', markers: ['m1']}]);
+      expect(toState).toBe('folderview-4');
     });
   });
 
