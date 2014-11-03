@@ -355,6 +355,22 @@ describe("Traverser Service", function () {
       expect(toState).toBe('folderview-containment');
     });
 
+    it("should choose the highest precedence (special case - marker match > containment match)", function () {
+      var states = [
+        {name: 'folderview',
+          viewConfig: {resourceType: 'folder', name: 'default'}},
+        {name: 'folderview-containment',
+          viewConfig: {resourceType: 'folder', name: 'default', containment: 'rootfolder'}},
+        {name: 'folderview-marker',
+          viewConfig: {resourceType: 'folder', name: 'default', marker: 'somemarker'}},
+        {name: 'some.route'}
+      ];
+      Traverser.makeViewMap(states);
+      var context = {title: 'Context 1', resourceType: 'folder', markers: ['somemarker']};
+      toState = Traverser.resolveState(context, 'default', [{resourceType: 'rootfolder'}]);
+      expect(toState).toBe('folderview-marker');
+    });
+
   });
 
 });
