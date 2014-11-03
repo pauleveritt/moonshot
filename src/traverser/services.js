@@ -153,47 +153,6 @@
       else {
         return undefined;
       }
-/*      viewResults = _.map(views, function (viewConfig) {
-        if (!matchingView) {
-          // Initialize all the possible predicates
-          var r = {stateName: viewConfig.stateName};
-          r.isResourceType = false;
-          r.inParentTypes = false;
-          r.inMarkers = false;
-//          inParentMarkers = false,
-          r.inPathInfo = false;
-
-          r.score = 0;
-
-
-          // If this viewConfig states each predicate case, and it matches,
-          // set to true.
-
-          if (!_.has(viewConfig, 'resourceType')) {
-            // Special case...if the viewConfig does *not* specify a
-            // resourceType, it means match any resourceType;
-            r.isResourceType = true;
-          }
-          if (viewConfig.resourceType) {
-            r.isResourceType = viewConfig.resourceType === resourceType;
-          }
-          if (viewConfig.containment) {
-            r.inParentTypes = _.contains(parentTypes, viewConfig.containment);
-          }
-          if (viewConfig.marker) {
-//          inParentMarkers = _.contains(parentMarkers, viewConfig.marker);
-            r.inMarkers = _.contains(markers, viewConfig.marker);
-          }
-          if (viewConfig.pathInfo) {
-            r.inPathInfo = _.contains(pathInfo, viewConfig.pathInfo);
-          }
-
-          return r;
-        }
-      });
-
-      return matchingView;
-*/
     };
 
     this.transitionTo = function (context, viewName, parents) {
